@@ -1,0 +1,244 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<cc:interface componentType="IvyComponent">
+
+	<!-- Common attributes -->
+	<cc:attribute name="managedBean" />
+	<cc:attribute name="isReadOnly" type="java.lang.Boolean" />
+	<cc:attribute name="fieldsetToggleable" type="java.lang.Boolean" default="false" />
+	<cc:attribute name="fieldsetLegend" />
+	<cc:attribute name="fieldsetStyleClass" />
+	
+	<cc:attribute name="headline" />
+	<cc:attribute name="headlinePanelStyleClass" />
+	<cc:attribute name="headlineStyleClass" default="p-text-bold" />
+	
+	<cc:attribute name="helpText" />
+	<cc:attribute name="helpTextPanelStyleClass" />
+	<cc:attribute name="helpTextStyleClass" />
+	
+	
+	<cc:attribute name="validatorId" default="decisionComponentValidator" />
+
+	<!-- Decision attributes -->
+	<cc:attribute name="decisionLabel" default="Decision"/>
+	<cc:attribute name="decisionRequired" type="java.lang.Boolean" default="true" />
+	<cc:attribute name="decisionRendered" type="java.lang.Boolean" default="true" />
+	<cc:attribute name="decisionDisable" type="java.lang.Boolean" default="false" />
+	<cc:attribute name="decisionRequiredMessage" default="decisionRequiredMessage" />
+	<cc:attribute name="decisionPanelStyleClass" />
+	<cc:attribute name="listenerOnDecisionAction"/>
+	<cc:attribute name="listenerOnConfirmationAction"/>
+	<cc:attribute name="componentToUpdateOnDecision" default="@this"/>
+	<cc:attribute name="componentToUpdateOnConfirmation" default="@this"/>
+
+	<!-- Comment attributes -->
+	<cc:attribute name="decisionCommentLabel" default="decisionCommentLabel"/>
+	<cc:attribute name="commentRequired" type="java.lang.Boolean" default="false" />
+	<cc:attribute name="commentRendered" type="java.lang.Boolean" default="true" />
+	<cc:attribute name="commentRequiredMessage" default="commentRequiredMessage" />
+	<cc:attribute name="commentPanelStyleClass" />
+
+	<!-- Confirmation attributes -->
+	<cc:attribute name="confirmationRequired" type="java.lang.Boolean" default="false" />
+	<cc:attribute name="confirmationRequiredMessage" default="confirmationRequiredMessage" />
+	<cc:attribute name="confirmationPanelStyleClass" />
+	<cc:attribute name="confirmationLabel" default="confirmationLabel"/>
+	<cc:attribute name="confirmationDisabled" type="java.lang.Boolean" default="false" />
+
+	<!-- Approval history attribute -->
+	<cc:attribute name="approvalHistoryRendered" type="java.lang.Boolean" default="true" />
+	<cc:attribute name="confirmationVisible" type="java.lang.Boolean" default="false"/>
+	<cc:attribute name="approvalHistoryPanelStyleClass" />
+</cc:interface>
+
+
+
+<cc:implementation>
+	<h:outputStylesheet name="layouts/styles/core.css" />
+	<c:set var="managedBean" value="#{cc.attrs.managedBean}" />
+	<c:set var="fieldsetToggleable"
+		value="#{cc.attrs.fieldsetToggleable eq 'true' ? 'true' : 'false'}" />
+	<c:set var="fieldsetLegend"
+		value="#{empty cc.attrs.fieldsetLegend ? 'approval decision' : cc.attrs.fieldsetLegend}" />
+
+	<p:fieldset
+		legend="#{fieldsetLegend}"
+		toggleable="#{fieldsetToggleable}"
+		styleClass="#{cc.attrs.fieldsetStyleClass}">
+
+		<!-- Headline -->
+		<h:panelGroup id="headline-panel"
+			class="p-formgrid p-grid p-align-baseline ui-fluid #{cc.attrs.headlinePanelStyleClass}"
+			rendered="#{not empty cc.attrs.headline}">
+			<div class="p-field p-col-12 #{cc.attrs.headlineStyleClass}">
+				<p>#{cc.attrs.headline}</p>
+			</div>
+		</h:panelGroup>
+		
+		<!-- Custom Head line for specific requirement -->
+		<cc:renderFacet name="customHeadline" />
+		
+		<!-- Help text -->
+		<h:panelGroup id="helptext-panel"
+			class="p-formgrid p-grid p-align-baseline ui-fluid #{cc.attrs.helpTextPanelStyleClass}"
+			rendered="#{not empty cc.attrs.helpText}">
+			<div class="p-field p-col-12 #{cc.attrs.helpTextStyleClass}">
+				<p>#{cc.attrs.helpText}</p>
+			</div>
+		</h:panelGroup>
+
+		<!-- Custom help text for specific requirement -->
+		<cc:renderFacet name="customHelpText" />
+
+		<!-- Decision -->
+		<h:panelGroup id="decision-panel" layout="block"
+			styleClass="p-formgrid p-grid p-align-baseline ui-fluid #{cc.attrs.decisionPanelStyleClass}"
+			rendered="#{cc.attrs.decisionRendered}">
+			<div class="p-field p-col-12 p-md-2 p-text-left p-text-md-right">
+				<p:outputLabel id="decision-label" for="decision-options"
+					value="#{cc.attrs.decisionLabel}">
+					<c:if test="#{cc.attrs.decisionRequired}">
+						<span class="ui-outputlabel-rfi">*</span>
+					</c:if>
+				</p:outputLabel>
+			</div>
+			<div class="p-field p-col-12 p-md-10">
+				<p:selectOneRadio id="decision-options"
+					value="#{managedBean.approvalHistory.decision}" layout="grid"
+					columns="1" requiredMessage="#{cc.attrs.decisionRequiredMessage}"
+					disabled="#{cc.attrs.decisionDisable}">
+					<f:selectItems value="#{managedBean.decisions}" var="decision"
+						itemValue="#{decision}"
+						itemLabel="#{managedBean.getDecisionLabel(decision)}" />
+					<f:validator validatorId="#{cc.attrs.validatorId}"
+						disabled="#{!cc.attrs.decisionRequired}" />
+					<p:ajax listener="#{cc.attrs.listenerOnDecisionAction}" update="#{cc.attrs.componentToUpdateOnDecision}" process="@this" partialSubmit="true" global="false"/>
+				</p:selectOneRadio>
+				<p:message for="decision-options" />
+			</div>
+		</h:panelGroup>
+		
+
+		<!-- Custom content for specific requirement that decision component cannot fulfill -->
+		<!--  
+		<cc:renderFacet name="customContent" />
+		-->
+
+		<!-- Confirmation List -->
+		<!-- 
+		<h:panelGroup id="confirm-panel" layout="block"
+			styleClass="p-formgrid p-grid p-align-baseline ui-fluid #{cc.attrs.confirmationPanelStyleClass}"
+			rendered="#{(not cc.attrs.isReadOnly or cc.attrs.confirmationVisible) and managedBean.confirmations ne null and managedBean.confirmations.size() > 0}">
+			<div class="p-field p-col-12 p-md-2 p-text-left p-text-md-right">
+				<p:outputLabel id="confirmation-label" for="confirmation-options"
+					value="#{cc.attrs.confirmationLabel}">
+					<c:if test="#{cc.attrs.confirmationRequired}">
+						<span class="ui-outputlabel-rfi">*</span>
+					</c:if>
+				</p:outputLabel>
+			</div>
+			<div class="p-field p-col-12 p-md-10">
+				<p:selectManyCheckbox id="confirmation-options"
+					value="#{managedBean.selectedConfirmations}" layout="grid"
+					columns="1" disabled="#{cc.attrs.confirmationDisabled}"
+					requiredMessage="#{cc.attrs.confirmationRequiredMessage}">
+					<f:selectItems value="#{managedBean.confirmations}"
+						var="confirmation" itemValue="#{confirmation}"
+						itemLabel="#{managedBean.getConfirmationLabel(confirmation)}"/>
+					<f:attribute name="decisionBean" value="#{cc.attrs.managedBean}"/>
+					<f:validator validatorId="#{cc.attrs.validatorId}"
+						disabled="#{!cc.attrs.confirmationRequired}" />
+					<p:ajax listener="#{cc.attrs.listenerOnConfirmationAction}" update="#{cc.attrs.componentToUpdateOnConfirmation}" process="@this" partialSubmit="true" global="false"/>
+				</p:selectManyCheckbox>
+				<p:message for="confirmation-options" />
+			</div>
+		</h:panelGroup>
+		-->
+
+		<!-- Comment -->
+		<!-- 
+		<h:panelGroup id="comment-panel" layout="block"
+			styleClass="p-formgrid p-grid p-align-baseline ui-fluid #{cc.attrs.commentPanelStyleClass}"
+			rendered="#{cc.attrs.commentRendered}">
+			<div class="p-field p-col-12 p-md-2 p-text-left p-text-md-right">
+				<p:outputLabel id="decision-comment-label" for="decision-comment"
+					value="#{cc.attrs.decisionCommentLabel}">
+					<c:if test="#{cc.attrs.commentRequired}">
+						<span class="ui-outputlabel-rfi">*</span>
+					</c:if>
+				</p:outputLabel>
+			</div>
+			<div class="p-field p-col-12 p-md-10">
+				<p:inputTextarea id="decision-comment"
+					value="#{managedBean.approvalHistory.comment}" maxlength="1000"
+					disabled="#{cc.attrs.isReadOnly}"
+					counter="decision-comment-counter"
+					counterTemplate="#{ivy.cms.co('/Labels/CounterTemplate')}"
+					requiredMessage="#{cc.attrs.commentRequiredMessage}">
+					<f:validator validatorId="#{cc.attrs.validatorId}"
+						disabled="#{!cc.attrs.commentRequired}" />
+				</p:inputTextarea>
+				<h:outputText id="decision-comment-counter" rendered="#{!cc.attrs.isReadOnly}"/>
+			</div>
+			<h:panelGroup
+				class="p-field p-col-12 p-md-10 p-md-offset-2 p-nogutter"
+				rendered="#{cc.attrs.commentRequired}">
+				<p:message for="decision-comment" />
+			</h:panelGroup>
+		</h:panelGroup>
+		-->
+
+		<!-- Approval history -->
+		<!-- 
+		<h:panelGroup id="approval-history-table-panel" layout="block"
+			styleClass="p-formgrid p-grid p-align-baseline ui-fluid #{cc.attrs.approvalHistoryPanelStyleClass}"
+			rendered="#{cc.attrs.approvalHistoryRendered}">
+			<div class="p-field p-col-12 p-md-2 p-text-left p-text-md-right">
+				<p:outputLabel id="approval-history-label"
+					for="approval-history-table"
+					value="#{ivy.cms.co('/Dialogs/com/ricoh/hr/core/component/ApprovalDecision/ApprovalHistory')}" />
+			</div>
+			<div class="p-field p-col-12 p-md-10">
+				<p:dataTable id="approval-history-table" sortBy="#{managedBean.defaultSortField}"
+					value="#{managedBean.approvalHistories}" var="approval"
+					reflow="true" lazy="false" styleClass="approval-history-table">
+					<p:column sortBy="#{approval.displayUserName}"
+						headerText="#{ivy.cms.co('/Dialogs/com/ricoh/hr/core/component/ApprovalDecision/ApprovalHistoryTable/Author')}"
+						width="15%">
+						<h:outputText
+							value="#{approval.displayUserName}" />
+					</p:column>
+					<p:column sortBy="#{approval.sortableApprovalDate}"
+						headerText="#{ivy.cms.co('/Dialogs/com/ricoh/hr/core/component/ApprovalDecision/ApprovalHistoryTable/Date')}"
+						width="10%">
+						<h:outputText
+							value="#{approval.displayApprovalDate}" />
+					</p:column>
+					<p:column sortBy="#{managedBean.getDecisionLabel(approval.decision)}"
+						headerText="#{ivy.cms.co('/Dialogs/com/ricoh/hr/core/component/ApprovalDecision/Decision')}"
+						width="20%">
+						<h:outputText
+							value="#{managedBean.getDecisionLabel(approval.decision)}" />
+					</p:column>
+					<p:column sortBy="#{approval.comment}"
+						headerText="#{ivy.cms.co('/Labels/Comment')}">
+						<h:outputText value="#{approval.comment}" escape="false" styleClass="approval-comment"/>
+					</p:column>
+				</p:dataTable>
+			</div>
+		</h:panelGroup>
+		-->
+		
+	</p:fieldset>
+</cc:implementation>
+
+</html>

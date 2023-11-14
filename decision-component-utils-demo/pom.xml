@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.axonivy.utils.decisioncomponent</groupId>
+  <artifactId>decision-component-utils-demo</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>iar</packaging>
+  
+  <properties>
+    <ivy.engine.version>10.0.14</ivy.engine.version>
+    <axonivy.persistence.version>10.0.2</axonivy.persistence.version>
+  </properties>
+  
+  <dependencies>
+
+	<dependency>
+		<groupId>com.axonivy.utils.decisioncomponent</groupId>
+		<artifactId>decision-component-utils</artifactId>
+		<version>${project.version}</version>
+		<type>iar</type>
+	</dependency>
+
+	<dependency>
+		<groupId>com.axonivy.utils.persistence</groupId>
+		<artifactId>persistence-utils</artifactId>
+		<version>10.0.2</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-jpamodelgen</artifactId>
+		<version>5.4.33.Final</version>
+		<scope>provided</scope>
+	</dependency>
+	
+	
+	<!--
+	 <dependency>
+      <groupId>com.axonivy.utils.persistence</groupId>
+      <artifactId>persistence-utils</artifactId>
+      <version>${axonivy.persistence.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-jpamodelgen</artifactId>
+      <version>5.4.12.Final</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate.javax.persistence</groupId>
+      <artifactId>hibernate-jpa-2.1-api</artifactId>
+      <version>1.0.0.Final</version>
+    </dependency>
+    -->
+
+
+	<dependency>
+		<groupId>com.axonivy.utils.htmldialog</groupId>
+		<artifactId>html-dialog-utils</artifactId>
+		<version>10.0.0</version>
+		<type>iar</type>
+	</dependency>
+  </dependencies>
+  
+  <repositories>
+    <repository>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <id>maven.axonivy.com</id>
+      <url>https://maven.axonivy.com</url>
+    </repository>
+  </repositories>
+  
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>com.axonivy.ivy.ci</groupId>
+        <artifactId>project-build-plugin</artifactId>
+        <version>10.0.6</version>
+        <extensions>true</extensions>
+      </plugin>
+    </plugins>
+  </build>
+  
+</project>

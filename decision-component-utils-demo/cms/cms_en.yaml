@@ -1,0 +1,8 @@
+Dialogs:
+  com:
+    axonivy:
+      utils:
+        decisioncomponent:
+          RequestTicketForm:
+            ApprovalDecisionHeadline: Please review ticket and select a decision option
+            ApprovalDecisionHelpText: Please review ticket and select a decision option

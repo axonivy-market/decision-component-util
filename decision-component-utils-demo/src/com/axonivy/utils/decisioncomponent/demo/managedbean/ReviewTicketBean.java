@@ -1,6 +1,6 @@
 package com.axonivy.utils.decisioncomponent.demo.managedbean;
 
-import com.axonivy.utils.decisioncomponent.demo.entity.TicketRequest;
+import com.axonivy.utils.decisioncomponent.demo.entities.TicketRequest;
 
 public class ReviewTicketBean extends AbstractApprovalDecisionBean {
 	

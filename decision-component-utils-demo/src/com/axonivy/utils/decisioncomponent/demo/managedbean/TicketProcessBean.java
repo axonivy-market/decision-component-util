@@ -1,6 +1,6 @@
 package com.axonivy.utils.decisioncomponent.demo.managedbean;
 
-import com.axonivy.utils.decisioncomponent.demo.entity.TicketRequest;
+import com.axonivy.utils.decisioncomponent.demo.entities.TicketRequest;
 import com.axonivy.utils.decisioncomponent.demo.enums.ProcessStep;
 
 
@@ -33,6 +33,7 @@ public class TicketProcessBean {
 		}else {
 			approvalDecisionBean = new ReviewTicketBean(request);
 		}
+		
 		
 	}
 	

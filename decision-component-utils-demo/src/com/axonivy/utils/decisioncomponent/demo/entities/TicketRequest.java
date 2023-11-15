@@ -1,4 +1,4 @@
-package com.axonivy.utils.decisioncomponent.demo.entity;
+package com.axonivy.utils.decisioncomponent.demo.entities;
 
 import java.util.ArrayList;
 import java.util.List;

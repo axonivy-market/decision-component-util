@@ -1,4 +1,4 @@
-package com.axonivy.utils.decisioncomponent.demo.entity;
+package com.axonivy.utils.decisioncomponent.demo.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;

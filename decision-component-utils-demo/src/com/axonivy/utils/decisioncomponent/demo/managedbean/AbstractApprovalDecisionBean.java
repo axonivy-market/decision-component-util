@@ -13,7 +13,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.SortMeta;
 
-import com.axonivy.utils.decisioncomponent.demo.entity.ApprovalHistory;
+import com.axonivy.utils.decisioncomponent.demo.entities.ApprovalHistory;
 import com.axonivy.utils.decisioncomponent.demo.enums.ApprovalDecisionOption;
 import com.axonivy.utils.decisioncomponent.managedbean.UserUtilBean;
 import com.axonivy.utils.decisioncomponent.utils.DateUtils;

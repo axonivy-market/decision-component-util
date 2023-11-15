@@ -2,11 +2,7 @@ package com.axonivy.utils.decisioncomponent.demo.managedbean;
 
 import org.apache.commons.lang3.StringUtils;
 
-//import javax.faces.bean.ManagedBean;
-//import javax.faces.bean.ViewScoped;
-
-//import com.axonivy.utils.decisioncomponent.demo.entity.ApprovalHistory;
-import com.axonivy.utils.decisioncomponent.demo.entity.TicketRequest;
+import com.axonivy.utils.decisioncomponent.demo.entities.TicketRequest;
 //import com.axonivy.utils.decisioncomponent.demo.enums.ApprovalDecisionOption;
 //import com.ricoh.hr.core.enums.HRTicketRequestApprovalDecision;
 import com.axonivy.utils.decisioncomponent.demo.enums.RequestApprovalDecision;

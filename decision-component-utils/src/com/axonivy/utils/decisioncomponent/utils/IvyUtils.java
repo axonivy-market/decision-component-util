@@ -2,20 +2,23 @@ package com.axonivy.utils.decisioncomponent.utils;
 
 import java.io.Serializable;
 
-import org.apache.commons.lang3.StringUtils;
+//import org.apache.commons.lang3.StringUtils;
 
 //import com.ricoh.hr.core.managedbean.UserFormatBean;
 //import com.ricoh.hr.core.service.IvyService;
 //import com.ricoh.hr.core.util.IvyUtils;
 
-import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.security.IUser;
+//import ch.ivyteam.ivy.environment.Ivy;
+//import ch.ivyteam.ivy.security.IUser;
 
 
 public class IvyUtils implements Serializable {
 
-	private static final long serialVersionUID = -2531414574114333439L;
+	private static final long serialVersionUID = -1L;
 
+	
+	
+	
 //	public String generateDisplayName(String userName) {
 //		if (StringUtils.isBlank(userName)) {
 //			return StringUtils.EMPTY;

@@ -1,28 +1,36 @@
 package com.axonivy.utils.decisioncomponent.demo.managedbean;
 
-import com.axonivy.utils.decisioncomponent.demo.entity.ApprovalHistory;
-import com.axonivy.utils.decisioncomponent.demo.entity.Request;
+import com.axonivy.utils.decisioncomponent.demo.entity.TicketRequest;
 
 
 public class TicketProcessBean {
 	
-	private Request request;
-	private ApprovalHistory approvalHistory;
+	private TicketRequest request;
+	
+	private RequestTicketBean requestTicketDecisionBean;
 	
 	private boolean decisionRendered;
+	private boolean commentRendered;
+	private boolean approvalHistoryRendered;
 
 	public TicketProcessBean() {
 		init();
 	}
 	
 	private void init() {
-		request = new Request();
-		approvalHistory = new ApprovalHistory();
+		request = new TicketRequest();
+		
+		this.decisionRendered = true;
+		this.commentRendered = true;
+		this.approvalHistoryRendered = true;
+		
+		
+		requestTicketDecisionBean = new RequestTicketBean(request);
 	}
 	
 	
 	
-	public boolean isDecisionRendered() {
+	public boolean getDecisionRendered() {
 		return decisionRendered;
 	}
 
@@ -30,19 +38,36 @@ public class TicketProcessBean {
 		this.decisionRendered = decisionRendered;
 	}
 
-	public Request getRequest() {
+	public TicketRequest getRequest() {
 		return request;
 	}
 
-	public void setRequest(Request request) {
+	public void setRequest(TicketRequest request) {
 		this.request = request;
 	}
 
-	public ApprovalHistory getApprovalHistory() {
-		return approvalHistory;
+	public RequestTicketBean getRequestTicketDecisionBean() {
+		return requestTicketDecisionBean;
 	}
 
-	public void setApprovalHistory(ApprovalHistory approvalHistory) {
-		this.approvalHistory = approvalHistory;
+	public void setRequestTicketDecisionBean(RequestTicketBean requestTicketDecisionBean) {
+		this.requestTicketDecisionBean = requestTicketDecisionBean;
 	}
+
+	public boolean isCommentRendered() {
+		return commentRendered;
+	}
+
+	public void setCommentRendered(boolean commentRendered) {
+		this.commentRendered = commentRendered;
+	}
+
+	public boolean isApprovalHistoryRendered() {
+		return approvalHistoryRendered;
+	}
+
+	public void setApprovalHistoryRendered(boolean approvalHistoryRendered) {
+		this.approvalHistoryRendered = approvalHistoryRendered;
+	}
+
 }

@@ -1,0 +1,9 @@
+Labels:
+  ApprovalHistory: Approval history
+  Author: Author
+  Comment: Comment
+  CounterTemplate: '{0} characters remaining.'
+  Date: Date
+  DateTimePattern: dd/MM/yyyy HH:mm
+  Decision: Decision
+  RequiredFieldMessage: This field is required

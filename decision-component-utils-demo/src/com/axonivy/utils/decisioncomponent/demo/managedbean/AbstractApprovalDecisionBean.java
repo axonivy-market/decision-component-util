@@ -15,6 +15,9 @@ import org.primefaces.model.SortMeta;
 
 import com.axonivy.utils.decisioncomponent.demo.entity.ApprovalHistory;
 import com.axonivy.utils.decisioncomponent.demo.enums.ApprovalDecisionOption;
+import com.axonivy.utils.decisioncomponent.managedbean.UserUtilBean;
+import com.axonivy.utils.decisioncomponent.utils.DateUtils;
+import com.axonivy.utils.decisioncomponent.utils.SortFieldUtils;
 
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.IUser;
@@ -28,9 +31,9 @@ public class AbstractApprovalDecisionBean implements Serializable {
 	private List<Enum<?>> confirmations = new ArrayList<>();
 	private List<Enum<?>> selectedConfirmations = new ArrayList<>();
 	private List<ApprovalHistory> approvalHistories = new ArrayList<>();
-	//private SortMeta defaultSortField;
+	private SortMeta defaultSortField;
 
-	//private UserUtilBean userUtilBean;
+	private UserUtilBean userUtilBean;
 
 	/**
 	 * Get decision name from an enum. We use enum ApprovalDecisionOption by
@@ -78,6 +81,28 @@ public class AbstractApprovalDecisionBean implements Serializable {
 		initApprovalHistories(histories);
 		initSelectedConfirmations();
 	}
+	
+//	private void initApprovalHistories(List<ApprovalHistory> histories) {
+//		if (CollectionUtils.isEmpty(histories)) {
+//			histories = new ArrayList<>();
+//		}
+//
+//		setApprovalHistories(histories.stream().filter(p -> !p.getIsEditting())
+//				.sorted(Comparator.comparing(ApprovalHistory::getApprovalDate).reversed())
+//				.collect(Collectors.toList()));
+//		setApprovalHistory(histories.stream().filter(p -> p.getIsEditting()).findFirst().orElse(new ApprovalHistory()));
+//
+//		if (userUtilBean == null) {
+//			userUtilBean = FacesContexts.evaluateValueExpression("#{userUtilBean}", UserUtilBean.class);
+//		}
+//		getApprovalHistories().forEach(history -> {
+//			history.setDisplayUserName(userUtilBean.getFullName(history.getHeader().getModifiedByUserName()));
+//			history.setDisplayApprovalDate(DateUtils.getFormattedDateTime(history.getApprovalDate()));
+//			history.setSortableApprovalDate(DateUtils.getSortableFormattedDateTime(history.getApprovalDate()));
+//		});
+//
+//		initDefaultSortField();
+//	}
 
 	private void initApprovalHistories(List<ApprovalHistory> histories) {
 		if (CollectionUtils.isEmpty(histories)) {
@@ -93,13 +118,15 @@ public class AbstractApprovalDecisionBean implements Serializable {
 //			userUtilBean = FacesContexts.evaluateValueExpression("#{userUtilBean}", UserUtilBean.class);
 //		}
 //		
-//		getApprovalHistories().forEach(history -> {
-//			history.setDisplayUserName(userUtilBean.getFullName(history.getHeader().getModifiedByUserName()));
-//			history.setDisplayApprovalDate(DateUtils.getFormattedDateTime(history.getApprovalDate()));
-//			history.setSortableApprovalDate(DateUtils.getSortableFormattedDateTime(history.getApprovalDate()));
-//		});
+		getApprovalHistories().forEach(history -> {
+			history.setDisplayUserName(history.getHeader().getModifiedByUserName());
+			history.setDisplayApprovalDate(DateUtils.getFormattedDateTime(history.getApprovalDate()));
+			//history.setSortableApprovalDate(DateUtils.getSortableFormattedDateTime(history.getApprovalDate()));
+			
+			
+		});
 
-		//initDefaultSortField();
+		initDefaultSortField();
 	}
 
 	public boolean isApprovalHistoryTableSortDescending() {
@@ -110,11 +137,11 @@ public class AbstractApprovalDecisionBean implements Serializable {
 		return "sortableApprovalDate";
 	}
 
-//	public void initDefaultSortField() {
-//		setDefaultSortField(
-//				SortFieldUtils.buildSortMeta(getApprovalHistoryTableSortField(),
-//						isApprovalHistoryTableSortDescending()));
-//	}
+	public void initDefaultSortField() {
+		setDefaultSortField(
+				SortFieldUtils.buildSortMeta(getApprovalHistoryTableSortField(),
+						isApprovalHistoryTableSortDescending()));
+	}
 
 	private void initSelectedConfirmations() {
 		if (StringUtils.isNotBlank(approvalHistory.getSelectedConfirmations())
@@ -216,12 +243,21 @@ public class AbstractApprovalDecisionBean implements Serializable {
 		this.approvalHistories = approvalHistories;
 	}
 
-//	public SortMeta getDefaultSortField() {
-//		return defaultSortField;
-//	}
-//
-//	public void setDefaultSortField(SortMeta defaultSortField) {
-//		this.defaultSortField = defaultSortField;
-//	}
+	public SortMeta getDefaultSortField() {
+		return defaultSortField;
+	}
+
+	public void setDefaultSortField(SortMeta defaultSortField) {
+		this.defaultSortField = defaultSortField;
+	}
+
+	public UserUtilBean getUserUtilBean() {
+		return userUtilBean;
+	}
+
+	public void setUserUtilBean(UserUtilBean userUtilBean) {
+		this.userUtilBean = userUtilBean;
+	}
+	
 
 }

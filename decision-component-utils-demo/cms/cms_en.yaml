@@ -6,3 +6,23 @@ Dialogs:
           RequestTicketForm:
             ApprovalDecisionHeadline: Please review ticket and select a decision option
             ApprovalDecisionHelpText: Please review ticket and select a decision option
+Enums:
+  com:
+    axonivy:
+      utils:
+        decisioncomponent:
+          demo:
+            enums:
+              RequestApprovalDecision:
+                APPROVE:
+                  name: approve
+                CANCEL:
+                  name: Cancel
+                FORWARD_TO:
+                  name: Forward to
+                REJECT:
+                  name: Reject
+                RETURN_BACK_TO_REQUESTER:
+                  name: Return back to requester
+                SEND_TO_REVIEWER:
+                  name: Send to reviewer

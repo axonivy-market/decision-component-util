@@ -13,14 +13,14 @@
         "outLink" : "start.ivp"
       },
       "visual" : {
-        "at" : { "x" : 96, "y" : 64 }
+        "at" : { "x" : 96, "y" : 160 }
       },
       "connect" : { "id" : "f4", "to" : "f3" }
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 888, "y" : 64 }
+        "at" : { "x" : 888, "y" : 160 }
       }
     }, {
       "id" : "f3",
@@ -31,7 +31,7 @@
         "startMethod" : "start()"
       },
       "visual" : {
-        "at" : { "x" : 272, "y" : 64 }
+        "at" : { "x" : 272, "y" : 160 }
       },
       "connect" : { "id" : "f6", "to" : "f5" }
     }, {
@@ -43,7 +43,7 @@
         "startMethod" : "start()"
       },
       "visual" : {
-        "at" : { "x" : 552, "y" : 64 },
+        "at" : { "x" : 552, "y" : 160 },
         "size" : { "width" : 130, "height" : 64 }
       },
       "connect" : { "id" : "f8", "to" : "f7" }
@@ -51,11 +51,11 @@
       "id" : "f7",
       "type" : "Alternative",
       "visual" : {
-        "at" : { "x" : 760, "y" : 64 }
+        "at" : { "x" : 760, "y" : 160 }
       },
       "connect" : [
         { "id" : "f2", "to" : "f1", "condition" : "true" },
-        { "id" : "f9", "to" : "f3", "via" : [ { "x" : 760, "y" : 176 }, { "x" : 272, "y" : 176 } ] }
+        { "id" : "f9", "to" : "f3", "via" : [ { "x" : 760, "y" : 272 }, { "x" : 272, "y" : 272 } ] }
       ]
     } ]
 }

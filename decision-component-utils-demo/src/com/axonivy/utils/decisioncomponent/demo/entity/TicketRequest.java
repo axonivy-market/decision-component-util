@@ -15,8 +15,8 @@ import javax.persistence.JoinColumn;
 import com.axonivy.utils.persistence.beans.AuditableEntity;
 
 @Entity
-@Table(name = "request")
-public class Request extends AuditableEntity{
+@Table(name = "ticket_request")
+public class TicketRequest extends AuditableEntity{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -27,9 +27,9 @@ public class Request extends AuditableEntity{
 	private String ticketDescription;
 	
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinTable(name = "request_approval_history",
-	  joinColumns = { @JoinColumn(name = "request_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_request_approval_history_request")) },
-	  inverseJoinColumns = @JoinColumn(name = "approval_history_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_request_approval_history_approval_history")))
+	@JoinTable(name = "ticket_request_approval_history",
+	  joinColumns = { @JoinColumn(name = "ticket_request_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_ticket_request_approval_history_ticket_request")) },
+	  inverseJoinColumns = @JoinColumn(name = "approval_history_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_ticket_request_approval_history_approval_history")))
 	private List<ApprovalHistory> approvalHistories = new ArrayList<>();
 	
 	public String getTicketTitle() {
@@ -62,5 +62,13 @@ public class Request extends AuditableEntity{
 	public void setTicketDescription(String ticketDescription) {
 		this.ticketDescription = ticketDescription;
 	}
+	public List<ApprovalHistory> getApprovalHistories() {
+		return approvalHistories;
+	}
+	public void setApprovalHistories(List<ApprovalHistory> approvalHistories) {
+		this.approvalHistories = approvalHistories;
+	}
+	
+	
 
 }

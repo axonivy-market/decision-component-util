@@ -49,7 +49,10 @@
         "output" : {
           "code" : [
             "import com.axonivy.utils.decisioncomponent.demo.managedbean.TicketProcessBean;",
-            "in.bean = new TicketProcessBean();"
+            "import com.axonivy.utils.decisioncomponent.demo.enums.ProcessStep;",
+            "",
+            "",
+            "in.bean = new TicketProcessBean(ProcessStep.REQUEST_TICKET);"
           ]
         }
       },

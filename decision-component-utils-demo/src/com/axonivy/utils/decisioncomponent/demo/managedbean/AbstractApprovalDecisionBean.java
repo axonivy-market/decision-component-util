@@ -81,28 +81,6 @@ public class AbstractApprovalDecisionBean implements Serializable {
 		initApprovalHistories(histories);
 		initSelectedConfirmations();
 	}
-	
-//	private void initApprovalHistories(List<ApprovalHistory> histories) {
-//		if (CollectionUtils.isEmpty(histories)) {
-//			histories = new ArrayList<>();
-//		}
-//
-//		setApprovalHistories(histories.stream().filter(p -> !p.getIsEditting())
-//				.sorted(Comparator.comparing(ApprovalHistory::getApprovalDate).reversed())
-//				.collect(Collectors.toList()));
-//		setApprovalHistory(histories.stream().filter(p -> p.getIsEditting()).findFirst().orElse(new ApprovalHistory()));
-//
-//		if (userUtilBean == null) {
-//			userUtilBean = FacesContexts.evaluateValueExpression("#{userUtilBean}", UserUtilBean.class);
-//		}
-//		getApprovalHistories().forEach(history -> {
-//			history.setDisplayUserName(userUtilBean.getFullName(history.getHeader().getModifiedByUserName()));
-//			history.setDisplayApprovalDate(DateUtils.getFormattedDateTime(history.getApprovalDate()));
-//			history.setSortableApprovalDate(DateUtils.getSortableFormattedDateTime(history.getApprovalDate()));
-//		});
-//
-//		initDefaultSortField();
-//	}
 
 	private void initApprovalHistories(List<ApprovalHistory> histories) {
 		if (CollectionUtils.isEmpty(histories)) {
@@ -122,8 +100,6 @@ public class AbstractApprovalDecisionBean implements Serializable {
 			history.setDisplayUserName(history.getHeader().getModifiedByUserName());
 			history.setDisplayApprovalDate(DateUtils.getFormattedDateTime(history.getApprovalDate()));
 			//history.setSortableApprovalDate(DateUtils.getSortableFormattedDateTime(history.getApprovalDate()));
-			
-			
 		});
 
 		initDefaultSortField();
@@ -259,5 +235,4 @@ public class AbstractApprovalDecisionBean implements Serializable {
 		this.userUtilBean = userUtilBean;
 	}
 	
-
 }

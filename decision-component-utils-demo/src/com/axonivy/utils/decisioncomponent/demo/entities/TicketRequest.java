@@ -68,7 +68,4 @@ public class TicketRequest extends AuditableEntity{
 	public void setApprovalHistories(List<ApprovalHistory> approvalHistories) {
 		this.approvalHistories = approvalHistories;
 	}
-	
-	
-
 }

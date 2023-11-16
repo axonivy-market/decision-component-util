@@ -45,6 +45,7 @@
       "type" : "Script",
       "name" : "init",
       "config" : {
+        "security" : "system",
         "output" : {
           "code" : [
             "",

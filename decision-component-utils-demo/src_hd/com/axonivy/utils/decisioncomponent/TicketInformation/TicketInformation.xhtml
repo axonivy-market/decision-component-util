@@ -1,0 +1,83 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<cc:interface componentType="IvyComponent">
+	<cc:attribute name="managedBean" required="true" />
+	<!-- Required attributes -->
+	<cc:attribute name="isRequiredTicketTitle" type="java.lang.Boolean" default="true" />
+	<cc:attribute name="isRequiredTicketNumber" type="java.lang.Boolean" default="true" />
+	<cc:attribute name="isRequiredTicketType" type="java.lang.Boolean" default="true" />
+	<cc:attribute name="isRequiredTicketRaiser" type="java.lang.Boolean" default="true" />
+	<cc:attribute name="isRequiredTicketDescription" type="java.lang.Boolean" default="true" />
+	<!-- Read only attributes -->
+	<cc:attribute name="isReadOnlyTicketTitle" type="java.lang.Boolean" default="true" />
+	<cc:attribute name="isReadOnlyTicketNumber" type="java.lang.Boolean" default="true" />
+	<cc:attribute name="isReadOnlyTicketType" type="java.lang.Boolean" default="true" />
+	<cc:attribute name="isReadOnlyTicketRaiser" type="java.lang.Boolean" default="true" />
+	<cc:attribute name="isReadOnlyTicketDescription" type="java.lang.Boolean" default="true" />
+</cc:interface>
+
+<cc:implementation>
+	<c:set var="managedBean" value="#{cc.attrs.managedBean}" />
+	<p:fieldset legend="#{ivy.cms.co('/Labels/InformationLegend')}" toggleable="true">
+		<div class="p-grid ui-g">
+			<div class="p-sm-12 p-md-4 p-lg-2 p-text-left p-text-md-right">
+				<p:outputLabel value="#{ivy.cms.co('/Labels/TicketTitle')}" for="ticket_title" />
+			</div>
+			<div class="p-sm-12 p-md-8 p-lg-4">
+				<p:inputText id="ticket_title"
+					value="#{managedBean.request.ticketTitle}"
+					disabled="#{cc.attrs.isReadOnlyTicketTitle}"
+					required="#{cc.attrs.isRequiredTicketTitle}" />
+			</div>
+			<div class="p-sm-12 p-md-4 p-lg-2 p-text-left p-text-md-right">
+				<p:outputLabel value="#{ivy.cms.co('/Labels/TicketNumber')}" for="ticket_number" />
+			</div>
+			<div class="p-sm-12 p-md-8 p-lg-4">
+				<p:inputText id="ticket_number"
+					value="#{managedBean.request.ticketNumber}"
+					disabled="#{cc.attrs.isReadOnlyTicketNumber}"
+					required="#{cc.attrs.isRequiredTicketNumber}" />
+			</div>
+		</div>
+		<div class="p-grid ui-g">
+			<div class="p-sm-12 p-md-4 p-lg-2 p-text-left p-text-md-right">
+				<p:outputLabel value="#{ivy.cms.co('/Labels/TicketType')}" for="ticket_type" />
+			</div>
+			<div class="p-sm-12 p-md-8 p-lg-4">
+				<p:inputText id="ticket_type"
+					value="#{managedBean.request.ticketType}"
+					disabled="#{cc.attrs.isReadOnlyTicketType}"
+					required="#{cc.attrs.isRequiredTicketType}" />
+			</div>
+			<div class="p-sm-12 p-md-4 p-lg-2 p-text-left p-text-md-right">
+				<p:outputLabel value="#{ivy.cms.co('/Labels/TicketRaiser')}" for="ticket_raiser" />
+			</div>
+			<div class="p-sm-12 p-md-8 p-lg-4">
+				<p:inputText id="ticket_raiser"
+					value="#{managedBean.request.ticketRaiser}"
+					disabled="#{cc.attrs.isReadOnlyTicketRaiser}"
+					required="#{cc.attrs.isRequiredTicketRaiser}" />
+			</div>
+		</div>
+		<div class="p-grid ui-g">
+			<div class="p-sm-12 p-md-4 p-lg-2 p-text-left p-text-md-right">
+				<p:outputLabel value="#{ivy.cms.co('/Labels/TicketDescription')}" for="ticket_description" />
+			</div>
+			<div class="p-sm-12 p-md-8 p-lg-10">
+				<p:inputTextarea id="ticket_description"
+					value="#{managedBean.request.ticketDescription}"
+					disabled="#{cc.attrs.isReadOnlyTicketDescription}"
+					required="#{cc.attrs.isRequiredTicketDescription}" />
+			</div>
+		</div>
+	</p:fieldset>
+</cc:implementation>
+</html>

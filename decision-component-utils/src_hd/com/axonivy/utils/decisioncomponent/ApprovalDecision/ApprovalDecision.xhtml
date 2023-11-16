@@ -25,7 +25,6 @@
 	<cc:attribute name="helpTextPanelStyleClass" />
 	<cc:attribute name="helpTextStyleClass" />
 	
-	
 	<cc:attribute name="validatorId" default="decisionComponentValidator" />
 
 	<!-- Decision attributes -->
@@ -60,18 +59,12 @@
 	<cc:attribute name="approvalHistoryPanelStyleClass" />
 	<cc:attribute name="approvalHistoryLabel" default="#{ivy.cms.co('/Labels/ApprovalHistory')}"/>
 	
-	
 	<cc:attribute name="approvalHistoryAuthorStyleClass" />
 	<cc:attribute name="approvalHistoryDateStyleClass" />
 	<cc:attribute name="approvalHistoryDecisionStyleClass" />
 	<cc:attribute name="approvalHistoryCommentStyleClass" />
 
-	
-	
-	
 </cc:interface>
-
-
 
 <cc:implementation>
 	<h:outputStylesheet name="layouts/styles/core.css" />
@@ -203,7 +196,6 @@
 				<p:message for="decision-comment" />
 			</h:panelGroup>
 		</h:panelGroup>
-		
 
 		<!-- Approval history -->
 		<h:panelGroup id="approval-history-table-panel" layout="block"
@@ -225,17 +217,14 @@
 						<h:outputText
 							value="#{approvalHistory.displayUserName}" styleClass="#{cc.attrs.approvalHistoryAuthorStyleClass}" />
 					</p:column>
-					
-					
+
 					<p:column sortBy="#{approvalHistory.sortableApprovalDate}"
 						headerText="#{ivy.cms.co('/Labels/Date')}"
 						width="10%">
 						<h:outputText
 							value="#{approvalHistory.displayApprovalDate}" styleClass="#{cc.attrs.approvalHistoryDateStyleClass}" />
 					</p:column>
-					
-					
-					
+
 					<p:column sortBy="#{managedBean.getDecisionLabel(approvalHistory.decision)}"
 						headerText="#{ivy.cms.co('/Labels/Decision')}"
 						width="20%">
@@ -243,17 +232,11 @@
 							value="#{managedBean.getDecisionLabel(approvalHistory.decision)}" styleClass="#{cc.attrs.approvalHistoryDecisionStyleClass}" />
 					</p:column>
 					
-
-					
 					<p:column sortBy="#{approvalHistory.comment}"
 						headerText="#{ivy.cms.co('/Labels/Comment')}">
 						<h:outputText value="#{approvalHistory.comment}" escape="false" styleClass="#{cc.attrs.approvalHistoryCommentStyleClass}" />
 					</p:column>
-					
-					
 
-	
-					
 				</p:dataTable>
 			</div>
 		</h:panelGroup>

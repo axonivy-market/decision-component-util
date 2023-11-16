@@ -1,15 +1,17 @@
 package com.axonivy.utils.decisioncomponent.demo.managedbean;
 
+import java.net.MalformedURLException;
+
 import com.axonivy.utils.decisioncomponent.demo.entities.TicketRequest;
 import com.axonivy.utils.decisioncomponent.demo.enums.ProcessStep;
+import com.axonivy.utils.decisioncomponent.demo.utils.TicketProcessUtils;
+
+import ch.ivyteam.ivy.environment.Ivy;
 
 
 public class TicketProcessBean {
 	
 	private TicketRequest request;
-	
-	//private RequestTicketBean requestTicketDecisionBean;
-	
 	
 	private AbstractApprovalDecisionBean approvalDecisionBean;
 	
@@ -33,9 +35,19 @@ public class TicketProcessBean {
 		}else {
 			approvalDecisionBean = new ReviewTicketBean(request);
 		}
-		
-		
 	}
+	
+	
+	
+	public void submit() {
+		Ivy.log().info("submit called");
+	}
+	
+	
+	public void cancel() throws MalformedURLException {
+		TicketProcessUtils.navigateToHomePage();
+	}
+	
 	
 	
 	
@@ -54,16 +66,6 @@ public class TicketProcessBean {
 	public void setRequest(TicketRequest request) {
 		this.request = request;
 	}
-
-//	public RequestTicketBean getRequestTicketDecisionBean() {
-//		return requestTicketDecisionBean;
-//	}
-//
-//	public void setRequestTicketDecisionBean(RequestTicketBean requestTicketDecisionBean) {
-//		this.requestTicketDecisionBean = requestTicketDecisionBean;
-//	}
-	
-	
 
 	public boolean isCommentRendered() {
 		return commentRendered;
@@ -88,5 +90,4 @@ public class TicketProcessBean {
 	public void setApprovalHistoryRendered(boolean approvalHistoryRendered) {
 		this.approvalHistoryRendered = approvalHistoryRendered;
 	}
-
 }

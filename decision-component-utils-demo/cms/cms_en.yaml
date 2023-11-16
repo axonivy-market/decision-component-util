@@ -6,6 +6,9 @@ Dialogs:
           RequestTicketForm:
             ApprovalDecisionHeadline: Please review ticket and select a decision option
             ApprovalDecisionHelpText: Please review ticket and select a decision option
+            Title: Request ticket
+          ReviewTicketRequest:
+            Title: Review ticket request
 Enums:
   com:
     axonivy:
@@ -15,7 +18,7 @@ Enums:
             enums:
               RequestApprovalDecision:
                 APPROVE:
-                  name: approve
+                  name: Approve
                 CANCEL:
                   name: Cancel
                 FORWARD_TO:
@@ -26,3 +29,11 @@ Enums:
                   name: Return back to requester
                 SEND_TO_REVIEWER:
                   name: Send to reviewer
+Labels:
+  DecisionLegend: Decision
+  InformationLegend: Ticket infomation
+  TicketDescription: Ticket description
+  TicketNumber: Ticket number
+  TicketRaiser: Ticket raiser
+  TicketTitle: Ticket title
+  TicketType: Ticket type

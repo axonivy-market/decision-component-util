@@ -9,7 +9,7 @@ import com.axonivy.utils.persistence.beans.AuditableEntity;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "approval_history")
+@Table(name="ApprovalHistory")
 public class ApprovalHistory extends AuditableEntity {
 
 	private static final long serialVersionUID = 1L;
@@ -20,8 +20,8 @@ public class ApprovalHistory extends AuditableEntity {
 	private Boolean isEditing;
 	private String selectedConfirmations;
 	
+	
 	// custom field
-
 	@Transient
 	private String displayUserName;
 	

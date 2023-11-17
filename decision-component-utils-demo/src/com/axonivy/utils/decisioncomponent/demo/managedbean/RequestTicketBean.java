@@ -2,8 +2,12 @@ package com.axonivy.utils.decisioncomponent.demo.managedbean;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.utils.decisioncomponent.demo.entities.ApprovalHistory;
 import com.axonivy.utils.decisioncomponent.demo.entities.TicketRequest;
 import com.axonivy.utils.decisioncomponent.demo.enums.RequestApprovalDecision;
+
+import java.util.List;
+
 
 public class RequestTicketBean extends AbstractApprovalDecisionBean {
 
@@ -28,6 +32,14 @@ public class RequestTicketBean extends AbstractApprovalDecisionBean {
 			return "";
 		}
 		return RequestApprovalDecision.valueOf(decisionName).getCmsName();
+	}
+	
+	public void saveApprovalHistories(List<ApprovalHistory> approvalHistories) {
+		handleApprovalHistoryBeforeSave(approvalHistories);
+	}
+	
+	public void submitApprovalHistories(List<ApprovalHistory> approvalHistories) {
+		handleApprovalHistoryBeforeSubmit(approvalHistories);
 	}
 
 	public String getValidatorId() {

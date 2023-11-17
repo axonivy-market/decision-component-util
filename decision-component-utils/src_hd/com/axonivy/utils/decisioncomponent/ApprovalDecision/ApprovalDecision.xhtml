@@ -14,7 +14,7 @@
 	<cc:attribute name="managedBean" />
 	<cc:attribute name="isReadOnly" type="java.lang.Boolean" />
 	<cc:attribute name="fieldsetToggleable" type="java.lang.Boolean" default="false" />
-	<cc:attribute name="fieldsetLegend" />
+	<cc:attribute name="fieldsetLegend" type="java.lang.String" default="Approval decision" />
 	<cc:attribute name="fieldsetStyleClass" />
 	
 	<cc:attribute name="headline" />
@@ -58,7 +58,7 @@
 	<cc:attribute name="confirmationVisible" type="java.lang.Boolean" default="false"/>
 	<cc:attribute name="approvalHistoryPanelStyleClass" />
 	<cc:attribute name="approvalHistoryLabel" default="#{ivy.cms.co('/Labels/ApprovalHistory')}"/>
-	
+
 	<cc:attribute name="approvalHistoryAuthorStyleClass" />
 	<cc:attribute name="approvalHistoryDateStyleClass" />
 	<cc:attribute name="approvalHistoryDecisionStyleClass" />
@@ -69,14 +69,10 @@
 <cc:implementation>
 	<h:outputStylesheet name="layouts/styles/core.css" />
 	<c:set var="managedBean" value="#{cc.attrs.managedBean}" />
-	<c:set var="fieldsetToggleable"
-		value="#{cc.attrs.fieldsetToggleable eq 'true' ? 'true' : 'false'}" />
-	<c:set var="fieldsetLegend"
-		value="#{empty cc.attrs.fieldsetLegend ? 'approval decision' : cc.attrs.fieldsetLegend}" />
 
 	<p:fieldset
-		legend="#{fieldsetLegend}"
-		toggleable="#{fieldsetToggleable}"
+		legend="#{cc.attrs.fieldsetLegend}"
+		toggleable="#{cc.attrs.fieldsetToggleable}"
 		styleClass="#{cc.attrs.fieldsetStyleClass}">
 
 		<!-- Headline -->

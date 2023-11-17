@@ -2,6 +2,7 @@ package com.axonivy.utils.decisioncomponent.demo.managedbean;
 
 import java.net.MalformedURLException;
 
+import com.axonivy.utils.decisioncomponent.demo.dao.TicketRequestDAO;
 import com.axonivy.utils.decisioncomponent.demo.entities.TicketRequest;
 import com.axonivy.utils.decisioncomponent.demo.enums.ProcessStep;
 import com.axonivy.utils.decisioncomponent.demo.utils.TicketProcessUtils;
@@ -24,7 +25,20 @@ public class TicketProcessBean {
 	}
 	
 	private void init(ProcessStep processStep) {
-		request = new TicketRequest();
+		
+		
+		Long caseId = Ivy.wfCase().getId();
+		
+		request = TicketRequestDAO.getInstance().findByCaseId(caseId);
+		
+		if(request == null) {
+			request = new TicketRequest();
+			request.setCaseId(caseId);
+			
+			Ivy.log().info("create new Request");
+		}else {
+			Ivy.log().info("existing");
+		}
 		
 		this.decisionRendered = true;
 		this.commentRendered = true;
@@ -33,7 +47,7 @@ public class TicketProcessBean {
 		if(processStep == ProcessStep.REQUEST_TICKET) {
 			approvalDecisionBean = new RequestTicketBean(request);
 		}else {
-			approvalDecisionBean = new ReviewTicketBean(request);
+			//approvalDecisionBean = new ReviewTicketBean(request);
 		}
 	}
 	
@@ -41,6 +55,25 @@ public class TicketProcessBean {
 	
 	public void submit() {
 		Ivy.log().info("submit called");
+		
+		
+		
+		
+		
+		
+		
+		Ivy.log().info(this.request.getTicketTitle());
+		
+		//approvalDecisionBean.saveApprovalHistories(this.request.getApprovalHistories());
+		approvalDecisionBean.handleApprovalHistoryBeforeSubmit(this.request.getApprovalHistories());
+		
+		TicketRequestDAO.getInstance().save(request);
+		
+		//checkDayOneApprovalDecisionBean.handleApprovalHistoryBeforeSave(approvalHistories);
+		//  getPreHireOnboarding().setApprovalHistories(approvalHistories);
+		// super.save();
+		
+		
 	}
 	
 	

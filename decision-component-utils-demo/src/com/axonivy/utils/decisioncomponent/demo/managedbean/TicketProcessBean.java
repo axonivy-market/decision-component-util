@@ -26,7 +26,6 @@ public class TicketProcessBean {
 	
 	private void init(ProcessStep processStep) {
 		
-		
 		Long caseId = Ivy.wfCase().getId();
 		
 		request = TicketRequestDAO.getInstance().findByCaseId(caseId);
@@ -47,42 +46,19 @@ public class TicketProcessBean {
 		if(processStep == ProcessStep.REQUEST_TICKET) {
 			approvalDecisionBean = new RequestTicketBean(request);
 		}else {
-			//approvalDecisionBean = new ReviewTicketBean(request);
+			approvalDecisionBean = new ReviewTicketBean(request);
 		}
 	}
 	
-	
-	
 	public void submit() {
-		Ivy.log().info("submit called");
-		
-		
-		
-		
-		
-		
-		
-		Ivy.log().info(this.request.getTicketTitle());
-		
-		//approvalDecisionBean.saveApprovalHistories(this.request.getApprovalHistories());
+		Ivy.log().info("submit called: "+this.approvalDecisionBean.getApprovalHistory().getDecision());
 		approvalDecisionBean.handleApprovalHistoryBeforeSubmit(this.request.getApprovalHistories());
-		
 		TicketRequestDAO.getInstance().save(request);
-		
-		//checkDayOneApprovalDecisionBean.handleApprovalHistoryBeforeSave(approvalHistories);
-		//  getPreHireOnboarding().setApprovalHistories(approvalHistories);
-		// super.save();
-		
-		
 	}
-	
 	
 	public void cancel() throws MalformedURLException {
 		TicketProcessUtils.navigateToHomePage();
 	}
-	
-	
-	
 	
 	public boolean getDecisionRendered() {
 		return decisionRendered;

@@ -1,2 +1,3 @@
 Data #class
 com.axonivy.utils.decisioncomponent #namespace
+decisionResult String #field

@@ -28,12 +28,22 @@
       "name" : "RequestTicketForm",
       "config" : {
         "dialogId" : "com.axonivy.utils.decisioncomponent.RequestTicketForm",
-        "startMethod" : "start()"
+        "startMethod" : "start()",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.decisionResult" : "result.decisionResult"
+          },
+          "code" : [
+            "ivy.log.info(out.decisionResult);",
+            "ivy.log.info(result.decisionResult);"
+          ]
+        }
       },
       "visual" : {
         "at" : { "x" : 320, "y" : 160 }
       },
-      "connect" : { "id" : "f6", "to" : "f5" }
+      "connect" : { "id" : "f11", "to" : "f10" }
     }, {
       "id" : "f5",
       "type" : "DialogCall",
@@ -43,7 +53,7 @@
         "startMethod" : "start()"
       },
       "visual" : {
-        "at" : { "x" : 664, "y" : 160 },
+        "at" : { "x" : 672, "y" : 160 },
         "size" : { "width" : 130, "height" : 64 }
       },
       "connect" : { "id" : "f8", "to" : "f7" }
@@ -55,7 +65,21 @@
       },
       "connect" : [
         { "id" : "f2", "to" : "f1", "condition" : "true" },
-        { "id" : "f9", "to" : "f3", "via" : [ { "x" : 808, "y" : 272 }, { "x" : 320, "y" : 272 } ] }
+        { "id" : "f9", "to" : "f3", "via" : [ { "x" : 872, "y" : 272 }, { "x" : 320, "y" : 272 } ] }
+      ]
+    }, {
+      "id" : "f10",
+      "type" : "Alternative",
+      "visual" : {
+        "at" : { "x" : 496, "y" : 160 }
+      },
+      "connect" : [
+        { "id" : "f6", "to" : "f5", "condition" : "in.decisionResult.equalsIgnoreCase(\"SEND_TO_REVIEWER\")" },
+        { "id" : "f12", "to" : "f1", "via" : [ { "x" : 496, "y" : 24 }, { "x" : 1000, "y" : 24 } ], "label" : {
+            "name" : "cancel",
+            "segment" : 2.04,
+            "offset" : { "x" : -271, "y" : -7 }
+          }, "condition" : "in.decisionResult.equalsIgnoreCase(\"CANCEL\")" }
       ]
     } ]
 }

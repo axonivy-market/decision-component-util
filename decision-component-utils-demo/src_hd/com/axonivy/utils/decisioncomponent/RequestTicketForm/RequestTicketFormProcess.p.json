@@ -11,6 +11,11 @@
       "name" : "start()",
       "config" : {
         "callSignature" : "start",
+        "result" : {
+          "params" : [
+            { "name" : "decisionResult", "type" : "String" }
+          ]
+        },
         "guid" : "18BA8882CBB6B972"
       },
       "visual" : {
@@ -65,7 +70,13 @@
       "type" : "HtmlDialogEventStart",
       "name" : "submit",
       "config" : {
-        "guid" : "18BDBA1783CF43D0"
+        "guid" : "18BDBA1783CF43D0",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.decisionResult" : "in.bean.approvalDecisionBean.approvalHistory.decision"
+          }
+        }
       },
       "visual" : {
         "at" : { "x" : 96, "y" : 264 }

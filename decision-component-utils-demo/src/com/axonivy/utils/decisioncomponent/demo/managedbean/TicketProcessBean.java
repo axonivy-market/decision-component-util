@@ -13,9 +13,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 public class TicketProcessBean {
 	
 	private TicketRequest request;
-	
 	private AbstractApprovalDecisionBean approvalDecisionBean;
-	
 	private boolean decisionRendered;
 	private boolean commentRendered;
 	private boolean approvalHistoryRendered;
@@ -25,18 +23,12 @@ public class TicketProcessBean {
 	}
 	
 	private void init(ProcessStep processStep) {
-		
 		Long caseId = Ivy.wfCase().getId();
-		
 		request = TicketRequestDAO.getInstance().findByCaseId(caseId);
 		
 		if(request == null) {
 			request = new TicketRequest();
 			request.setCaseId(caseId);
-			
-			Ivy.log().info("create new Request");
-		}else {
-			Ivy.log().info("existing");
 		}
 		
 		this.decisionRendered = true;
@@ -51,7 +43,6 @@ public class TicketProcessBean {
 	}
 	
 	public void submit() {
-		Ivy.log().info("submit called: "+this.approvalDecisionBean.getApprovalHistory().getDecision());
 		approvalDecisionBean.handleApprovalHistoryBeforeSubmit(this.request.getApprovalHistories());
 		TicketRequestDAO.getInstance().save(request);
 	}

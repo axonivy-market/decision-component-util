@@ -1,3 +1,4 @@
 Data #class
 com.axonivy.utils.decisioncomponent #namespace
-decisionResult String #field
+decision String #field
+decision PERSISTENT #fieldModifier

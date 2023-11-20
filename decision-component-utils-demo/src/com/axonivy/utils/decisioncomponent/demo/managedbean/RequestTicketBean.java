@@ -21,7 +21,6 @@ public class RequestTicketBean extends AbstractApprovalDecisionBean {
 
 	public void init(TicketRequest request) {
 		this.validatorId = "decisionComponentValidator";
-
 		initializeApprovalDecisionComponent(request.getApprovalHistories(),
 				RequestApprovalDecision.getRequestApprovalDecision(), null);
 	}

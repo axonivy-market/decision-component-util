@@ -14,7 +14,10 @@
         "result" : {
           "params" : [
             { "name" : "decisionResult", "type" : "String" }
-          ]
+          ],
+          "map" : {
+            "result.decisionResult" : "in.decisionResult"
+          }
         },
         "guid" : "18BA8882CBB6B972"
       },

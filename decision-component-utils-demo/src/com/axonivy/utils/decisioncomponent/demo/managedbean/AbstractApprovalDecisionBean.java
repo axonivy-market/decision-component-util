@@ -15,7 +15,6 @@ import org.primefaces.model.SortMeta;
 
 import com.axonivy.utils.decisioncomponent.demo.entities.ApprovalHistory;
 import com.axonivy.utils.decisioncomponent.demo.enums.ApprovalDecisionOption;
-import com.axonivy.utils.decisioncomponent.managedbean.UserUtilBean;
 import com.axonivy.utils.decisioncomponent.utils.DateUtils;
 import com.axonivy.utils.decisioncomponent.utils.SortFieldUtils;
 
@@ -33,7 +32,7 @@ public class AbstractApprovalDecisionBean implements Serializable {
 	private List<ApprovalHistory> approvalHistories = new ArrayList<>();
 	private SortMeta defaultSortField;
 
-	private UserUtilBean userUtilBean;
+	//private UserUtilBean userUtilBean;
 
 	/**
 	 * Get decision name from an enum. We use enum ApprovalDecisionOption by
@@ -227,12 +226,12 @@ public class AbstractApprovalDecisionBean implements Serializable {
 		this.defaultSortField = defaultSortField;
 	}
 
-	public UserUtilBean getUserUtilBean() {
-		return userUtilBean;
-	}
-
-	public void setUserUtilBean(UserUtilBean userUtilBean) {
-		this.userUtilBean = userUtilBean;
-	}
+//	public UserUtilBean getUserUtilBean() {
+//		return userUtilBean;
+//	}
+//
+//	public void setUserUtilBean(UserUtilBean userUtilBean) {
+//		this.userUtilBean = userUtilBean;
+//	}
 	
 }

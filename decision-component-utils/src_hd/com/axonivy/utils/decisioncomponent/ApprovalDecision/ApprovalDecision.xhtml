@@ -34,9 +34,11 @@
 	<cc:attribute name="decisionDisable" type="java.lang.Boolean" default="false" />
 	<cc:attribute name="decisionRequiredMessage" default="decisionRequiredMessage" />
 	<cc:attribute name="decisionPanelStyleClass" />
+	
 	<cc:attribute name="listenerOnDecisionAction"/>
-	<cc:attribute name="listenerOnConfirmationAction"/>
 	<cc:attribute name="componentToUpdateOnDecision" default="@this"/>
+	
+	<cc:attribute name="listenerOnConfirmationAction"/>
 	<cc:attribute name="componentToUpdateOnConfirmation" default="@this"/>
 
 	<!-- Comment attributes -->
@@ -103,7 +105,6 @@
 		<h:panelGroup id="decision-panel" layout="block"
 			styleClass="p-formgrid p-grid p-align-baseline ui-fluid #{cc.attrs.decisionPanelStyleClass}"
 			rendered="#{cc.attrs.decisionRendered}">
-			
 			<div class="p-field p-col-12 p-md-2 p-text-left p-text-md-right">
 				<p:outputLabel id="decision-label" for="decision-options"
 					value="#{cc.attrs.decisionLabel}">
@@ -120,8 +121,8 @@
 					<f:selectItems value="#{managedBean.decisions}" var="decision"
 						itemValue="#{decision}"
 						itemLabel="#{managedBean.getDecisionLabel(decision)}" />
-					<f:validator validatorId="#{cc.attrs.validatorId}"
-						disabled="#{!cc.attrs.decisionRequired}" />
+					<!-- <f:validator validatorId="#{cc.attrs.validatorId}"
+						disabled="#{!cc.attrs.decisionRequired}" /> -->
 					<p:ajax listener="#{cc.attrs.listenerOnDecisionAction}" update="#{cc.attrs.componentToUpdateOnDecision}" process="@this" partialSubmit="true" global="false"/>
 				</p:selectOneRadio>
 				<p:message for="decision-options" />
@@ -206,38 +207,32 @@
 				<p:dataTable id="approval-history-table" sortBy="#{managedBean.defaultSortField}"
 					value="#{managedBean.approvalHistories}" var="approvalHistory"
 					reflow="true" lazy="false" styleClass="approval-history-table">
-					
 					<p:column sortBy="#{approvalHistory.displayUserName}"
 						headerText="#{ivy.cms.co('/Labels/Author')}"
 						width="15%">
 						<h:outputText
 							value="#{approvalHistory.displayUserName}" styleClass="#{cc.attrs.approvalHistoryAuthorStyleClass}" />
 					</p:column>
-
 					<p:column sortBy="#{approvalHistory.sortableApprovalDate}"
 						headerText="#{ivy.cms.co('/Labels/Date')}"
 						width="10%">
 						<h:outputText
 							value="#{approvalHistory.displayApprovalDate}" styleClass="#{cc.attrs.approvalHistoryDateStyleClass}" />
 					</p:column>
-
 					<p:column sortBy="#{managedBean.getDecisionLabel(approvalHistory.decision)}"
 						headerText="#{ivy.cms.co('/Labels/Decision')}"
 						width="20%">
 						<h:outputText
 							value="#{managedBean.getDecisionLabel(approvalHistory.decision)}" styleClass="#{cc.attrs.approvalHistoryDecisionStyleClass}" />
 					</p:column>
-					
 					<p:column sortBy="#{approvalHistory.comment}"
 						headerText="#{ivy.cms.co('/Labels/Comment')}">
 						<h:outputText value="#{approvalHistory.comment}" escape="false" styleClass="#{cc.attrs.approvalHistoryCommentStyleClass}" />
 					</p:column>
-
 				</p:dataTable>
 			</div>
 		</h:panelGroup>
 
-		
 	</p:fieldset>
 </cc:implementation>
 

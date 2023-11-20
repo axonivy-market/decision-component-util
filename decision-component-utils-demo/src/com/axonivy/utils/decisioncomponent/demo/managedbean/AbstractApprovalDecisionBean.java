@@ -21,12 +21,13 @@ import com.axonivy.utils.decisioncomponent.utils.SortFieldUtils;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.IUser;
 
-public class AbstractApprovalDecisionBean implements Serializable {
+public abstract class AbstractApprovalDecisionBean implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
 	private ApprovalHistory approvalHistory = new ApprovalHistory();
 	private List<Enum<?>> decisions = new ArrayList<>();
+	
 	private List<Enum<?>> confirmations = new ArrayList<>();
 	private List<Enum<?>> selectedConfirmations = new ArrayList<>();
 	private List<ApprovalHistory> approvalHistories = new ArrayList<>();

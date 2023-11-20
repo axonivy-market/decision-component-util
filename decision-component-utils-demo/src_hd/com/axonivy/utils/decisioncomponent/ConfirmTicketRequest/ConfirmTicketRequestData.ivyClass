@@ -1,0 +1,4 @@
+ConfirmTicketRequestData #class
+com.axonivy.utils.decisioncomponent.ConfirmTicketRequest #namespace
+bean com.axonivy.utils.decisioncomponent.demo.managedbean.ConfirmTicketBean #field
+bean PERSISTENT #fieldModifier

@@ -14,7 +14,7 @@
 			<c:set var="managedBean" value="#{data.bean}" />
 
 			<h:form id="form">
-				<p:messages />
+				<p:growl id="growl" showDetail="true" />
 
 				<ic:com.axonivy.utils.decisioncomponent.TicketInformation
 					id="ticket-information-section"
@@ -26,7 +26,7 @@
 					isReadOnlyTicketDescription="#{false}" />
 
 				<ic:com.axonivy.utils.decisioncomponent.ApprovalDecision
-					id="decision-section" 
+					id="approvalDecision" 
 					managedBean="#{managedBean.approvalDecisionBean}"
 					validatorId="#{managedBean.approvalDecisionBean.validatorId}"
 					
@@ -40,28 +40,83 @@
 					helpText="#{ivy.cms.co('/Dialogs/com/axonivy/utils/decisioncomponent/RequestTicketForm/ApprovalDecisionHelpText')}"
 					helpTextPanelStyleClass="" 
 					helpTextStyleClass=""
+					
+					decisionPanelStyleClass=""
 					decisionRendered="#{managedBean.decisionRendered}"
+					decisionDisable="#{false}"
+					listenerOnDecisionAction="#{managedBean.onChangeDecision()}"
+					componentToUpdateOnDecision="approvalDecision:dropDownListOfMails"
 					
 					commentRendered="#{managedBean.commentRendered}"
 					commentRequired="#{true}"
 					
 					approvalHistoryRendered="#{managedBean.approvalHistoryRendered}">
+					
+					
+
+					
+					
+					<f:facet name="customContent">
+							<h:panelGroup id="dropDownListOfMails">
+								<h:panelGroup id="mail-panel" layout="block" styleClass="p-formgrid p-grid p-align-baseline ui-fluid"
+									rendered="#{managedBean.showDropdownOfMails}">
+									<div class="p-field p-text-left p-text-md-right p-col-12 p-md-2">
+										<p:outputLabel for="dropdownlist-mail" value="#{ivy.cms.co('/Labels/EmailAddressOfRelevantDepartment')}">  
+											<span class="ui-outputlabel-rfi">*</span>
+										</p:outputLabel>
+									</div>
+									<div class="p-field p-col-12 p-md-4">
+										<p:selectOneMenu id="dropdownlist-mail"
+											value="#{managedBean.request.forwardToMail}"
+											requiredMessage="RequiredFieldMessage">
+												<f:selectItem itemLabel="SelectOne" itemValue=""/>
+						                  		<f:selectItems value="#{managedBean.departmentMails.entrySet()}" var="department" 
+						                  			itemLabel="#{department.value}" itemValue="#{department}"/>
+						                  		<!-- <f:validator validatorId="ricohValidator" /> -->
+										</p:selectOneMenu>
+										<p:message for="dropdownlist-mail" />
+									</div>
+								</h:panelGroup>
+							</h:panelGroup>
+						</f:facet>
+					
+					
+					
+					
+					
 				</ic:com.axonivy.utils.decisioncomponent.ApprovalDecision>
 
 				<br />
 				<div class="command-btns">
-					<p:commandLink id="cancel"
+					<p:commandLink id="cancel" 
 						actionListener="#{managedBean.cancel()}" 
 						value="Cancel" 
 						process="@this" 
-						immediate="true"/>
+						immediate="true" />
+					<p:commandButton id="save" 
+						ondblclick="return false;"
+						actionListener="#{managedBean.save()}" 
+						value="Save" 
+						update="form growl" 
+						oncomplete="clearErrors();"
+						process="@this" 
+						immediate="true" 
+						icon="pi pi-save" />
 					<p:commandButton id="proceed" 
-						actionListener="#{logic.submit}"
+						ondblclick="return false;"
+						actionListener="#{logic.submit}" 
 						value="Proceed" 
 						update="form" 
 						icon="pi pi-check" />
 				</div>
 			</h:form>
+			
+			<script>
+			    function clearErrors() {
+			        $('#form input').removeClass('ui-message-error');
+			        $('#form area').removeClass('ui-message-error');
+			    }
+			</script>
 
 			<script type="text/javascript">
 				window.isHideCaseInfo = true;

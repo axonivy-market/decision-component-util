@@ -5,13 +5,20 @@ import java.util.List;
 
 
 public enum RequestApprovalDecision implements HasCmsName {
+	// request
 	SEND_TO_REVIEWER,
 	FORWARD_TO,
 	CANCEL,
 	
+	// review
 	RETURN_BACK_TO_REQUESTER,
 	APPROVE,
-	REJECT;
+	REJECT,
+	
+	// confirm
+	COMPLETE
+	
+	;
 	
 	public static List<Enum<?>> getRequestApprovalDecision() {
 		List<Enum<?>> approvalDecisions = new ArrayList<>();
@@ -27,6 +34,12 @@ public enum RequestApprovalDecision implements HasCmsName {
 		approvalDecisions.add(RETURN_BACK_TO_REQUESTER);
 		approvalDecisions.add(APPROVE);
 		approvalDecisions.add(REJECT);
+		return approvalDecisions;
+	}
+	
+	public static List<Enum<?>> getConfirmApprovalDecision() {
+		List<Enum<?>> approvalDecisions = new ArrayList<>();
+		approvalDecisions.add(COMPLETE);
 		return approvalDecisions;
 	}
 	

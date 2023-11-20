@@ -15,12 +15,12 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 160 }
       },
-      "connect" : { "id" : "f4", "to" : "f3" }
+      "connect" : { "id" : "f17", "to" : "f16" }
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
       "visual" : {
-        "at" : { "x" : 1000, "y" : 160 }
+        "at" : { "x" : 1288, "y" : 160 }
       }
     }, {
       "id" : "f3",
@@ -37,9 +37,8 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 320, "y" : 160 }
-      },
-      "connect" : { "id" : "f11", "to" : "f10" }
+        "at" : { "x" : 504, "y" : 496 }
+      }
     }, {
       "id" : "f5",
       "type" : "DialogCall",
@@ -55,10 +54,9 @@
         }
       },
       "visual" : {
-        "at" : { "x" : 672, "y" : 160 },
+        "at" : { "x" : 1008, "y" : 488 },
         "size" : { "width" : 130, "height" : 64 }
-      },
-      "connect" : { "id" : "f8", "to" : "f7" }
+      }
     }, {
       "id" : "f7",
       "type" : "Alternative",
@@ -66,22 +64,94 @@
         "at" : { "x" : 872, "y" : 160 }
       },
       "connect" : [
-        { "id" : "f13", "to" : "f3", "via" : [ { "x" : 872, "y" : 272 }, { "x" : 320, "y" : 272 } ], "condition" : "in.decision.equalsIgnoreCase(\"RETURN_BACK_TO_REQUESTER\")" },
-        { "id" : "f9", "to" : "f1" }
+        { "id" : "f4", "to" : "f16", "via" : [ { "x" : 872, "y" : 272 }, { "x" : 312, "y" : 272 } ], "label" : {
+            "name" : "return back",
+            "segment" : 0.5,
+            "offset" : { "x" : -263, "y" : 47 }
+          }, "condition" : "in.decision.equalsIgnoreCase(\"RETURN_BACK_TO_REQUESTER\")" },
+        { "id" : "f15", "to" : "f2", "condition" : "in.decision.equalsIgnoreCase(\"APPROVE\")" }
       ]
     }, {
       "id" : "f10",
       "type" : "Alternative",
       "visual" : {
-        "at" : { "x" : 496, "y" : 160 }
+        "at" : { "x" : 448, "y" : 160 }
       },
       "connect" : [
-        { "id" : "f6", "to" : "f5", "condition" : "in.decision.equalsIgnoreCase(\"SEND_TO_REVIEWER\")" },
-        { "id" : "f12", "to" : "f1", "via" : [ { "x" : 496, "y" : 24 }, { "x" : 1000, "y" : 24 } ], "label" : {
+        { "id" : "f18", "to" : "f9", "label" : {
+            "name" : "to reviewer"
+          }, "condition" : "in.decision.equalsIgnoreCase(\"SEND_TO_REVIEWER\")" },
+        { "id" : "f12", "to" : "f1", "via" : [ { "x" : 448, "y" : 24 }, { "x" : 1288, "y" : 24 } ], "label" : {
             "name" : "forward/cancel",
             "segment" : 2.04,
-            "offset" : { "x" : -271, "y" : -7 }
+            "offset" : { "x" : -415, "y" : -6 }
           } }
       ]
+    }, {
+      "id" : "f2",
+      "type" : "UserTask",
+      "name" : "ConfirmTicketRequest",
+      "config" : {
+        "dialogId" : "com.axonivy.utils.decisioncomponent.ConfirmTicketRequest",
+        "startMethod" : "start()",
+        "task" : {
+          "name" : "Confirm ticket request",
+          "description" : "Confirm ticket request",
+          "skipTasklist" : true
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 1088, "y" : 159 },
+        "size" : { "width" : 130, "height" : 65 }
+      },
+      "connect" : { "id" : "f14", "to" : "f1" }
+    }, {
+      "id" : "f9",
+      "type" : "UserTask",
+      "name" : "ReviewTicketRequest",
+      "config" : {
+        "dialogId" : "com.axonivy.utils.decisioncomponent.ReviewTicketRequest",
+        "startMethod" : "start()",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.decision" : "result.decisionResult"
+          }
+        },
+        "task" : {
+          "name" : "Review ticket request",
+          "description" : "Review ticket request",
+          "skipTasklist" : true
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 720, "y" : 160 },
+        "size" : { "width" : 144, "height" : 60 }
+      },
+      "connect" : { "id" : "f6", "to" : "f7" }
+    }, {
+      "id" : "f16",
+      "type" : "UserTask",
+      "name" : "RequestTicketForm",
+      "config" : {
+        "dialogId" : "com.axonivy.utils.decisioncomponent.RequestTicketForm",
+        "startMethod" : "start()",
+        "output" : {
+          "map" : {
+            "out" : "in",
+            "out.decision" : "result.decisionResult"
+          }
+        },
+        "task" : {
+          "name" : "Request ticket",
+          "description" : "Request ticket",
+          "skipTasklist" : true
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 312, "y" : 160 },
+        "size" : { "width" : 128, "height" : 60 }
+      },
+      "connect" : { "id" : "f13", "to" : "f10" }
     } ]
 }

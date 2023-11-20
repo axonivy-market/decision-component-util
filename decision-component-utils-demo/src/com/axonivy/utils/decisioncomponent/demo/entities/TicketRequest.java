@@ -16,7 +16,7 @@ import com.axonivy.utils.persistence.beans.AuditableEntity;
 
 @Entity
 @Table(name="TicketRequest")
-public class TicketRequest extends AuditableEntity{
+public class TicketRequest extends AuditableEntity {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -26,6 +26,8 @@ public class TicketRequest extends AuditableEntity{
 	private String ticketType;
 	private String ticketRaiser;
 	private String ticketDescription;
+	
+	private String forwardToMail;
 	
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinTable(name = "TicketRequestApprovalHistory",
@@ -76,4 +78,11 @@ public class TicketRequest extends AuditableEntity{
 	public void setApprovalHistories(List<ApprovalHistory> approvalHistories) {
 		this.approvalHistories = approvalHistories;
 	}
+	public String getForwardToMail() {
+		return forwardToMail;
+	}
+	public void setForwardToMail(String forwardToMail) {
+		this.forwardToMail = forwardToMail;
+	}
+	
 }

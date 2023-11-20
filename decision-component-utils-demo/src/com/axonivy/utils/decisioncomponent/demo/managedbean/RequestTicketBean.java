@@ -9,17 +9,26 @@ import com.axonivy.utils.decisioncomponent.demo.enums.RequestApprovalDecision;
 import java.util.List;
 
 
-public class RequestTicketBean extends AbstractApprovalDecisionBean {
+
+public class RequestTicketBean extends AbstractTicketProcessBean {
 
 	private static final long serialVersionUID = 1L;
 
 	private String validatorId;
+	
+	//private Map<Department, String> departmentMails;
+	//private Boolean showDropdownOfMails = false;
 
 	public RequestTicketBean(TicketRequest request) {
 		init(request);
 	}
 
 	public void init(TicketRequest request) {
+		// build list email
+//		for(Department department: Department.values()) {
+//			departmentMails.put(department, department.getEmail());
+//		}
+		
 		this.validatorId = "decisionComponentValidator";
 		initializeApprovalDecisionComponent(request.getApprovalHistories(),
 				RequestApprovalDecision.getRequestApprovalDecision(), null);
@@ -48,4 +57,14 @@ public class RequestTicketBean extends AbstractApprovalDecisionBean {
 	public void setValidatorId(String validatorId) {
 		this.validatorId = validatorId;
 	}
+
+//	public Boolean getShowDropdownOfMails() {
+//		return showDropdownOfMails;
+//	}
+//
+//	public void setShowDropdownOfMails(Boolean showDropdownOfMails) {
+//		this.showDropdownOfMails = showDropdownOfMails;
+//	}
+//	
+	
 }

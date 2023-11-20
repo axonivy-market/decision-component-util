@@ -5,7 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.axonivy.utils.decisioncomponent.demo.entities.TicketRequest;
 import com.axonivy.utils.decisioncomponent.demo.enums.RequestApprovalDecision;
 
-public class ReviewTicketBean extends AbstractApprovalDecisionBean {
+public class ReviewTicketBean extends AbstractTicketProcessBean {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -37,3 +37,13 @@ public class ReviewTicketBean extends AbstractApprovalDecisionBean {
 		this.validatorId = validatorId;
 	}
 }
+
+// approval decision bean
+// RequestTicketApprovalDecisionBean extends AbstractApprovalDecisionBean
+// ReviewTicketApprovalDecisionBean extends AbstractApprovalDecisionBean
+
+// view/step bean
+// TicketProcessBean
+// - protected AbstractApprovalDecisionBean approvalDecisionBean
+// RequestTicketProcessBean extends TicketProcessBean
+// ReviewTicketProcessBean extends TicketProcessBean

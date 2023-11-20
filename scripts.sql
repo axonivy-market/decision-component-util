@@ -47,15 +47,17 @@ create table TicketRequestApprovalHistory (
 alter table TicketRequestApprovalHistory 
    add constraint fk_ticketRequestApprovalHistory_ticketRequest
    foreign key (ticketRequestId) 
-   references TicketRequest
+   references TicketRequest(id)
    
 alter table TicketRequestApprovalHistory 
    add constraint fk_ticketRequestApprovalHistory_approvalHistory 
    foreign key (approvalHistoryId) 
-   references ApprovalHistory
+   references ApprovalHistory(id);
    
 
    
+
+
 
 
 

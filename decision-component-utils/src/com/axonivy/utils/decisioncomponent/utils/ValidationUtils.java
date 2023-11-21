@@ -95,6 +95,7 @@ public class ValidationUtils {
 	public static void addGrowlErrorMessageWithoutException(String requiredMessage) {
 		FacesContext.getCurrentInstance().addMessage("growl-message",
 				new FacesMessage(FacesMessage.SEVERITY_ERROR, "", Ivy.cms().co("/Labels/GrowlForRequireField")));
+		                                                                       
 	}
 
 }

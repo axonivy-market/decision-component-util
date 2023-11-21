@@ -59,7 +59,6 @@
             "import com.axonivy.utils.decisioncomponent.demo.managedbean.TicketProcessBean;",
             "import com.axonivy.utils.decisioncomponent.demo.enums.ProcessStep;",
             "",
-            "",
             "in.bean = new TicketProcessBean(ProcessStep.REQUEST_TICKET);"
           ]
         }

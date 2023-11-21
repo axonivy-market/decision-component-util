@@ -19,14 +19,20 @@
 				<ic:com.axonivy.utils.decisioncomponent.TicketInformation
 					id="ticket-information-section" 
 					managedBean="#{managedBean}"
-					isRequiredTicketTitle="#{false}"
-					isRequiredTicketNumber="#{false}"
-					isRequiredTicketType="#{false}"
-					isRequiredTicketRaiser="#{false}"
-					isRequiredTicketDescription="#{false}" />
+					ticketTitleReadOnly="#{managedBean.contentState.ticketTitleReadOnly}"
+					ticketNumberReadOnly="#{managedBean.contentState.ticketNumberReadOnly}"
+					ticketTypeReadOnly="#{managedBean.contentState.ticketTypeReadOnly}"
+					ticketRaiserReadOnly="#{managedBean.contentState.ticketRaiserReadOnly}"
+					ticketDescriptionReadOnly="#{managedBean.contentState.ticketDescriptionReadOnly}"
+					
+					ticketTitleRequired="#{managedBean.contentState.ticketTitleRequired}"
+					ticketNumberRequired="#{managedBean.contentState.ticketNumberRequired}"
+					ticketTypeRequired="#{managedBean.contentState.ticketTypeRequired}"
+					ticketRaiserRequired="#{managedBean.contentState.ticketRaiserRequired}"
+					ticketDescriptionRequired="#{managedBean.contentState.ticketDescriptionRequired}"  />
 
 				<ic:com.axonivy.utils.decisioncomponent.ApprovalDecision
-					id="decision" 
+					id="approvalDecision" 
 					managedBean="#{managedBean.approvalDecisionBean}"
 					validatorId="#{managedBean.approvalDecisionBean.validatorId}"
 					
@@ -40,12 +46,19 @@
 					helpText="#{ivy.cms.co('/Dialogs/com/axonivy/utils/decisioncomponent/RequestTicketForm/ApprovalDecisionHelpText')}"
 					helpTextPanelStyleClass="" 
 					helpTextStyleClass=""
-					decisionRendered="#{managedBean.decisionRendered}"
 					
-					commentRendered="#{managedBean.commentRendered}"
-					commentRequired="#{true}"
+					decisionRendered="#{managedBean.contentState.decisionRendered}"
+					decisionRequired="#{managedBean.contentState.decisionRequired}"
+					decisionDisable="#{managedBean.contentState.decisionDisable}"
+
 					
-					approvalHistoryRendered="#{managedBean.approvalHistoryRendered}">
+					confirmationVisible="#{managedBean.contentState.confirmationVisible}"
+					confirmationRequired="#{managedBean.contentState.confirmationRequired}"
+					
+					commentRendered="#{managedBean.contentState.commentRendered}"
+					commentRequired="#{managedBean.contentState.commentRequired}"
+					
+					approvalHistoryRendered="#{managedBean.contentState.approvalHistoryRendered}">
 
 				</ic:com.axonivy.utils.decisioncomponent.ApprovalDecision>
 

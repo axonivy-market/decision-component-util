@@ -1,4 +1,4 @@
-package com.axonivy.utils.decisioncomponent.demo.managedbean;
+package com.axonivy.utils.decisioncomponent.demo.managedbean2;
 
 //import java.io.Serializable;
 //

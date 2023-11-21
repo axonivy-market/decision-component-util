@@ -6,4 +6,5 @@ Labels:
   Date: Date
   DateTimePattern: dd/MM/yyyy HH:mm
   Decision: Decision
+  GrowlForRequireField: Some mandatory fields or preconditions are missing, please check.
   RequiredFieldMessage: This field is required

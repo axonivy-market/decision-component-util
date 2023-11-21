@@ -1,4 +1,4 @@
-package com.axonivy.utils.decisioncomponent.validation;
+package com.axonivy.utils.decisioncomponent.demo.validation;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -11,13 +11,13 @@ import com.axonivy.utils.decisioncomponent.utils.ValidationUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 
-@FacesValidator(value = "decisionComponentValidator")
-public class DecisionComponentValidator implements Validator {
+@FacesValidator(value = "ticketProcessValidator")
+public class TicketProcessValidator implements Validator {
 
 	@Override
 	public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
 		
-		Ivy.log().info("log decisionComponentValidator");
+		Ivy.log().info("log ticketProcessValidator");
 		
 		boolean isBooleanCheck = ValidationUtils.isBooleanCheck(component);
 		if(ValidationUtils.isSkipValidate(component)) {

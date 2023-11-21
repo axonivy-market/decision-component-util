@@ -4,20 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public enum RequestApprovalDecision implements HasCmsName {
-	// request
+public enum TicketProcessApprovalDecision implements HasCmsName {
 	SEND_TO_REVIEWER,
 	FORWARD_TO,
 	CANCEL,
 	
-	// review
 	RETURN_BACK_TO_REQUESTER,
 	APPROVE,
 	REJECT,
 	
-	// confirm
 	COMPLETE
-	
 	;
 	
 	public static List<Enum<?>> getRequestApprovalDecision() {
@@ -42,6 +38,5 @@ public enum RequestApprovalDecision implements HasCmsName {
 		approvalDecisions.add(COMPLETE);
 		return approvalDecisions;
 	}
-	
-
 }
+

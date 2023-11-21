@@ -18,7 +18,12 @@ Enums:
         decisioncomponent:
           demo:
             enums:
-              RequestApprovalDecision:
+              TicketProcessApprovalConfirmation:
+                MANAGER:
+                  name: Manager
+                PAYROLL:
+                  name: Payroll
+              TicketProcessApprovalDecision:
                 APPROVE:
                   name: Approve
                 CANCEL:

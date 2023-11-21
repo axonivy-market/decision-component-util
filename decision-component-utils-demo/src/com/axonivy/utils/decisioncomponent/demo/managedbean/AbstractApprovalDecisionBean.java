@@ -30,6 +30,7 @@ public abstract class AbstractApprovalDecisionBean implements Serializable {
 	
 	private List<Enum<?>> confirmations = new ArrayList<>();
 	private List<Enum<?>> selectedConfirmations = new ArrayList<>();
+	
 	private List<ApprovalHistory> approvalHistories = new ArrayList<>();
 	private SortMeta defaultSortField;
 

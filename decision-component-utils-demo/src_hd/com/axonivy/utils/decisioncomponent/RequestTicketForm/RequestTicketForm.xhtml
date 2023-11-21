@@ -15,15 +15,23 @@
 
 			<h:form id="form">
 				<p:growl id="growl" showDetail="true" />
+				<p:growl id="growl-message" showDetail="true" />
 
 				<ic:com.axonivy.utils.decisioncomponent.TicketInformation
 					id="ticket-information-section"
 					managedBean="#{managedBean}"
-					isReadOnlyTicketTitle="#{false}"
-					isReadOnlyTicketNumber="#{false}"
-					isReadOnlyTicketType="#{false}"
-					isReadOnlyTicketRaiser="#{false}"
-					isReadOnlyTicketDescription="#{false}" />
+					validatorId="ticketProcessValidator"
+					ticketTitleReadOnly="#{managedBean.contentState.ticketTitleReadOnly}"
+					ticketNumberReadOnly="#{managedBean.contentState.ticketNumberReadOnly}"
+					ticketTypeReadOnly="#{managedBean.contentState.ticketTypeReadOnly}"
+					ticketRaiserReadOnly="#{managedBean.contentState.ticketRaiserReadOnly}"
+					ticketDescriptionReadOnly="#{managedBean.contentState.ticketDescriptionReadOnly}"
+					
+					ticketTitleRequired="#{managedBean.contentState.ticketTitleRequired}"
+					ticketNumberRequired="#{managedBean.contentState.ticketNumberRequired}"
+					ticketTypeRequired="#{managedBean.contentState.ticketTypeRequired}"
+					ticketRaiserRequired="#{managedBean.contentState.ticketRaiserRequired}"
+					ticketDescriptionRequired="#{managedBean.contentState.ticketDescriptionRequired}"  />
 
 				<ic:com.axonivy.utils.decisioncomponent.ApprovalDecision
 					id="approvalDecision" 
@@ -41,16 +49,16 @@
 					helpTextPanelStyleClass="" 
 					helpTextStyleClass=""
 					
-					decisionPanelStyleClass=""
-					decisionRendered="#{managedBean.decisionRendered}"
-					decisionDisable="#{false}"
+					decisionRendered="#{managedBean.contentState.decisionRendered}"
+					decisionDisable="#{managedBean.contentState.decisionDisable}"
+					decisionRequired="#{managedBean.contentState.decisionRequired}"
 					listenerOnDecisionAction="#{managedBean.onChangeDecision()}"
 					componentToUpdateOnDecision="approvalDecision:dropDownListOfMails"
 					
-					commentRendered="#{managedBean.commentRendered}"
-					commentRequired="#{true}"
+					commentRendered="#{managedBean.contentState.commentRendered}"
+					commentRequired="#{managedBean.contentState.commentRequired}"
 					
-					approvalHistoryRendered="#{managedBean.approvalHistoryRendered}">
+					approvalHistoryRendered="#{managedBean.contentState.approvalHistoryRendered}">
 					
 					
 
@@ -59,7 +67,7 @@
 					<f:facet name="customContent">
 							<h:panelGroup id="dropDownListOfMails">
 								<h:panelGroup id="mail-panel" layout="block" styleClass="p-formgrid p-grid p-align-baseline ui-fluid"
-									rendered="#{managedBean.showDropdownOfMails}">
+									rendered="#{managedBean.contentState.showDropdownOfMails}">
 									<div class="p-field p-text-left p-text-md-right p-col-12 p-md-2">
 										<p:outputLabel for="dropdownlist-mail" value="#{ivy.cms.co('/Labels/EmailAddressOfRelevantDepartment')}">  
 											<span class="ui-outputlabel-rfi">*</span>
@@ -71,7 +79,7 @@
 											requiredMessage="RequiredFieldMessage">
 												<f:selectItem itemLabel="SelectOne" itemValue=""/>
 						                  		<f:selectItems value="#{managedBean.departmentMails.entrySet()}" var="department" 
-						                  			itemLabel="#{department.value}" itemValue="#{department}"/>
+						                  			itemLabel="#{department.key}" itemValue="#{department.value}"/>
 						                  		<!-- <f:validator validatorId="ricohValidator" /> -->
 										</p:selectOneMenu>
 										<p:message for="dropdownlist-mail" />

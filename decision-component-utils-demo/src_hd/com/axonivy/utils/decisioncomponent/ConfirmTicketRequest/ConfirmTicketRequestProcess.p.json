@@ -16,12 +16,12 @@
       "visual" : {
         "at" : { "x" : 96, "y" : 64 }
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : { "id" : "f7", "to" : "f6" }
     }, {
       "id" : "f1",
       "type" : "HtmlDialogEnd",
       "visual" : {
-        "at" : { "x" : 224, "y" : 64 }
+        "at" : { "x" : 352, "y" : 64 }
       }
     }, {
       "id" : "f3",
@@ -68,11 +68,33 @@
       "type" : "Script",
       "name" : "save",
       "config" : {
-        "security" : "system"
+        "security" : "system",
+        "output" : {
+          "code" : "in.bean.submit();"
+        }
       },
       "visual" : {
         "at" : { "x" : 248, "y" : 272 }
       },
       "connect" : { "id" : "f12", "to" : "f9" }
+    }, {
+      "id" : "f6",
+      "type" : "Script",
+      "name" : "init",
+      "config" : {
+        "security" : "system",
+        "output" : {
+          "code" : [
+            "import com.axonivy.utils.decisioncomponent.demo.managedbean.TicketProcessBean;",
+            "import com.axonivy.utils.decisioncomponent.demo.enums.ProcessStep;",
+            "",
+            "in.bean = new TicketProcessBean(ProcessStep.CONFIRM_TICKET);"
+          ]
+        }
+      },
+      "visual" : {
+        "at" : { "x" : 224, "y" : 64 }
+      },
+      "connect" : { "id" : "f2", "to" : "f1" }
     } ]
 }

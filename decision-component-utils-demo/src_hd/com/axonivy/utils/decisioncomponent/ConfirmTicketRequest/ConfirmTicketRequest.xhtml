@@ -19,34 +19,46 @@
 				<ic:com.axonivy.utils.decisioncomponent.TicketInformation
 					id="ticket-information-section" 
 					managedBean="#{managedBean}"
-					isRequiredTicketTitle="#{false}"
-					isRequiredTicketNumber="#{false}"
-					isRequiredTicketType="#{false}"
-					isRequiredTicketRaiser="#{false}"
-					isRequiredTicketDescription="#{false}" />
+					ticketTitleReadOnly="#{managedBean.contentState.ticketTitleReadOnly}"
+					ticketNumberReadOnly="#{managedBean.contentState.ticketNumberReadOnly}"
+					ticketTypeReadOnly="#{managedBean.contentState.ticketTypeReadOnly}"
+					ticketRaiserReadOnly="#{managedBean.contentState.ticketRaiserReadOnly}"
+					ticketDescriptionReadOnly="#{managedBean.contentState.ticketDescriptionReadOnly}"
+					
+					ticketTitleRequired="#{managedBean.contentState.ticketTitleRequired}"
+					ticketNumberRequired="#{managedBean.contentState.ticketNumberRequired}"
+					ticketTypeRequired="#{managedBean.contentState.ticketTypeRequired}"
+					ticketRaiserRequired="#{managedBean.contentState.ticketRaiserRequired}"
+					ticketDescriptionRequired="#{managedBean.contentState.ticketDescriptionRequired}"  />
 
 				<ic:com.axonivy.utils.decisioncomponent.ApprovalDecision
-					id="decision" 
+					id="approvalDecision"
 					managedBean="#{managedBean.approvalDecisionBean}"
 					validatorId="#{managedBean.approvalDecisionBean.validatorId}"
 					
 					fieldsetLegend="#{ivy.cms.co('/Labels/DecisionLegend')}"
-					fieldsetToggleable="#{true}" 
+					fieldsetToggleable="#{true}"
 					fieldsetStyleClass="p-mt-3"
 					
 					headline="#{ivy.cms.co('/Dialogs/com/axonivy/utils/decisioncomponent/RequestTicketForm/ApprovalDecisionHeadline')}"
-					headlinePanelStyleClass="" 
+					headlinePanelStyleClass=""
 					headlineStyleClass="p-text-bold"
 					helpText="#{ivy.cms.co('/Dialogs/com/axonivy/utils/decisioncomponent/RequestTicketForm/ApprovalDecisionHelpText')}"
-					helpTextPanelStyleClass="" 
+					helpTextPanelStyleClass=""
 					helpTextStyleClass=""
-					decisionRendered="#{managedBean.decisionRendered}"
 					
-					commentRendered="#{managedBean.commentRendered}"
-					commentRequired="#{true}"
 					
-					approvalHistoryRendered="#{managedBean.approvalHistoryRendered}">
-
+					decisionRendered="#{managedBean.contentState.decisionRendered}"
+					decisionRequired="#{managedBean.contentState.decisionRequired}"
+					decisionDisable="#{managedBean.contentState.decisionDisable}"
+					
+					confirmationVisible="#{managedBean.contentState.confirmationVisible}"
+					confirmationRequired="#{managedBean.contentState.confirmationRequired}"
+					
+					commentRendered="#{managedBean.contentState.commentRendered}"
+					commentRequired="#{managedBean.contentState.commentRequired}"
+					
+					approvalHistoryRendered="#{managedBean.contentState.approvalHistoryRendered}">
 				</ic:com.axonivy.utils.decisioncomponent.ApprovalDecision>
 
 				<br />
@@ -83,4 +95,4 @@
 
 </h:body>
 
-</html></html>
+</html>

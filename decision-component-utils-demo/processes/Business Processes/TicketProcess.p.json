@@ -23,41 +23,6 @@
         "at" : { "x" : 1288, "y" : 160 }
       }
     }, {
-      "id" : "f3",
-      "type" : "DialogCall",
-      "name" : "RequestTicketForm",
-      "config" : {
-        "dialogId" : "com.axonivy.utils.decisioncomponent.RequestTicketForm",
-        "startMethod" : "start()",
-        "output" : {
-          "map" : {
-            "out" : "in",
-            "out.decision" : "result.decisionResult"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 504, "y" : 496 }
-      }
-    }, {
-      "id" : "f5",
-      "type" : "DialogCall",
-      "name" : "ReviewTicketRequest",
-      "config" : {
-        "dialogId" : "com.axonivy.utils.decisioncomponent.ReviewTicketRequest",
-        "startMethod" : "start()",
-        "output" : {
-          "map" : {
-            "out" : "in",
-            "out.decision" : "result.decisionResult"
-          }
-        }
-      },
-      "visual" : {
-        "at" : { "x" : 1008, "y" : 488 },
-        "size" : { "width" : 130, "height" : 64 }
-      }
-    }, {
       "id" : "f7",
       "type" : "Alternative",
       "visual" : {
@@ -69,7 +34,7 @@
             "segment" : 0.5,
             "offset" : { "x" : -263, "y" : 47 }
           }, "condition" : "in.decision.equalsIgnoreCase(\"RETURN_BACK_TO_REQUESTER\")" },
-        { "id" : "f15", "to" : "f2", "condition" : "in.decision.equalsIgnoreCase(\"APPROVE\")" }
+        { "id" : "f15", "to" : "f2" }
       ]
     }, {
       "id" : "f10",

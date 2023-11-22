@@ -4,9 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import com.axonivy.utils.persistence.beans.AuditableEntity;
-
 import java.time.LocalDateTime;
+
+import com.axonivy.utils.persistence.beans.AuditableEntity;
 
 @Entity
 @Table(name="ApprovalHistory")

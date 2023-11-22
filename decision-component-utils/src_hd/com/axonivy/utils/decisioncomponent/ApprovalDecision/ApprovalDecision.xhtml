@@ -12,6 +12,8 @@
 
 	<!-- Common attributes -->
 	<cc:attribute name="managedBean" />
+	<cc:attribute name="validatorId" default="decisionComponentValidator" />
+	
 	<cc:attribute name="isReadOnly" type="java.lang.Boolean" default="false" />
 	<cc:attribute name="fieldsetToggleable" type="java.lang.Boolean" default="false" />
 	<cc:attribute name="fieldsetLegend" type="java.lang.String" default="Approval decision" />
@@ -24,8 +26,6 @@
 	<cc:attribute name="helpText" />
 	<cc:attribute name="helpTextPanelStyleClass" />
 	<cc:attribute name="helpTextStyleClass" />
-	
-	<cc:attribute name="validatorId" default="decisionComponentValidator" />
 	
 
 	<!-- Decision attributes -->
@@ -50,7 +50,6 @@
 	
 	<cc:attribute name="confirmationLabel" default="Confirmation"/>
 	<cc:attribute name="confirmationPanelStyleClass" />
-	
 	<cc:attribute name="listenerOnConfirmationAction"/>
 	<cc:attribute name="componentToUpdateOnConfirmation" default="@this"/>
 	
@@ -160,9 +159,9 @@
 						var="confirmation" itemValue="#{confirmation}"
 						itemLabel="#{managedBean.getConfirmationLabel(confirmation)}"/>
 					<f:attribute name="decisionBean" value="#{cc.attrs.managedBean}"/>
-					<!-- <f:validator validatorId="#{cc.attrs.validatorId}"
+					<f:validator validatorId="#{cc.attrs.validatorId}"
 						disabled="#{!cc.attrs.confirmationRequired}" />
-					<p:ajax listener="#{cc.attrs.listenerOnConfirmationAction}" update="#{cc.attrs.componentToUpdateOnConfirmation}" process="@this" partialSubmit="true" global="false"/> -->
+					<p:ajax listener="#{cc.attrs.listenerOnConfirmationAction}" update="#{cc.attrs.componentToUpdateOnConfirmation}" process="@this" partialSubmit="true" global="false"/>
 				</p:selectManyCheckbox>
 				<p:message for="confirmation-options" />
 			</div>
@@ -187,8 +186,7 @@
 					counter="decision-comment-counter"
 					counterTemplate="#{ivy.cms.co('/Labels/CounterTemplate')}"
 					requiredMessage="#{cc.attrs.commentRequiredMessage}">
-					<f:validator validatorId="#{cc.attrs.validatorId}"
-						disabled="#{!cc.attrs.commentRequired}" />
+					<f:validator validatorId="#{cc.attrs.validatorId}" disabled="#{!cc.attrs.commentRequired}" />
 				</p:inputTextarea>
 				<h:outputText id="decision-comment-counter" rendered="#{!cc.attrs.isReadOnly}"/>
 			</div>

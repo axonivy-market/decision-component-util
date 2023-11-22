@@ -1,4 +1,4 @@
-package com.axonivy.utils.decisioncomponent.utils;
+package com.axonivy.utils.decisioncomponent.validation;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -21,13 +21,22 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 public class ValidationUtils {
 	
+	/*
+	 * private static final String COMPLETE = "content-form:complete-button";
+	 * private static final String SAVE = "content-form:save-button"; 
+	 * public static final String BOOLEAN_CHECK_ATTR = "isBooleanCheck"; 
+	 * public static final String SKIP_VALIDATE_ATTR = "skipValidate"; 
+	 * public static final String VALIDATE_ONLY_NUMBER_ATTR = "validateOnlyNumber"; 
+	 * public static final String FORCED_VALIDATE_ATTR = "isForcedValidate";
+	 */
+	
 	private static final String COMPLETE = "content-form:complete-button";
 	public static final String BOOLEAN_CHECK_ATTR = "isBooleanCheck";
-	public static final String SKIP_VALIDATE_ATTR = "skipValidate";
-	public static final String FORCED_VALIDATE_ATTR = "isForcedValidate";
+	//public static final String SKIP_VALIDATE_ATTR = "skipValidate";
+//	public static final String FORCED_VALIDATE_ATTR = "isForcedValidate";
 	
 	public static boolean isValidationRequired(FacesContext context) {
-		return isButtonClicked(context, COMPLETE) || isForceValidate(context);
+		return isButtonClicked(context, COMPLETE);// || isForceValidate(context);
 	}
 	
 	public static boolean isButtonClicked(FacesContext context, String buttonId) {
@@ -39,21 +48,21 @@ public class ValidationUtils {
 		return isButtonClicked;
 	}
 	
-	public static boolean isForceValidate(FacesContext context) {
-		return Boolean.parseBoolean(
-				Optional.ofNullable(context.getExternalContext().getRequestParameterMap().get(FORCED_VALIDATE_ATTR))
-						.orElse(""));
-	}
+//	public static boolean isForceValidate(FacesContext context) {
+//		return Boolean.parseBoolean(
+//				Optional.ofNullable(context.getExternalContext().getRequestParameterMap().get(FORCED_VALIDATE_ATTR))
+//						.orElse(""));
+//	}
 	
 	public static boolean isBooleanCheck(UIComponent component) {
 		return Boolean.parseBoolean(Optional.ofNullable(component.getAttributes().get(BOOLEAN_CHECK_ATTR))
 				.map(Object::toString).orElse(""));
 	}
 	
-	public static boolean isSkipValidate(UIComponent component) {
-		return Boolean.parseBoolean(Optional.ofNullable(component.getAttributes().get(SKIP_VALIDATE_ATTR))
-				.map(Object::toString).orElse(""));
-	}
+//	public static boolean isSkipValidate(UIComponent component) {
+//		return Boolean.parseBoolean(Optional.ofNullable(component.getAttributes().get(SKIP_VALIDATE_ATTR))
+//				.map(Object::toString).orElse(""));
+//	}
 	
 	public static void validateBooleanComponent(UIComponent component, Object value) {
 		String requiredMessage = ((UIInput) component).getRequiredMessage();

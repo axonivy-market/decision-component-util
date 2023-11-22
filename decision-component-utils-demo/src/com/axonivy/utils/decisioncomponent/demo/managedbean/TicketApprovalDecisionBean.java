@@ -4,24 +4,30 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.axonivy.utils.decisioncomponent.demo.entities.ApprovalHistory;
 import com.axonivy.utils.decisioncomponent.demo.entities.TicketRequest;
 import com.axonivy.utils.decisioncomponent.demo.enums.TicketProcessApprovalConfirmation;
 import com.axonivy.utils.decisioncomponent.demo.enums.TicketProcessApprovalDecision;
+
 
 public class TicketApprovalDecisionBean extends AbstractApprovalDecisionBean {
 
 	private static final long serialVersionUID = 1L;
 
 	private String validatorId;
+	
+	
+	//private TicketRequest request;
+	
+	
 
-	public TicketApprovalDecisionBean(TicketRequest request, List<Enum<?>> approvalDecisions, List<Enum<?>> confirmations) {
-		init(request, approvalDecisions, confirmations);
+	public TicketApprovalDecisionBean(TicketRequest request, List<Enum<?>> decisions, List<Enum<?>> confirmations) {
+		//this.request = request;
+		init(request, decisions, confirmations);
 	}
 
-	public void init(TicketRequest request, List<Enum<?>> approvalDecisions, List<Enum<?>> confirmations) {
+	private void init(TicketRequest request, List<Enum<?>> decisions, List<Enum<?>> confirmations) {
 		this.validatorId = "decisionComponentValidator";
-		initializeApprovalDecisionComponent(request.getApprovalHistories(), approvalDecisions, confirmations);
+		initializeApprovalDecisionComponent(request.getApprovalHistories(), decisions, confirmations);
 	}
 
 	@Override
@@ -39,14 +45,6 @@ public class TicketApprovalDecisionBean extends AbstractApprovalDecisionBean {
 		}
 		return TicketProcessApprovalConfirmation.valueOf(confirmationName).getCmsName();
 	}
-	
-	public void saveApprovalHistories(List<ApprovalHistory> approvalHistories) {
-		handleApprovalHistoryBeforeSave(approvalHistories);
-	}
-	
-	public void submitApprovalHistories(List<ApprovalHistory> approvalHistories) {
-		handleApprovalHistoryBeforeSubmit(approvalHistories);
-	}
 
 	public String getValidatorId() {
 		return validatorId;
@@ -55,4 +53,27 @@ public class TicketApprovalDecisionBean extends AbstractApprovalDecisionBean {
 	public void setValidatorId(String validatorId) {
 		this.validatorId = validatorId;
 	}
+	
+	
+//	public void saveApprovalHistories() {
+//		handleApprovalHistoryBeforeSave(this.request.getApprovalHistories());
+//	}
+//
+//	public void submitApprovalHistories() {
+//		handleApprovalHistoryBeforeSubmit(this.request.getApprovalHistories());
+//	}
+	
+//	@Override
+//	protected void handleBeforeSave(List<ApprovalHistory> histories) {	
+//		ApprovalHistory approvalHistory = getApprovalHistory();
+//		List<Enum<?>> confirmations = getConfirmations();
+//		if (CollectionUtils.isNotEmpty(confirmations)) {
+//			handleConfirmation();
+//		}
+//		histories.clear();
+//		histories.addAll(getApprovalHistories());
+//		approvalHistory.setApprovalDate(LocalDateTime.now());
+//		histories.add(approvalHistory);
+//	}
+	
 }

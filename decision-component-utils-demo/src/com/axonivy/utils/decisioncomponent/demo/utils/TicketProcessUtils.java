@@ -22,16 +22,15 @@ public class TicketProcessUtils {
 	
     public static void addMessage(FacesMessage.Severity severity, String summary, String detail) {
         FacesContext.getCurrentInstance().
-                addMessage(null, new FacesMessage(severity, summary, detail));
+                addMessage("growl-message", new FacesMessage(severity, summary, detail));
     }
     
     public static void reset() {
-        PrimeFaces.current().resetInputs("form");
+        PrimeFaces.current().resetInputs("content-form");
     }
 
     public static void showInfo() {
-    	//reset();
-        addMessage(FacesMessage.SEVERITY_INFO, "Info Message", "Save Successfully");
+        addMessage(FacesMessage.SEVERITY_INFO, "Info message", "Save successfully");
     }
 
 }

@@ -75,8 +75,7 @@ public abstract class AbstractApprovalDecisionBean implements Serializable {
 	 * Initialize editing approval history and show old approval histories.
 	 *
 	 */
-	public void initializeApprovalDecisionComponent(List<ApprovalHistory> histories, List<Enum<?>> decisions,
-			List<Enum<?>> confirmations) {
+	public void initializeApprovalDecisionComponent(List<ApprovalHistory> histories, List<Enum<?>> decisions, List<Enum<?>> confirmations) {
 		setDecisions(decisions);
 		setConfirmations(confirmations);
 		initApprovalHistories(histories);
@@ -144,6 +143,12 @@ public abstract class AbstractApprovalDecisionBean implements Serializable {
 				|| StringUtils.isNotBlank(approvalHistory.getComment())
 				|| StringUtils.isNotBlank(approvalHistory.getSelectedConfirmations())) {
 			approvalHistory.setApprovalDate(LocalDateTime.now());
+			
+			//my custom
+			//int loop = approvalHistory.getVersion() == null ? 0 : approvalHistory.getVersion() + 1;
+			//approvalHistory.setVersion(loop);
+			// end my custom
+			
 			histories.add(approvalHistory);
 		}
 	}

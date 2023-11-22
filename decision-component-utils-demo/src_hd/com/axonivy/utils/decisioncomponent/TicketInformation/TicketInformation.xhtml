@@ -39,6 +39,7 @@
 			<div class="p-sm-12 p-md-8 p-lg-4">
 				<p:inputText id="ticket_title"
 					value="#{managedBean.request.ticketTitle}"
+					requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage')}"
 					disabled="#{cc.attrs.ticketTitleReadOnly}"> 
 					<f:validator validatorId="#{cc.attrs.validatorId}" disabled="#{!cc.attrs.ticketTitleRequired}" /> 
 				</p:inputText>
@@ -54,6 +55,7 @@
 			<div class="p-sm-12 p-md-8 p-lg-4">
 				<p:inputText id="ticket_number"
 					value="#{managedBean.request.ticketNumber}"
+					requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage')}"
 					disabled="#{cc.attrs.ticketNumberReadOnly}">
 					 <f:validator validatorId="#{cc.attrs.validatorId}" disabled="#{!cc.attrs.ticketNumberRequired}" />
 				</p:inputText>
@@ -71,6 +73,7 @@
 			<div class="p-sm-12 p-md-8 p-lg-4">
 				<p:inputText id="ticket_type"
 					value="#{managedBean.request.ticketType}"
+					requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage')}"
 					disabled="#{cc.attrs.ticketTypeReadOnly}">
 					<f:validator validatorId="#{cc.attrs.validatorId}" disabled="#{!cc.attrs.ticketTypeRequired}" />
 				</p:inputText>
@@ -86,6 +89,7 @@
 			<div class="p-sm-12 p-md-8 p-lg-4">
 				<p:inputText id="ticket_raiser"
 					value="#{managedBean.request.ticketRaiser}"
+					requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage')}"
 					disabled="#{cc.attrs.ticketRaiserReadOnly}">
 					<f:validator validatorId="#{cc.attrs.validatorId}" disabled="#{!cc.attrs.ticketRaiserRequired}" />
 				</p:inputText>
@@ -103,8 +107,9 @@
 			<div class="p-sm-12 p-md-8 p-lg-10">
 				<p:inputTextarea id="ticket_description"
 					value="#{managedBean.request.ticketDescription}"
+					requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage')}"
 					disabled="#{cc.attrs.ticketDescriptionReadOnly}">
-					<f:validator validatorId="#{cc.attrs.validatorId}" disabled="#{!cc.attrs.ticketDescriptionRequired}" />
+					<f:validator validatorId="#{cc.attrs.validatorId}" disabled="true" />  <!-- disabled="#{!cc.attrs.ticketDescriptionRequired}" -->
 				</p:inputTextarea>
 				<p:message for="ticket_description" />
 			</div>

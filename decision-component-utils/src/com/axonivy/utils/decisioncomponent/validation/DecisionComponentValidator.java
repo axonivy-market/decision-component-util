@@ -6,23 +6,15 @@ import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
-import com.axonivy.utils.decisioncomponent.utils.ValidationUtils;
-
-import ch.ivyteam.ivy.environment.Ivy;
-
-
 @FacesValidator(value = "decisionComponentValidator")
 public class DecisionComponentValidator implements Validator {
 
 	@Override
 	public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
-		
-		Ivy.log().info("log decisionComponentValidator");
-		
 		boolean isBooleanCheck = ValidationUtils.isBooleanCheck(component);
-		if(ValidationUtils.isSkipValidate(component)) {
-			return;
-		}
+//		if(ValidationUtils.isSkipValidate(component)) {
+//			return;
+//		}
 		
 		if (ValidationUtils.isValidationRequired(context)) {
 			if (isBooleanCheck) {

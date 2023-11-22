@@ -2,10 +2,15 @@ package com.axonivy.utils.decisioncomponent.demo.managedbean;
 
 import java.net.MalformedURLException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.UUID;
+
+import org.apache.commons.collections.CollectionUtils;
 
 import com.axonivy.utils.decisioncomponent.demo.contentstate.TicketProcessContentState;
 import com.axonivy.utils.decisioncomponent.demo.dao.TicketRequestDAO;
+import com.axonivy.utils.decisioncomponent.demo.entities.ApprovalHistory;
 import com.axonivy.utils.decisioncomponent.demo.entities.TicketRequest;
 import com.axonivy.utils.decisioncomponent.demo.enums.Department;
 import com.axonivy.utils.decisioncomponent.demo.enums.ProcessStep;
@@ -59,18 +64,43 @@ public class TicketProcessBean {
 		}
 	}
 	
-	public void submit() {
-		approvalDecisionBean.handleApprovalHistoryBeforeSubmit(this.request.getApprovalHistories());
-		TicketRequestDAO.getInstance().save(request);
+	private void handleSaving() {
+		TicketRequest saved = TicketRequestDAO.getInstance().save(this.request);
+		setRequest(saved);
+		
+		this.approvalDecisionBean.setApprovalHistory(this.request.getApprovalHistories().stream().filter(p -> p.getIsEditing()).findFirst().orElse(new ApprovalHistory()));
+		//setApprovalHistory(histories.stream().filter(p -> p.getIsEditing()).findFirst().orElse(new ApprovalHistory()));
+		
 	}
 	
 	public void save() {
+		
+
+		
 		approvalDecisionBean.handleApprovalHistoryBeforeSave(this.request.getApprovalHistories());
-		this.request = TicketRequestDAO.getInstance().save(request);
+
+		handleSaving();
+		
+		
+		
 		TicketProcessUtils.showInfo();
+		
+		
+		
+//		checkDayOneApprovalDecisionBean.handleApprovalHistoryBeforeSave(approvalHistories);
+//		getPreHireOnboarding().setApprovalHistories(approvalHistories);
+//		super.save();
+	}
+	
+	public void submit() {
+		approvalDecisionBean.handleApprovalHistoryBeforeSubmit(this.request.getApprovalHistories());
+		//this.request = TicketRequestDAO.getInstance().save(request);
+		//approvalDecisionBean.submitApprovalHistories();
+		handleSaving();
 	}
 	
 	public void cancel() throws MalformedURLException {
+		Ivy.wfTask().reset();
 		TicketProcessUtils.navigateToHomePage();
 	}
 	
@@ -80,6 +110,13 @@ public class TicketProcessBean {
 			this.contentState.setShowDropdownOfMails(true);
 		}
 	}
+	
+	public void onChangeConfirmation(){
+		//implement action here
+	}
+	
+	
+	
 
 	public TicketRequest getRequest() {
 		return request;

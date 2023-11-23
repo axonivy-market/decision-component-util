@@ -36,7 +36,6 @@
 	<cc:attribute name="listenerOnDecisionAction" />
 	<cc:attribute name="componentToUpdateOnDecision" default="@this" />
 
-
 	<!-- Confirmation attributes -->
 	<cc:attribute name="confirmationRequired" type="java.lang.Boolean" default="false" />
 	<cc:attribute name="confirmationRequiredMessage" default="#{ivy.cms.co('/Labels/RequiredFieldMessage')}" />
@@ -68,7 +67,6 @@
 <cc:implementation>
 	<h:outputStylesheet name="layouts/styles/core.css" />
 	<c:set var="managedBean" value="#{cc.attrs.managedBean}" />
-
 	<p:fieldset legend="#{cc.attrs.fieldsetLegend}"
 		toggleable="#{cc.attrs.fieldsetToggleable}"
 		styleClass="#{cc.attrs.fieldsetStyleClass}">

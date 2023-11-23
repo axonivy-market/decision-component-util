@@ -10,6 +10,10 @@
       "name" : "start.ivp",
       "config" : {
         "callSignature" : "start",
+        "case" : {
+          "name" : "Request Ticket Process",
+          "description" : "Request Ticket Process"
+        },
         "outLink" : "start.ivp"
       },
       "visual" : {

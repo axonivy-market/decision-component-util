@@ -84,5 +84,5 @@ public class TicketRequest extends AuditableEntity {
 	public void setForwardToMail(String forwardToMail) {
 		this.forwardToMail = forwardToMail;
 	}
-	
+
 }

@@ -109,7 +109,7 @@
 					value="#{managedBean.request.ticketDescription}"
 					requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage')}"
 					disabled="#{cc.attrs.ticketDescriptionReadOnly}">
-					<f:validator validatorId="#{cc.attrs.validatorId}" disabled="true" />  <!-- disabled="#{!cc.attrs.ticketDescriptionRequired}" -->
+					<f:validator validatorId="#{cc.attrs.validatorId}" disabled="#{!cc.attrs.ticketDescriptionRequired}" />
 				</p:inputTextarea>
 				<p:message for="ticket_description" />
 			</div>

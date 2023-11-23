@@ -3,8 +3,6 @@ package com.axonivy.utils.decisioncomponent.demo.contentstate;
 
 public class TicketProcessContentState extends AbstractContentState {
 	
-
-	
 	// information
 	private boolean ticketTitleReadOnly;
 	private boolean	ticketNumberReadOnly;
@@ -18,22 +16,17 @@ public class TicketProcessContentState extends AbstractContentState {
 	private boolean	ticketRaiserRequired;
 	private boolean	ticketDescriptionRequired;
 	
-	
 	private boolean showDropdownOfMails;
 	
 	
 	public void initRequestTicketContentState(){
-		
 		this.decisionRendered = true;
 		this.decisionRequired = true;
 		this.decisionDisable = false;
-		
 		this.confirmationVisible = false;
 		this.confirmationRequired = false;
-		
 		this.commentRendered = true;
 		this.commentRequired = true;
-		
 		this.approvalHistoryRendered = true;
 		
 		// information state
@@ -48,20 +41,16 @@ public class TicketProcessContentState extends AbstractContentState {
 		this.ticketTypeReadOnly = false;
 		this.ticketRaiserReadOnly = false;
 		this.ticketDescriptionReadOnly = false;
-		
 	}
 	
 	public void initReviewTicketContentState(){
 		this.decisionRendered = true;
 		this.decisionRequired = true;
 		this.decisionDisable = false;
-		
 		this.confirmationVisible = false;
 		this.confirmationRequired = false;
-		
 		this.commentRendered = true;
 		this.commentRequired = true;
-	
 		this.approvalHistoryRendered = true;
 		
 		// information state
@@ -76,13 +65,10 @@ public class TicketProcessContentState extends AbstractContentState {
 		this.decisionRendered = false;
 		this.decisionRequired = false;
 		this.decisionDisable = true;
-		
 		this.confirmationVisible = true;
 		this.confirmationRequired = true;
-		
 		this.commentRendered = true;
 		this.commentRequired = true;
-		
 		this.approvalHistoryRendered = true;
 		
 		// information state
@@ -95,12 +81,9 @@ public class TicketProcessContentState extends AbstractContentState {
 	
 	
 	public void initResultTicketContentState() {
-		
 		this.decisionRendered = false;
 		this.commentRendered = false;
-		
 		this.approvalHistoryRendered = true;
-		
 		
 		// information state
 		this.ticketTitleReadOnly = true;
@@ -197,9 +180,5 @@ public class TicketProcessContentState extends AbstractContentState {
 	public void setTicketDescriptionRequired(boolean ticketDescriptionRequired) {
 		this.ticketDescriptionRequired = ticketDescriptionRequired;
 	}
-
-	
-	
-	
 
 }

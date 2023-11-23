@@ -44,8 +44,9 @@ public class TicketProcessBean {
 		
 		if(processStep == ProcessStep.REQUEST_TICKET) {
 			approvalDecisionBean = new TicketApprovalDecisionBean(request, TicketProcessApprovalDecision.getRequestApprovalDecision(), null);
-			initForwardEmail();
 			contentState.initRequestTicketContentState();
+			initForwardEmail();
+			onChangeDecision();
 		}else if (processStep == ProcessStep.REVIEW_TICKET) {
 			approvalDecisionBean = new TicketApprovalDecisionBean(request, TicketProcessApprovalDecision.getReviewApprovalDecision(), null);
 			contentState.initReviewTicketContentState();

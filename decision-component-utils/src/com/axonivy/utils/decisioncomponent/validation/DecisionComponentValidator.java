@@ -12,9 +12,6 @@ public class DecisionComponentValidator implements Validator {
 	@Override
 	public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
 		boolean isBooleanCheck = ValidationUtils.isBooleanCheck(component);
-//		if(ValidationUtils.isSkipValidate(component)) {
-//			return;
-//		}
 		
 		if (ValidationUtils.isValidationRequired(context)) {
 			if (isBooleanCheck) {

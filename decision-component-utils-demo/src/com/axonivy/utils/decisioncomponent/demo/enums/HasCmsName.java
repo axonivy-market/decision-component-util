@@ -42,10 +42,6 @@ public interface HasCmsName {
 		final String cmsPath = getEntryPath(entry);
 		String result = Ivy.cms().co(cmsPath);
 		if (StringUtils.isEmpty(result)) {
-			
-		//	Logger.getLogger(HasCmsName.class).warn("Missing CMS entry for '" + cmsPath + "'");
-			Ivy.log().warn("Missing CMS entry for '" + cmsPath + "'");
-			
 			result = name().replace("_", " ");
 		}
 		return result;
@@ -63,9 +59,6 @@ public interface HasCmsName {
 		final String cmsPath = getEntryPath(entry);
 		String result = Ivy.cms().cr(cmsPath);
 		if (StringUtils.isEmpty(result)) {
-			
-			//Logger.getLogger(HasCmsName.class).warn("Missing CMS entry for '" + cmsPath + "'");
-			
 			result = name();
 		}
 		return result;

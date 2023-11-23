@@ -1,21 +1,14 @@
 package com.axonivy.utils.decisioncomponent.demo.contentstate;
 
 public abstract class AbstractContentState {
-	
 	protected boolean decisionRendered;
 	protected boolean decisionRequired;
 	protected boolean decisionDisable;
-	
 	protected boolean confirmationRequired;
 	protected boolean confirmationVisible;
-	
 	protected boolean commentRendered;
 	protected boolean commentRequired;
-	
 	protected boolean approvalHistoryRendered;
-	
-	
-
 
 	public boolean isDecisionRendered() {
 		return decisionRendered;

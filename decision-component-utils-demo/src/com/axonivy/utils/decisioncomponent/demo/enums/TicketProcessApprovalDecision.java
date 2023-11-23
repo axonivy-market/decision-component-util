@@ -13,8 +13,7 @@ public enum TicketProcessApprovalDecision implements HasCmsName {
 	APPROVE,
 	REJECT,
 	
-	COMPLETE
-	;
+	COMPLETE;
 	
 	public static List<Enum<?>> getRequestApprovalDecision() {
 		List<Enum<?>> approvalDecisions = new ArrayList<>();

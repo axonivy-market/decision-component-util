@@ -13,20 +13,15 @@ public class TicketApprovalDecisionBean extends AbstractApprovalDecisionBean {
 
 	private static final long serialVersionUID = 1L;
 
+	private static final String VALIDATOR_ID = "ticketProcessValidator";
 	private String validatorId;
-	
-	
-	//private TicketRequest request;
-	
-	
 
 	public TicketApprovalDecisionBean(TicketRequest request, List<Enum<?>> decisions, List<Enum<?>> confirmations) {
-		//this.request = request;
+		this.validatorId = VALIDATOR_ID;
 		init(request, decisions, confirmations);
 	}
 
 	private void init(TicketRequest request, List<Enum<?>> decisions, List<Enum<?>> confirmations) {
-		this.validatorId = "decisionComponentValidator";
 		initializeApprovalDecisionComponent(request.getApprovalHistories(), decisions, confirmations);
 	}
 
@@ -53,27 +48,5 @@ public class TicketApprovalDecisionBean extends AbstractApprovalDecisionBean {
 	public void setValidatorId(String validatorId) {
 		this.validatorId = validatorId;
 	}
-	
-	
-//	public void saveApprovalHistories() {
-//		handleApprovalHistoryBeforeSave(this.request.getApprovalHistories());
-//	}
-//
-//	public void submitApprovalHistories() {
-//		handleApprovalHistoryBeforeSubmit(this.request.getApprovalHistories());
-//	}
-	
-//	@Override
-//	protected void handleBeforeSave(List<ApprovalHistory> histories) {	
-//		ApprovalHistory approvalHistory = getApprovalHistory();
-//		List<Enum<?>> confirmations = getConfirmations();
-//		if (CollectionUtils.isNotEmpty(confirmations)) {
-//			handleConfirmation();
-//		}
-//		histories.clear();
-//		histories.addAll(getApprovalHistories());
-//		approvalHistory.setApprovalDate(LocalDateTime.now());
-//		histories.add(approvalHistory);
-//	}
 	
 }

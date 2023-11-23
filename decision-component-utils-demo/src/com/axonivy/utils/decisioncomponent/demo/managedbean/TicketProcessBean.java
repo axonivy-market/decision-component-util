@@ -2,11 +2,7 @@ package com.axonivy.utils.decisioncomponent.demo.managedbean;
 
 import java.net.MalformedURLException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.UUID;
-
-import org.apache.commons.collections.CollectionUtils;
 
 import com.axonivy.utils.decisioncomponent.demo.contentstate.TicketProcessContentState;
 import com.axonivy.utils.decisioncomponent.demo.dao.TicketRequestDAO;
@@ -27,12 +23,15 @@ public class TicketProcessBean {
 	private TicketApprovalDecisionBean approvalDecisionBean;
 	private TicketProcessContentState contentState;
 	private Map<String, String> departmentMails;
+	
+	private ProcessStep processStep;
 
 	public TicketProcessBean(ProcessStep processStep) {
-		init(processStep);
+		this.processStep = processStep;
+		init();
 	}
 	
-	private void init(ProcessStep processStep) {
+	private void init() {
 		Long caseId = Ivy.wfCase().getId();
 		request = TicketRequestDAO.getInstance().findByCaseId(caseId);
 		
@@ -50,10 +49,12 @@ public class TicketProcessBean {
 		}else if (processStep == ProcessStep.REVIEW_TICKET) {
 			approvalDecisionBean = new TicketApprovalDecisionBean(request, TicketProcessApprovalDecision.getReviewApprovalDecision(), null);
 			contentState.initReviewTicketContentState();
-		} else {
+		} else if (processStep == ProcessStep.CONFIRM_TICKET) {
 			approvalDecisionBean = new TicketApprovalDecisionBean(request, TicketProcessApprovalDecision.getConfirmApprovalDecision(), TicketProcessApprovalConfirmation.getConfirmApprovalConfirmations());
-			approvalDecisionBean.getApprovalHistory().setDecision(TicketProcessApprovalDecision.COMPLETE.toString());
 			contentState.initConfirmTicketContentState();
+		} else {
+			approvalDecisionBean = new TicketApprovalDecisionBean(request, null, null);
+			contentState.initResultTicketContentState();
 		}
 	}
 	
@@ -67,35 +68,21 @@ public class TicketProcessBean {
 	private void handleSaving() {
 		TicketRequest saved = TicketRequestDAO.getInstance().save(this.request);
 		setRequest(saved);
-		
 		this.approvalDecisionBean.setApprovalHistory(this.request.getApprovalHistories().stream().filter(p -> p.getIsEditing()).findFirst().orElse(new ApprovalHistory()));
-		//setApprovalHistory(histories.stream().filter(p -> p.getIsEditing()).findFirst().orElse(new ApprovalHistory()));
-		
 	}
 	
 	public void save() {
-		
-
-		
 		approvalDecisionBean.handleApprovalHistoryBeforeSave(this.request.getApprovalHistories());
-
 		handleSaving();
-		
-		
-		
 		TicketProcessUtils.showInfo();
-		
-		
-		
-//		checkDayOneApprovalDecisionBean.handleApprovalHistoryBeforeSave(approvalHistories);
-//		getPreHireOnboarding().setApprovalHistories(approvalHistories);
-//		super.save();
 	}
 	
 	public void submit() {
+		if(processStep == ProcessStep.CONFIRM_TICKET) {
+			approvalDecisionBean.getApprovalHistory().setDecision(TicketProcessApprovalDecision.COMPLETE.toString());
+		}
+		
 		approvalDecisionBean.handleApprovalHistoryBeforeSubmit(this.request.getApprovalHistories());
-		//this.request = TicketRequestDAO.getInstance().save(request);
-		//approvalDecisionBean.submitApprovalHistories();
 		handleSaving();
 	}
 	
@@ -112,11 +99,8 @@ public class TicketProcessBean {
 	}
 	
 	public void onChangeConfirmation(){
-		//implement action here
+		//implement listener for confirmation action
 	}
-	
-	
-	
 
 	public TicketRequest getRequest() {
 		return request;

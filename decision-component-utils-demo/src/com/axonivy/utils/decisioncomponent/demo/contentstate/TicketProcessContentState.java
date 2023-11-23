@@ -93,6 +93,23 @@ public class TicketProcessContentState extends AbstractContentState {
 		this.ticketDescriptionReadOnly = true;
 	}
 	
+	
+	public void initResultTicketContentState() {
+		
+		this.decisionRendered = false;
+		this.commentRendered = false;
+		
+		this.approvalHistoryRendered = true;
+		
+		
+		// information state
+		this.ticketTitleReadOnly = true;
+		this.ticketNumberReadOnly = true;
+		this.ticketTypeReadOnly = true;
+		this.ticketRaiserReadOnly = true;
+		this.ticketDescriptionReadOnly = true;
+	}
+	
 	public boolean isShowDropdownOfMails() {
 		return showDropdownOfMails;
 	}

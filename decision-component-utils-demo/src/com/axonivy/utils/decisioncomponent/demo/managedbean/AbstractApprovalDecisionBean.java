@@ -25,6 +25,7 @@ public abstract class AbstractApprovalDecisionBean implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
+	
 	private ApprovalHistory approvalHistory = new ApprovalHistory();
 	private List<Enum<?>> decisions = new ArrayList<>();
 	
@@ -131,7 +132,7 @@ public abstract class AbstractApprovalDecisionBean implements Serializable {
 			}
 		}
 	}
-
+	
 	protected void handleBeforeSave(List<ApprovalHistory> histories) {
 		if (CollectionUtils.isNotEmpty(confirmations)) {
 			handleConfirmation();
@@ -143,12 +144,6 @@ public abstract class AbstractApprovalDecisionBean implements Serializable {
 				|| StringUtils.isNotBlank(approvalHistory.getComment())
 				|| StringUtils.isNotBlank(approvalHistory.getSelectedConfirmations())) {
 			approvalHistory.setApprovalDate(LocalDateTime.now());
-			
-			//my custom
-			//int loop = approvalHistory.getVersion() == null ? 0 : approvalHistory.getVersion() + 1;
-			//approvalHistory.setVersion(loop);
-			// end my custom
-			
 			histories.add(approvalHistory);
 		}
 	}

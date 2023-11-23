@@ -4,12 +4,22 @@ Dialogs:
       utils:
         decisioncomponent:
           ConfirmTicketRequest:
+            ApprovalDecisionHeadline: Please select a decision option
+            ApprovalDecisionHelpText: Please select a decision option and write a comment
+            DecisionLegend: Confirmation Decision
             Title: Confirm ticket request
           RequestTicketForm:
-            ApprovalDecisionHeadline: Please review ticket and select a decision option
-            ApprovalDecisionHelpText: Please review ticket and select a decision option
+            ApprovalDecisionHeadline: Please select a decision option
+            ApprovalDecisionHelpText: Please select a decision option and write a comment
+            DecisionLegend: Request Decision
             Title: Request ticket
+          ResultTicketRequest:
+            DecisionLegend: Result Decision
+            Title: Revsult ticket request
           ReviewTicketRequest:
+            ApprovalDecisionHeadline: Please select a decision option
+            ApprovalDecisionHelpText: Please select a decision option and write a comment
+            DecisionLegend: Review Decision
             Title: Review ticket request
 Enums:
   com:
@@ -37,7 +47,6 @@ Enums:
                 SEND_TO_REVIEWER:
                   name: Send to reviewer
 Labels:
-  DecisionLegend: Decision
   EmailAddressOfRelevantDepartment: Email address of relevant department
   InformationLegend: Ticket infomation
   TicketDescription: Ticket description

@@ -7,66 +7,57 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:pe="http://primefaces.org/ui/extensions"
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
-
 <cc:interface componentType="IvyComponent">
 
 	<!-- Common attributes -->
 	<cc:attribute name="managedBean" />
 	<cc:attribute name="validatorId" default="decisionComponentValidator" />
-	
+
 	<cc:attribute name="isReadOnly" type="java.lang.Boolean" default="false" />
 	<cc:attribute name="fieldsetToggleable" type="java.lang.Boolean" default="false" />
 	<cc:attribute name="fieldsetLegend" type="java.lang.String" default="Approval decision" />
 	<cc:attribute name="fieldsetStyleClass" />
-	
+
 	<cc:attribute name="headline" />
 	<cc:attribute name="headlinePanelStyleClass" />
 	<cc:attribute name="headlineStyleClass" default="p-text-bold" />
-	
+
 	<cc:attribute name="helpText" />
 	<cc:attribute name="helpTextPanelStyleClass" />
 	<cc:attribute name="helpTextStyleClass" />
-	
 
 	<!-- Decision attributes -->
 	<cc:attribute name="decisionRequired" type="java.lang.Boolean" default="true" />
 	<cc:attribute name="decisionRequiredMessage" default="#{ivy.cms.co('/Labels/RequiredFieldMessage')}" />
 	<cc:attribute name="decisionRendered" type="java.lang.Boolean" default="true" />
 	<cc:attribute name="decisionDisable" type="java.lang.Boolean" default="false" />
-	<cc:attribute name="decisionLabel" default="Decision"/>
+	<cc:attribute name="decisionLabel" default="Decision" />
 	<cc:attribute name="decisionPanelStyleClass" />
-	
-	<cc:attribute name="listenerOnDecisionAction"/>
-	<cc:attribute name="componentToUpdateOnDecision" default="@this"/>
-	
+	<cc:attribute name="listenerOnDecisionAction" />
+	<cc:attribute name="componentToUpdateOnDecision" default="@this" />
+
 
 	<!-- Confirmation attributes -->
 	<cc:attribute name="confirmationRequired" type="java.lang.Boolean" default="false" />
 	<cc:attribute name="confirmationRequiredMessage" default="#{ivy.cms.co('/Labels/RequiredFieldMessage')}" />
-	
-	
-	<cc:attribute name="confirmationVisible" type="java.lang.Boolean" default="false"/>
+	<cc:attribute name="confirmationVisible" type="java.lang.Boolean" default="false" />
 	<cc:attribute name="confirmationDisabled" type="java.lang.Boolean" default="false" />
-	
-	<cc:attribute name="confirmationLabel" default="Confirmation"/>
+	<cc:attribute name="confirmationLabel" default="Confirmation" />
 	<cc:attribute name="confirmationPanelStyleClass" />
-	<cc:attribute name="listenerOnConfirmationAction"/>
-	<cc:attribute name="componentToUpdateOnConfirmation" default="@this"/>
-	
-	
+	<cc:attribute name="listenerOnConfirmationAction" />
+	<cc:attribute name="componentToUpdateOnConfirmation" default="@this" />
+
 	<!-- Comment attributes -->
 	<cc:attribute name="commentRequired" type="java.lang.Boolean" default="false" />
-	<cc:attribute name="commentRequiredMessage" default="#{ivy.cms.co('/Labels/RequiredFieldMessage')}"/>
+	<cc:attribute name="commentRequiredMessage" default="#{ivy.cms.co('/Labels/RequiredFieldMessage')}" />
 	<cc:attribute name="commentRendered" type="java.lang.Boolean" default="true" />
-	<cc:attribute name="decisionCommentLabel" default="#{ivy.cms.co('/Labels/Comment')}"/>
+	<cc:attribute name="decisionCommentLabel" default="#{ivy.cms.co('/Labels/Comment')}" />
 	<cc:attribute name="commentPanelStyleClass" />
-	
 
 	<!-- Approval history attribute -->
 	<cc:attribute name="approvalHistoryRendered" type="java.lang.Boolean" default="true" />
 	<cc:attribute name="approvalHistoryPanelStyleClass" />
-	<cc:attribute name="approvalHistoryLabel" default="#{ivy.cms.co('/Labels/ApprovalHistory')}"/>
-
+	<cc:attribute name="approvalHistoryLabel" default="#{ivy.cms.co('/Labels/ApprovalHistory')}" />
 	<cc:attribute name="approvalHistoryAuthorStyleClass" />
 	<cc:attribute name="approvalHistoryDateStyleClass" />
 	<cc:attribute name="approvalHistoryDecisionStyleClass" />
@@ -78,8 +69,7 @@
 	<h:outputStylesheet name="layouts/styles/core.css" />
 	<c:set var="managedBean" value="#{cc.attrs.managedBean}" />
 
-	<p:fieldset
-		legend="#{cc.attrs.fieldsetLegend}"
+	<p:fieldset legend="#{cc.attrs.fieldsetLegend}"
 		toggleable="#{cc.attrs.fieldsetToggleable}"
 		styleClass="#{cc.attrs.fieldsetStyleClass}">
 
@@ -91,10 +81,10 @@
 				<p>#{cc.attrs.headline}</p>
 			</div>
 		</h:panelGroup>
-		
+
 		<!-- Custom Head line for specific requirement -->
 		<cc:renderFacet name="customHeadline" />
-		
+
 		<!-- Help text -->
 		<h:panelGroup id="helptext-panel"
 			class="p-formgrid p-grid p-align-baseline ui-fluid #{cc.attrs.helpTextPanelStyleClass}"
@@ -127,14 +117,16 @@
 					<f:selectItems value="#{managedBean.decisions}" var="decision"
 						itemValue="#{decision}"
 						itemLabel="#{managedBean.getDecisionLabel(decision)}" />
-				    <f:validator validatorId="#{cc.attrs.validatorId}"
-						disabled="#{!cc.attrs.decisionRequired}" /> 
-					<p:ajax listener="#{cc.attrs.listenerOnDecisionAction}" update="#{cc.attrs.componentToUpdateOnDecision}" process="@this" partialSubmit="true" global="false"/>
+					<f:validator validatorId="#{cc.attrs.validatorId}"
+						disabled="#{!cc.attrs.decisionRequired}" />
+					<p:ajax listener="#{cc.attrs.listenerOnDecisionAction}"
+						update="#{cc.attrs.componentToUpdateOnDecision}" process="@this"
+						partialSubmit="true" global="false" />
 				</p:selectOneRadio>
 				<p:message for="decision-options" />
 			</div>
 		</h:panelGroup>
-		
+
 		<!-- Custom content for specific requirement that decision component cannot fulfill -->
 		<cc:renderFacet name="customContent" />
 
@@ -157,11 +149,13 @@
 					requiredMessage="#{cc.attrs.confirmationRequiredMessage}">
 					<f:selectItems value="#{managedBean.confirmations}"
 						var="confirmation" itemValue="#{confirmation}"
-						itemLabel="#{managedBean.getConfirmationLabel(confirmation)}"/>
-					<f:attribute name="decisionBean" value="#{cc.attrs.managedBean}"/>
+						itemLabel="#{managedBean.getConfirmationLabel(confirmation)}" />
+					<f:attribute name="decisionBean" value="#{cc.attrs.managedBean}" />
 					<f:validator validatorId="#{cc.attrs.validatorId}"
 						disabled="#{!cc.attrs.confirmationRequired}" />
-					<p:ajax listener="#{cc.attrs.listenerOnConfirmationAction}" update="#{cc.attrs.componentToUpdateOnConfirmation}" process="@this" partialSubmit="true" global="false"/>
+					<p:ajax listener="#{cc.attrs.listenerOnConfirmationAction}"
+						update="#{cc.attrs.componentToUpdateOnConfirmation}"
+						process="@this" partialSubmit="true" global="false" />
 				</p:selectManyCheckbox>
 				<p:message for="confirmation-options" />
 			</div>
@@ -186,9 +180,11 @@
 					counter="decision-comment-counter"
 					counterTemplate="#{ivy.cms.co('/Labels/CounterTemplate')}"
 					requiredMessage="#{cc.attrs.commentRequiredMessage}">
-					<f:validator validatorId="#{cc.attrs.validatorId}" disabled="#{!cc.attrs.commentRequired}" />
+					<f:validator validatorId="#{cc.attrs.validatorId}"
+						disabled="#{!cc.attrs.commentRequired}" />
 				</p:inputTextarea>
-				<h:outputText id="decision-comment-counter" rendered="#{!cc.attrs.isReadOnly}"/>
+				<h:outputText id="decision-comment-counter"
+					rendered="#{!cc.attrs.isReadOnly}" />
 			</div>
 			<h:panelGroup
 				class="p-field p-col-12 p-md-10 p-md-offset-2 p-nogutter"
@@ -207,30 +203,31 @@
 					value="#{cc.attrs.approvalHistoryLabel}" />
 			</div>
 			<div class="p-field p-col-12 p-md-10">
-				<p:dataTable id="approval-history-table" sortBy="#{managedBean.defaultSortField}"
+				<p:dataTable id="approval-history-table"
+					sortBy="#{managedBean.defaultSortField}"
 					value="#{managedBean.approvalHistories}" var="approvalHistory"
 					reflow="true" lazy="false" styleClass="approval-history-table">
 					<p:column sortBy="#{approvalHistory.displayUserName}"
-						headerText="#{ivy.cms.co('/Labels/Author')}"
-						width="15%">
-						<h:outputText
-							value="#{approvalHistory.displayUserName}" styleClass="#{cc.attrs.approvalHistoryAuthorStyleClass}" />
+						headerText="#{ivy.cms.co('/Labels/Author')}" width="15%">
+						<h:outputText value="#{approvalHistory.displayUserName}"
+							styleClass="#{cc.attrs.approvalHistoryAuthorStyleClass}" />
 					</p:column>
 					<p:column sortBy="#{approvalHistory.sortableApprovalDate}"
-						headerText="#{ivy.cms.co('/Labels/Date')}"
-						width="10%">
-						<h:outputText
-							value="#{approvalHistory.displayApprovalDate}" styleClass="#{cc.attrs.approvalHistoryDateStyleClass}" />
+						headerText="#{ivy.cms.co('/Labels/Date')}" width="10%">
+						<h:outputText value="#{approvalHistory.displayApprovalDate}"
+							styleClass="#{cc.attrs.approvalHistoryDateStyleClass}" />
 					</p:column>
-					<p:column sortBy="#{managedBean.getDecisionLabel(approvalHistory.decision)}"
-						headerText="#{ivy.cms.co('/Labels/Decision')}"
-						width="20%">
+					<p:column
+						sortBy="#{managedBean.getDecisionLabel(approvalHistory.decision)}"
+						headerText="#{ivy.cms.co('/Labels/Decision')}" width="20%">
 						<h:outputText
-							value="#{managedBean.getDecisionLabel(approvalHistory.decision)}" styleClass="#{cc.attrs.approvalHistoryDecisionStyleClass}" />
+							value="#{managedBean.getDecisionLabel(approvalHistory.decision)}"
+							styleClass="#{cc.attrs.approvalHistoryDecisionStyleClass}" />
 					</p:column>
 					<p:column sortBy="#{approvalHistory.comment}"
 						headerText="#{ivy.cms.co('/Labels/Comment')}">
-						<h:outputText value="#{approvalHistory.comment}" escape="false" styleClass="#{cc.attrs.approvalHistoryCommentStyleClass}" />
+						<h:outputText value="#{approvalHistory.comment}" escape="false"
+							styleClass="#{cc.attrs.approvalHistoryCommentStyleClass}" />
 					</p:column>
 				</p:dataTable>
 			</div>
@@ -238,5 +235,4 @@
 
 	</p:fieldset>
 </cc:implementation>
-
 </html>

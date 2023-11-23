@@ -10,126 +10,90 @@
 	<ui:composition template="/layouts/frame-10.xhtml">
 		<ui:define name="title">#{ivy.cms.co('/Dialogs/com/axonivy/utils/decisioncomponent/RequestTicketForm/Title')}</ui:define>
 		<ui:define name="content">
-
 			<c:set var="managedBean" value="#{data.bean}" />
-
 			<h:form id="content-form">
-				<!-- <p:growl id="growl" showDetail="true" /> -->
-				  <p:growl id="growl" showDetail="true" /> 
-				 <p:growl id="growl-message" showDetail="true" sticky="true" for="growl-message" />
+				<p:growl id="growl-message" showDetail="true" sticky="true" for="growl-message" />
 
 				<ic:com.axonivy.utils.decisioncomponent.TicketInformation
-					id="ticket-information-section"
-					managedBean="#{managedBean}"
+					id="ticket-information-section" managedBean="#{managedBean}"
 					validatorId="ticketProcessValidator"
 					ticketTitleReadOnly="#{managedBean.contentState.ticketTitleReadOnly}"
 					ticketNumberReadOnly="#{managedBean.contentState.ticketNumberReadOnly}"
 					ticketTypeReadOnly="#{managedBean.contentState.ticketTypeReadOnly}"
 					ticketRaiserReadOnly="#{managedBean.contentState.ticketRaiserReadOnly}"
 					ticketDescriptionReadOnly="#{managedBean.contentState.ticketDescriptionReadOnly}"
-					
 					ticketTitleRequired="#{managedBean.contentState.ticketTitleRequired}"
 					ticketNumberRequired="#{managedBean.contentState.ticketNumberRequired}"
 					ticketTypeRequired="#{managedBean.contentState.ticketTypeRequired}"
 					ticketRaiserRequired="#{managedBean.contentState.ticketRaiserRequired}"
 					ticketDescriptionRequired="#{managedBean.contentState.ticketDescriptionRequired}" />
-					
-					
-		
 
 				<ic:com.axonivy.utils.decisioncomponent.ApprovalDecision
-					id="approvalDecision" 
+					id="approvalDecision"
 					managedBean="#{managedBean.approvalDecisionBean}"
 					validatorId="#{managedBean.approvalDecisionBean.validatorId}"
-					
-					fieldsetLegend="#{ivy.cms.co('/Labels/DecisionLegend')}"
+					fieldsetLegend="#{ivy.cms.co('/Dialogs/com/axonivy/utils/decisioncomponent/RequestTicketForm/DecisionLegend')}"
 					fieldsetToggleable="#{true}" 
 					fieldsetStyleClass="p-mt-3"
-					
 					headline="#{ivy.cms.co('/Dialogs/com/axonivy/utils/decisioncomponent/RequestTicketForm/ApprovalDecisionHeadline')}"
 					headlinePanelStyleClass="" 
 					headlineStyleClass="p-text-bold"
 					helpText="#{ivy.cms.co('/Dialogs/com/axonivy/utils/decisioncomponent/RequestTicketForm/ApprovalDecisionHelpText')}"
 					helpTextPanelStyleClass="" 
 					helpTextStyleClass=""
-					
 					decisionRendered="#{managedBean.contentState.decisionRendered}"
 					decisionDisable="#{managedBean.contentState.decisionDisable}"
 					decisionRequired="#{managedBean.contentState.decisionRequired}"
 					listenerOnDecisionAction="#{managedBean.onChangeDecision()}"
 					componentToUpdateOnDecision="approvalDecision:dropDownListOfMails"
-					
 					commentRendered="#{managedBean.contentState.commentRendered}"
 					commentRequired="#{managedBean.contentState.commentRequired}"
-					
 					approvalHistoryRendered="#{managedBean.contentState.approvalHistoryRendered}">
-					
-					
-
-					
-					
 					<f:facet name="customContent">
-							<h:panelGroup id="dropDownListOfMails">
-								<h:panelGroup id="mail-panel" layout="block" styleClass="p-formgrid p-grid p-align-baseline ui-fluid"
-									rendered="#{managedBean.contentState.showDropdownOfMails}">
-									<div class="p-field p-text-left p-text-md-right p-col-12 p-md-2">
-										<p:outputLabel for="dropdownlist-mail" value="#{ivy.cms.co('/Labels/EmailAddressOfRelevantDepartment')}">  
-											<span class="ui-outputlabel-rfi">*</span>
-										</p:outputLabel>
-									</div>
-									<div class="p-field p-col-12 p-md-4">
-										<p:selectOneMenu id="dropdownlist-mail"
-											value="#{managedBean.request.forwardToMail}"
-											requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage')}">
-												<f:selectItem itemLabel="SelectOne" itemValue=""/>
-						                  		<f:selectItems value="#{managedBean.departmentMails.entrySet()}" var="department" 
-						                  			itemLabel="#{department.key}" itemValue="#{department.value}"/>
-						                  		<f:validator validatorId="decisionComponentValidator" />
-										</p:selectOneMenu>
-										<p:message for="dropdownlist-mail" />
-									</div>
-								</h:panelGroup>
+						<h:panelGroup id="dropDownListOfMails">
+							<h:panelGroup id="mail-panel" 
+								layout="block"
+								styleClass="p-formgrid p-grid p-align-baseline ui-fluid"
+								rendered="#{managedBean.contentState.showDropdownOfMails}">
+								<div class="p-field p-text-left p-text-md-right p-col-12 p-md-2">
+									<p:outputLabel for="dropdownlist-mail"
+										value="#{ivy.cms.co('/Labels/EmailAddressOfRelevantDepartment')}">
+										<span class="ui-outputlabel-rfi">*</span>
+									</p:outputLabel>
+								</div>
+								<div class="p-field p-col-12 p-md-4">
+									<p:selectOneMenu id="dropdownlist-mail"
+										value="#{managedBean.request.forwardToMail}"
+										requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage')}">
+										<f:selectItem itemLabel="SelectOne" itemValue="" />
+										<f:selectItems
+											value="#{managedBean.departmentMails.entrySet()}"
+											var="department" itemLabel="#{department.key}"
+											itemValue="#{department.value}" />
+										<f:validator validatorId="decisionComponentValidator" />
+									</p:selectOneMenu>
+									<p:message for="dropdownlist-mail" />
+								</div>
 							</h:panelGroup>
-						</f:facet>
-					
-					
-					
-					
-					
+						</h:panelGroup>
+					</f:facet>
 				</ic:com.axonivy.utils.decisioncomponent.ApprovalDecision>
-				
-				
-				
-				 
 
 				<br />
 				<div class="command-btns">
-					<p:commandLink id="cancel" 
-						actionListener="#{managedBean.cancel()}" 
-						value="Cancel" 
-						process="@this" 
-						immediate="true" />
-					<p:commandButton id="save-button" 
-						ondblclick="return false;"
-						actionListener="#{managedBean.save()}" 
-						value="Save" 
-						update="content-form growl-message" 
-						icon="pi pi-save">
+					<p:commandLink id="cancel" actionListener="#{managedBean.cancel()}"
+						value="Cancel" process="@this" immediate="true" />
+					<p:commandButton id="save-button" ondblclick="return false;"
+						actionListener="#{managedBean.save()}" value="Save"
+						update="content-form growl-message" icon="pi pi-save">
 					</p:commandButton>
-					<p:commandButton id="complete-button" 
-						ondblclick="return false;"
-						actionListener="#{logic.submit}" 
-						value="Proceed" 
-						update="content-form" 
-						icon="pi pi-check">
+					<p:commandButton id="complete-button" ondblclick="return false;"
+						actionListener="#{logic.submit}" value="Proceed"
+						update="content-form" icon="pi pi-check">
 					</p:commandButton>
-					
-					
-					
-					
 				</div>
 			</h:form>
-			
+
 			<script type="text/javascript">
 				window.isHideCaseInfo = true;
 				window.isHideTaskName = true;
@@ -138,7 +102,5 @@
 
 		</ui:define>
 	</ui:composition>
-
 </h:body>
-
 </html>

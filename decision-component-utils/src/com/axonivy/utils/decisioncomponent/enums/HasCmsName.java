@@ -1,5 +1,4 @@
-package com.axonivy.utils.decisioncomponent.demo.enums;
-
+package com.axonivy.utils.decisioncomponent.enums;
 
 import org.apache.commons.lang3.StringUtils;
 import ch.ivyteam.ivy.environment.Ivy;

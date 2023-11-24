@@ -1,5 +1,6 @@
 package com.axonivy.utils.decisioncomponent.demo.contentstate;
 
+import com.axonivy.utils.decisioncomponent.contentstate.AbstractContentState;
 
 public class TicketProcessContentState extends AbstractContentState {
 	

@@ -1,40 +1,34 @@
 package com.axonivy.utils.decisioncomponent.demo.entities;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.persistence.ForeignKey;
-import javax.persistence.JoinColumn;
 
-import com.axonivy.utils.persistence.beans.AuditableEntity;
+import com.axonivy.utils.decisioncomponent.entities.BaseRequest;
 
 @Entity
 @Table(name="TicketRequest")
-public class TicketRequest extends AuditableEntity {
+public class TicketRequest extends BaseRequest  {
 
 	private static final long serialVersionUID = 1L;
 	
+	@Column
 	private Long caseId;
+	
+	@Column
 	private String ticketTitle;
+	
+	@Column
 	private String ticketNumber;
+	
+	@Column
 	private String ticketType;
+	
+	@Column
 	private String ticketRaiser;
+	
+	@Column
 	private String ticketDescription;
-	
-	private String forwardToMail;
-	
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinTable(name = "TicketRequestApprovalHistory",
-	  joinColumns = { @JoinColumn(name = "ticketRequestId", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_ticketRequestApprovalHistory_ticketRequest")) },
-	  inverseJoinColumns = @JoinColumn(name = "approvalHistoryId", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_ticketRequestApprovalHistory_approvalHistory")))
-	private List<ApprovalHistory> approvalHistories = new ArrayList<>();
-	
 	
 	public Long getCaseId() {
 		return caseId;
@@ -71,18 +65,6 @@ public class TicketRequest extends AuditableEntity {
 	}
 	public void setTicketDescription(String ticketDescription) {
 		this.ticketDescription = ticketDescription;
-	}
-	public List<ApprovalHistory> getApprovalHistories() {
-		return approvalHistories;
-	}
-	public void setApprovalHistories(List<ApprovalHistory> approvalHistories) {
-		this.approvalHistories = approvalHistories;
-	}
-	public String getForwardToMail() {
-		return forwardToMail;
-	}
-	public void setForwardToMail(String forwardToMail) {
-		this.forwardToMail = forwardToMail;
 	}
 
 }

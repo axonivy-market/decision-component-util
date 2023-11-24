@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.axonivy.utils.decisioncomponent.demo.entities.TicketRequest;
 import com.axonivy.utils.decisioncomponent.demo.enums.TicketProcessApprovalConfirmation;
 import com.axonivy.utils.decisioncomponent.demo.enums.TicketProcessApprovalDecision;
+import com.axonivy.utils.decisioncomponent.managedbean.AbstractApprovalDecisionBean;
 
 
 public class TicketApprovalDecisionBean extends AbstractApprovalDecisionBean {
@@ -15,6 +16,8 @@ public class TicketApprovalDecisionBean extends AbstractApprovalDecisionBean {
 
 	private static final String VALIDATOR_ID = "ticketProcessValidator";
 	private String validatorId;
+	
+	
 
 	public TicketApprovalDecisionBean(TicketRequest request, List<Enum<?>> decisions, List<Enum<?>> confirmations) {
 		this.validatorId = VALIDATOR_ID;

@@ -1,133 +1,129 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.axonivy.utils.decisioncomponent</groupId>
-  <artifactId>decision-component-utils-demo</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
-  <packaging>iar</packaging>
-  
-  <properties>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.axonivy.utils.decisioncomponent</groupId>
+	<artifactId>decision-component-utils-demo</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>iar</packaging>
+
+
+<properties>
     <ivy.engine.version>10.0.14</ivy.engine.version>
-    <axonivy.persistence.version>10.0.2</axonivy.persistence.version>
     <build.plugin.version>10.0.14</build.plugin.version>
+    <maven.compiler.target>17</maven.compiler.target>
+    <maven.compiler.source>17</maven.compiler.source>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <quartz.version>2.1.1</quartz.version>
+    <axonivy.persistence.version>10.0.2</axonivy.persistence.version>
+    <m2e.apt.activation>maven_plugin</m2e.apt.activation>
   </properties>
-  
-  <dependencies>
-
-	<dependency>
-		<groupId>com.axonivy.utils.decisioncomponent</groupId>
-		<artifactId>decision-component-utils</artifactId>
-		<version>${project.version}</version>
-		<type>iar</type>
-	</dependency>
-
-	<dependency>
-		<groupId>com.axonivy.utils.persistence</groupId>
-		<artifactId>persistence-utils</artifactId>
-		<version>10.0.2</version>
-	</dependency>
-	
-	<dependency>
-		<groupId>org.hibernate</groupId>
-		<artifactId>hibernate-jpamodelgen</artifactId>
-		<version>5.4.33.Final</version>
-		<scope>provided</scope>
-	</dependency>
-	
-	
-	<!--
-	 <dependency>
-      <groupId>com.axonivy.utils.persistence</groupId>
-      <artifactId>persistence-utils</artifactId>
-      <version>${axonivy.persistence.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-jpamodelgen</artifactId>
-      <version>5.4.12.Final</version>
-    </dependency>
-    <dependency>
-      <groupId>org.hibernate.javax.persistence</groupId>
-      <artifactId>hibernate-jpa-2.1-api</artifactId>
-      <version>1.0.0.Final</version>
-    </dependency>
-    -->
 
 
 
-  </dependencies>
-  
-  <repositories>
-    <repository>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-      <id>maven.axonivy.com</id>
-      <url>https://maven.axonivy.com</url>
-    </repository>
-  </repositories>
-  
-<build>
-	<plugins>
-	
-		<!-- 
-		<plugin>
-			<groupId>com.axonivy.ivy.ci</groupId>
-			<artifactId>project-build-plugin</artifactId>
-			<version>10.0.14</version>
-			<extensions>true</extensions>
-		</plugin>
-		-->
+	<dependencies>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-jpamodelgen</artifactId>
+			<version>5.4.33.Final</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.axonivy.utils.persistence</groupId>
+			<artifactId>persistence-utils</artifactId>
+			<version>10.0.2</version>
+		</dependency>
+		<dependency>
+	      <groupId>com.axonivy.utils.decisioncomponent</groupId>
+	      <artifactId>decision-component-utils</artifactId>
+	      <version>1.0.0-SNAPSHOT</version>
+	      <type>iar</type>
+    	</dependency>
+	</dependencies>
 
-		<plugin>
-	        <artifactId>maven-clean-plugin</artifactId>
-	        <version>3.1.0</version>
-	        <configuration>
-	          <filesets>
-	            <fileset>
-	              <directory>${basedir}/src_generated</directory>
-	              <followSymlinks>false</followSymlinks>
-	              <useDefaultExcludes>true</useDefaultExcludes>
-	              <includes>
-	                <include>**/*.java</include>
-	              </includes>
-	            </fileset>
-	          </filesets>
-	        </configuration>
-	      </plugin>
-	      <plugin>
-	        <groupId>com.axonivy.ivy.ci</groupId>
-	        <artifactId>project-build-plugin</artifactId>
-	        <version>${build.plugin.version}</version>
-	        <extensions>true</extensions>
-	        <executions>
-	          <execution>
-	            <id>annotation-proc</id>
-	            <phase>generate-sources</phase>
-	            <goals>
-	              <goal>compileProject</goal>
-	            </goals>
-	            <configuration>
-	              <compilerOptions>
-	                <compilerOption>-ApersistenceXml=${basedir}/src/META-INF/persistence.xml</compilerOption>
-	                <compilerOption>-s</compilerOption>
-	                <compilerOption>${basedir}/src_generated</compilerOption>
-	                <compilerOption>-proc:only</compilerOption>
-	              </compilerOptions>
-	              <skipScriptValidation>true</skipScriptValidation>
-	            </configuration>
-	          </execution>
-	        </executions>
-	        <configuration>
-	          <ivyVersion>${ivy.engine.version}</ivyVersion>
-	          <compilerOptions>
-	            <compilerOption>-proc:none</compilerOption>
-	          </compilerOptions>
-	        </configuration>
-      </plugin>
+	<repositories>
+		<repository>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<id>maven.axonivy.com</id>
+			<url>https://maven.axonivy.com</url>
+		</repository>
+	</repositories>
+
+<!--
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.axonivy.ivy.ci</groupId>
+				<artifactId>project-build-plugin</artifactId>
+				<version>10.0.14</version>
+				<extensions>true</extensions>
+				<configuration>
+					<compilerOptions>
+						<compilerOption>-XprintProcessorInfo</compilerOption>
+						<compilerOption>-XprintRounds</compilerOption>
+					</compilerOptions>
+				</configuration>
+			</plugin>
+		</plugins>
+		</build>
+-->
 		
-	</plugins>
-</build>
-  
+		
+		
+	<build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-clean-plugin</artifactId>
+        <version>3.1.0</version>
+        <configuration>
+          <filesets>
+            <fileset>
+              <directory>${basedir}/src_generated</directory>
+              <followSymlinks>false</followSymlinks>
+              <useDefaultExcludes>true</useDefaultExcludes>
+              <includes>
+                <include>**/*.java</include>
+              </includes>
+            </fileset>
+          </filesets>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>com.axonivy.ivy.ci</groupId>
+        <artifactId>project-build-plugin</artifactId>
+        <version>${build.plugin.version}</version>
+        <extensions>true</extensions>
+        <executions>
+          <execution>
+            <id>annotation-proc</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>compileProject</goal>
+            </goals>
+            <configuration>
+              <compilerOptions>
+                <compilerOption>-ApersistenceXml=${basedir}/src/META-INF/persistence.xml</compilerOption>
+                <compilerOption>-s</compilerOption>
+                <compilerOption>${basedir}/src_generated</compilerOption>
+                <compilerOption>-proc:only</compilerOption>
+              </compilerOptions>
+              <skipScriptValidation>true</skipScriptValidation>
+            </configuration>
+          </execution>
+        </executions>
+        <configuration>
+          <ivyVersion>${ivy.engine.version}</ivyVersion>
+          <compilerOptions>
+            <compilerOption>-proc:none</compilerOption>
+          </compilerOptions>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+		
+		
+		
+	
+
 </project>

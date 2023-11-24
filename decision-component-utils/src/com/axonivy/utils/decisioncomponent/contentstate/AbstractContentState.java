@@ -1,6 +1,7 @@
-package com.axonivy.utils.decisioncomponent.demo.contentstate;
+package com.axonivy.utils.decisioncomponent.contentstate;
 
 public abstract class AbstractContentState {
+	
 	protected boolean decisionRendered;
 	protected boolean decisionRequired;
 	protected boolean decisionDisable;

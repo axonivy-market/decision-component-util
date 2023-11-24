@@ -1,5 +1,4 @@
-package com.axonivy.utils.decisioncomponent.demo.enums;
-
+package com.axonivy.utils.decisioncomponent.enums;
 
 public enum ApprovalDecisionOption implements HasCmsName {
 	APPROVE, REJECT;

@@ -3,6 +3,8 @@ package com.axonivy.utils.decisioncomponent.demo.enums;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.axonivy.utils.decisioncomponent.enums.HasCmsName;
+
 public enum TicketProcessApprovalConfirmation implements HasCmsName {
 	PAYROLL,
 	MANAGER;

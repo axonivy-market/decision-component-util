@@ -13,6 +13,9 @@ public class TicketRequest extends BaseRequest<ApprovalHistory>  {
 	private static final long serialVersionUID = 1L;
 	
 	@Column
+	private String forwardToMail;
+	
+	@Column
 	private Long caseId;
 	
 	@Column
@@ -65,6 +68,14 @@ public class TicketRequest extends BaseRequest<ApprovalHistory>  {
 	}
 	public void setTicketDescription(String ticketDescription) {
 		this.ticketDescription = ticketDescription;
+	}
+	
+	public String getForwardToMail() {
+		return forwardToMail;
+	}
+
+	public void setForwardToMail(String forwardToMail) {
+		this.forwardToMail = forwardToMail;
 	}
 
 }

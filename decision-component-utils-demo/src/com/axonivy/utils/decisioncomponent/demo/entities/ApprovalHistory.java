@@ -11,4 +11,6 @@ public class ApprovalHistory extends BaseApprovalHistory {
 
 	private static final long serialVersionUID = 1L;
 	
+	
+	
 }

@@ -15,6 +15,7 @@ create table TicketRequest (
 	ticketType varchar(250),
 	ticketRaiser varchar(250),
 	ticketDescription varchar(1000),
+	forwardToMail varchar(50),
 	
 	primary key (id)
 )
@@ -53,11 +54,5 @@ alter table TicketRequestApprovalHistory
    add constraint fk_ticketRequestApprovalHistory_approvalHistory 
    foreign key (approvalHistoryId) 
    references ApprovalHistory(id);
-   
-
-   
-
-
-
 
 

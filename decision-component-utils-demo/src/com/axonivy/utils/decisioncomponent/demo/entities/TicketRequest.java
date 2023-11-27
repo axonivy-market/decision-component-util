@@ -8,7 +8,7 @@ import com.axonivy.utils.decisioncomponent.entities.BaseRequest;
 
 @Entity
 @Table(name="TicketRequest")
-public class TicketRequest extends BaseRequest  {
+public class TicketRequest extends BaseRequest<ApprovalHistory>  {
 
 	private static final long serialVersionUID = 1L;
 	

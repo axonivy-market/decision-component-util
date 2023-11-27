@@ -28,8 +28,6 @@ public abstract class BaseApprovalHistory extends AuditableEntity {
 	@Column
 	private String selectedConfirmations;
 	
-	
-	//
 	@Transient
 	private String displayUserName;
 	
@@ -38,7 +36,6 @@ public abstract class BaseApprovalHistory extends AuditableEntity {
 	
 	@Transient
 	private String sortableApprovalDate;
-	//
 	
 	public LocalDateTime getApprovalDate() {
 		return approvalDate;

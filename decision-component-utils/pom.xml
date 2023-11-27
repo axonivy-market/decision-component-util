@@ -30,54 +30,63 @@
 		</repository>
 	</repositories>
 
+	<properties>
+		<ivy.engine.version>10.0.14</ivy.engine.version>
+		<build.plugin.version>10.0.14</build.plugin.version>
+	</properties>
+
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
+
 			<plugin>
 				<groupId>com.axonivy.ivy.ci</groupId>
 				<artifactId>project-build-plugin</artifactId>
-				<version>10.0.14</version>
+				<version>${build.plugin.version}</version>
 				<extensions>true</extensions>
-				<configuration>
-					<compilerOptions>
-						<compilerOption>-XprintProcessorInfo</compilerOption>
-						<compilerOption>-XprintRounds</compilerOption>
-					</compilerOptions>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-source-plugin</artifactId>
-				<version>3.3.0</version>
 				<executions>
 					<execution>
-						<id>attach-sources</id>
+						<id>annotation-proc</id>
+						<phase>generate-sources</phase>
 						<goals>
-							<goal>jar-no-fork</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<version>3.4.2</version>
-				<executions>
-					<execution>
-						<id>make-assembly</id>
-						<phase>package</phase>
-						<goals>
-							<goal>single</goal>
+							<goal>compileProject</goal>
 						</goals>
 						<configuration>
-							<appendAssemblyId>false</appendAssemblyId>
-							<descriptors>
-								<descriptor>jar.xml</descriptor>
-							</descriptors>
+							<compilerOptions>
+								<compilerOption>-ApersistenceXml=${basedir}/src/META-INF/persistence.xml</compilerOption>
+								<compilerOption>-s</compilerOption>
+								<compilerOption>${basedir}/src_generated</compilerOption>
+								<compilerOption>-proc:only</compilerOption>
+							</compilerOptions>
+							<skipScriptValidation>true</skipScriptValidation>
 						</configuration>
 					</execution>
 				</executions>
+				<configuration>
+					<ivyVersion>${ivy.engine.version}</ivyVersion>
+					<compilerOptions>
+						<compilerOption>-proc:none</compilerOption>
+					</compilerOptions>
+				</configuration>
 			</plugin>
+
+			<plugin>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>3.1.0</version>
+				<configuration>
+					<filesets>
+						<fileset>
+							<directory>${basedir}/src_generated</directory>
+							<followSymlinks>false</followSymlinks>
+							<useDefaultExcludes>true</useDefaultExcludes>
+							<includes>
+								<include>**/*.java</include>
+							</includes>
+						</fileset>
+					</filesets>
+				</configuration>
+			</plugin>
+
 		</plugins>
 	</build>
-
 </project>

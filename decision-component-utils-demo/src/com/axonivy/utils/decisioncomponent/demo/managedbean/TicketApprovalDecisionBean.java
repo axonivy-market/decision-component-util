@@ -7,10 +7,11 @@ import org.apache.commons.lang3.StringUtils;
 import com.axonivy.utils.decisioncomponent.demo.entities.TicketRequest;
 import com.axonivy.utils.decisioncomponent.demo.enums.TicketProcessApprovalConfirmation;
 import com.axonivy.utils.decisioncomponent.demo.enums.TicketProcessApprovalDecision;
+
 import com.axonivy.utils.decisioncomponent.managedbean.AbstractApprovalDecisionBean;
+import com.axonivy.utils.decisioncomponent.demo.entities.ApprovalHistory;
 
-
-public class TicketApprovalDecisionBean extends AbstractApprovalDecisionBean {
+public class TicketApprovalDecisionBean extends AbstractApprovalDecisionBean<ApprovalHistory> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -43,6 +44,11 @@ public class TicketApprovalDecisionBean extends AbstractApprovalDecisionBean {
 		}
 		return TicketProcessApprovalConfirmation.valueOf(confirmationName).getCmsName();
 	}
+	
+	@Override
+	protected ApprovalHistory initApprovalHistory() {
+		return new ApprovalHistory();
+	}
 
 	public String getValidatorId() {
 		return validatorId;
@@ -51,5 +57,5 @@ public class TicketApprovalDecisionBean extends AbstractApprovalDecisionBean {
 	public void setValidatorId(String validatorId) {
 		this.validatorId = validatorId;
 	}
-	
+
 }

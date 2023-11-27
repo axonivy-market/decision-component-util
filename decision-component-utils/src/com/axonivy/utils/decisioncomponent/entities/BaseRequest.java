@@ -15,7 +15,7 @@ import javax.persistence.MappedSuperclass;
 import com.axonivy.utils.persistence.beans.AuditableEntity;
 
 @MappedSuperclass
-public abstract class BaseRequest extends AuditableEntity {
+public abstract class BaseRequest<T extends BaseApprovalHistory> extends AuditableEntity {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -26,7 +26,7 @@ public abstract class BaseRequest extends AuditableEntity {
 	@JoinTable(name = "TicketRequestApprovalHistory",
 	  joinColumns = { @JoinColumn(name = "ticketRequestId", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_ticketRequestApprovalHistory_ticketRequest")) },
 	  inverseJoinColumns = @JoinColumn(name = "approvalHistoryId", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_ticketRequestApprovalHistory_approvalHistory")))
-	private List<BaseApprovalHistory> approvalHistories = new ArrayList<>();
+	private List<T> approvalHistories = new ArrayList<>();
 
 	public String getForwardToMail() {
 		return forwardToMail;
@@ -36,11 +36,11 @@ public abstract class BaseRequest extends AuditableEntity {
 		this.forwardToMail = forwardToMail;
 	}
 
-	public List<BaseApprovalHistory> getApprovalHistories() {
+	public List<T> getApprovalHistories() {
 		return approvalHistories;
 	}
 
-	public void setApprovalHistories(List<BaseApprovalHistory> approvalHistories) {
+	public void setApprovalHistories(List<T> approvalHistories) {
 		this.approvalHistories = approvalHistories;
 	}
 

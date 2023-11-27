@@ -22,7 +22,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 public class ValidationUtils {
 	
 	private static final String COMPLETE = "content-form:complete-button";
-	public static final String BOOLEAN_CHECK_ATTR = "isBooleanCheck";
+	private static final String BOOLEAN_CHECK_ATTR = "isBooleanCheck";
 	
 	public static boolean isValidationRequired(FacesContext context) {
 		return isButtonClicked(context, COMPLETE);

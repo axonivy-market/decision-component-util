@@ -15,27 +15,32 @@ import org.primefaces.model.SortMeta;
 import com.axonivy.utils.decisioncomponent.entities.BaseApprovalHistory;
 import com.axonivy.utils.decisioncomponent.enums.ApprovalDecisionOption;
 import com.axonivy.utils.decisioncomponent.utils.DateUtils;
-//import com.axonivy.utils.decisioncomponent.utils.DateUtils;
 import com.axonivy.utils.decisioncomponent.utils.SortFieldUtils;
 
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.IUser;
 
-public abstract class AbstractApprovalDecisionBean implements Serializable {
+public abstract class AbstractApprovalDecisionBean<T extends BaseApprovalHistory> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private BaseApprovalHistory approvalHistory; //= new BaseApprovalHistory();
+	protected T approvalHistory;
 	private List<Enum<?>> decisions = new ArrayList<>();
 	
 	private List<Enum<?>> confirmations = new ArrayList<>();
 	private List<Enum<?>> selectedConfirmations = new ArrayList<>();
 	
-	private List<BaseApprovalHistory> approvalHistories = new ArrayList<>();
+	private List<T> approvalHistories = new ArrayList<>();
 	private SortMeta defaultSortField;
-
-	//private UserUtilBean userUtilBean;
-
+	
+	
+	public AbstractApprovalDecisionBean(){
+		this.approvalHistory = initApprovalHistory();
+	}
+	
+	protected abstract T initApprovalHistory();
+	
+	
 	/**
 	 * Get decision name from an enum. We use enum ApprovalDecisionOption by
 	 * default. If you use other enum, override this method
@@ -75,7 +80,7 @@ public abstract class AbstractApprovalDecisionBean implements Serializable {
 	 * Initialize editing approval history and show old approval histories.
 	 *
 	 */
-	public void initializeApprovalDecisionComponent(List<BaseApprovalHistory> histories, List<Enum<?>> decisions,
+	public void initializeApprovalDecisionComponent(List<T> histories, List<Enum<?>> decisions,
 			List<Enum<?>> confirmations) {
 		setDecisions(decisions);
 		setConfirmations(confirmations);
@@ -83,7 +88,7 @@ public abstract class AbstractApprovalDecisionBean implements Serializable {
 		initSelectedConfirmations();
 	}
 
-	private void initApprovalHistories(List<BaseApprovalHistory> histories) {
+	private void initApprovalHistories(List<T> histories) {
 		if (CollectionUtils.isEmpty(histories)) {
 			histories = new ArrayList<>();
 		}
@@ -91,13 +96,10 @@ public abstract class AbstractApprovalDecisionBean implements Serializable {
 		setApprovalHistories(histories.stream().filter(p -> !p.getIsEditing())
 				.sorted(Comparator.comparing(BaseApprovalHistory::getApprovalDate).reversed())
 				.collect(Collectors.toList()));
-	//	setApprovalHistory(histories.stream().filter(p -> p.getIsEditing()).findFirst().orElse(new BaseApprovalHistory()));
+	    setApprovalHistory(histories.stream().filter(p -> p.getIsEditing()).findFirst().orElse(initApprovalHistory()));
 
-//		if (userUtilBean == null) {
-//			userUtilBean = FacesContexts.evaluateValueExpression("#{userUtilBean}", UserUtilBean.class);
-//		}
 		getApprovalHistories().forEach(history -> {
-			//history.setDisplayUserName(userUtilBean.getFullName(history.getHeader().getModifiedByUserName()));
+			history.setDisplayUserName(history.getHeader().getModifiedByUserName());
 			history.setDisplayApprovalDate(DateUtils.getFormattedDateTime(history.getApprovalDate()));
 			history.setSortableApprovalDate(DateUtils.getSortableFormattedDateTime(history.getApprovalDate()));
 		});
@@ -132,7 +134,7 @@ public abstract class AbstractApprovalDecisionBean implements Serializable {
 		}
 	}
 
-	protected void handleBeforeSave(List<BaseApprovalHistory> histories) {
+	protected void handleBeforeSave(List<T> histories) {
 		if (CollectionUtils.isNotEmpty(confirmations)) {
 			handleConfirmation();
 		}
@@ -151,7 +153,7 @@ public abstract class AbstractApprovalDecisionBean implements Serializable {
 	 * Handle decision and confirmation stuffs before save.
 	 *
 	 */
-	public void handleApprovalHistoryBeforeSave(List<BaseApprovalHistory> histories) {
+	public void handleApprovalHistoryBeforeSave(List<T> histories) {
 		approvalHistory.setIsEditing(true);
 		handleBeforeSave(histories);
 	}
@@ -160,7 +162,7 @@ public abstract class AbstractApprovalDecisionBean implements Serializable {
 	 * Handle decision and confirmation stuffs before submit.
 	 *
 	 */
-	public void handleApprovalHistoryBeforeSubmit(List<BaseApprovalHistory> histories) {
+	public void handleApprovalHistoryBeforeSubmit(List<T> histories) {
 		approvalHistory.setIsEditing(false);
 		handleBeforeSave(histories);
 	}
@@ -179,11 +181,11 @@ public abstract class AbstractApprovalDecisionBean implements Serializable {
 				.orElse(username);
 	}
 
-	public BaseApprovalHistory getApprovalHistory() {
+	public T getApprovalHistory() {
 		return approvalHistory;
 	}
 
-	public void setApprovalHistory(BaseApprovalHistory approvalHistory) {
+	public void setApprovalHistory(T approvalHistory) {
 		this.approvalHistory = approvalHistory;
 	}
 
@@ -211,11 +213,11 @@ public abstract class AbstractApprovalDecisionBean implements Serializable {
 		this.selectedConfirmations = selectedConfirmations;
 	}
 
-	public List<BaseApprovalHistory> getApprovalHistories() {
+	public List<T> getApprovalHistories() {
 		return approvalHistories;
 	}
 
-	public void setApprovalHistories(List<BaseApprovalHistory> approvalHistories) {
+	public void setApprovalHistories(List<T> approvalHistories) {
 		this.approvalHistories = approvalHistories;
 	}
 

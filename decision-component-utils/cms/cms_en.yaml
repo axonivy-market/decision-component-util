@@ -1,3 +1,14 @@
+Enums:
+  com:
+    axonivy:
+      utils:
+        decisioncomponent:
+          enums:
+            ApprovalDecisionOption:
+              APPROVE:
+                name: Approve
+              REJECT:
+                name: Reject
 Labels:
   ApprovalHistory: Approval history
   Author: Author

@@ -18,8 +18,6 @@ public class TicketApprovalDecisionBean extends AbstractApprovalDecisionBean<App
 	private static final String VALIDATOR_ID = "ticketProcessValidator";
 	private String validatorId;
 	
-	
-
 	public TicketApprovalDecisionBean(TicketRequest request, List<Enum<?>> decisions, List<Enum<?>> confirmations) {
 		this.validatorId = VALIDATOR_ID;
 		init(request, decisions, confirmations);

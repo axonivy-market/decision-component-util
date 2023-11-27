@@ -26,20 +26,16 @@ public abstract class AbstractApprovalDecisionBean<T extends BaseApprovalHistory
 
 	protected T approvalHistory;
 	private List<Enum<?>> decisions = new ArrayList<>();
-	
 	private List<Enum<?>> confirmations = new ArrayList<>();
 	private List<Enum<?>> selectedConfirmations = new ArrayList<>();
-	
 	private List<T> approvalHistories = new ArrayList<>();
 	private SortMeta defaultSortField;
-	
 	
 	public AbstractApprovalDecisionBean(){
 		this.approvalHistory = initApprovalHistory();
 	}
 	
 	protected abstract T initApprovalHistory();
-	
 	
 	/**
 	 * Get decision name from an enum. We use enum ApprovalDecisionOption by

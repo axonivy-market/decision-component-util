@@ -64,7 +64,7 @@
         "dialogId" : "com.axonivy.utils.decisioncomponent.ConfirmTicketRequest",
         "startMethod" : "start()",
         "task" : {
-          "name" : "Confirm ticket request",
+          "name" : "Step 3: Confirm ticket request",
           "description" : "Confirm ticket request",
           "skipTasklist" : true
         }
@@ -88,7 +88,7 @@
           }
         },
         "task" : {
-          "name" : "Review ticket request",
+          "name" : "Step 2: Review ticket request",
           "description" : "Review ticket request",
           "skipTasklist" : true
         }
@@ -112,7 +112,7 @@
           }
         },
         "task" : {
-          "name" : "Request ticket",
+          "name" : "Step 1: Request ticket",
           "description" : "Request ticket",
           "skipTasklist" : true
         }
@@ -130,7 +130,7 @@
         "dialogId" : "com.axonivy.utils.decisioncomponent.ResultTicketRequest",
         "startMethod" : "start()",
         "task" : {
-          "name" : "Result ticket request",
+          "name" : "Final step: Result ticket request",
           "description" : "Result ticket request",
           "skipTasklist" : true
         }

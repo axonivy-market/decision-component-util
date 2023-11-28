@@ -4,22 +4,24 @@ Dialogs:
       utils:
         decisioncomponent:
           ConfirmTicketRequest:
-            ApprovalDecisionHeadline: Please select a decision option
-            ApprovalDecisionHelpText: Please select a decision option and write a comment
-            DecisionLegend: Confirmation Decision
+            ApprovalDecisionHeadline: 'Step 3: Please select a decision option'
+            ApprovalDecisionHelpText: 'Step 3: Please select a decision option and write a comment'
+            DecisionLegend: 'Step 3: Confirmation Decision'
             Title: Confirm ticket request
           RequestTicketForm:
-            ApprovalDecisionHeadline: Please select a decision option
-            ApprovalDecisionHelpText: Please select a decision option and write a comment
-            DecisionLegend: Request Decision
+            ApprovalDecisionHeadline: 'Step1: Please select a decision option'
+            ApprovalDecisionHelpText: 'Step 1: Please select a decision option and write a comment'
+            DecisionLegend: 'Step 1: Request Decision'
             Title: Request ticket
           ResultTicketRequest:
+            ApprovalDecisionHeadline: 'Final Step: ApprovalHistory result'
+            ApprovalDecisionHelpText: 'Final Step: ApprovalHistory result'
             DecisionLegend: Result Decision
             Title: Revsult ticket request
           ReviewTicketRequest:
-            ApprovalDecisionHeadline: Please select a decision option
-            ApprovalDecisionHelpText: Please select a decision option and write a comment
-            DecisionLegend: Review Decision
+            ApprovalDecisionHeadline: 'Step 2: Please select a decision option'
+            ApprovalDecisionHelpText: 'Step 2: Please select a decision option and write a comment'
+            DecisionLegend: 'Step 2: Review Decision'
             Title: Review ticket request
 Enums:
   com:

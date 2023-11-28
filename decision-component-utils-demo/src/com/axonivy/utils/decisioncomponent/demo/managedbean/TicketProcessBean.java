@@ -38,6 +38,7 @@ public class TicketProcessBean {
 		if(request == null) {
 			request = new TicketRequest();
 			request.setCaseId(caseId);
+			initTesttRequestData();
 		}
 
 		contentState = new TicketProcessContentState();
@@ -57,6 +58,14 @@ public class TicketProcessBean {
 			approvalDecisionBean = new TicketApprovalDecisionBean(request, null, null);
 			contentState.initResultTicketContentState();
 		}
+	}
+	
+	private void initTesttRequestData() {
+		request.setTicketTitle("Cinema Ticket");
+		request.setTicketNumber("0329767343");
+		request.setTicketType("Diamond");
+		request.setTicketRaiser("Hero");
+		request.setTicketDescription("hello world");
 	}
 	
 	private void initForwardEmail() {

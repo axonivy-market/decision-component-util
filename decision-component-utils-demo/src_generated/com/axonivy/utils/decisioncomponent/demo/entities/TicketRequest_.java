@@ -10,6 +10,7 @@ public abstract class TicketRequest_ extends com.axonivy.utils.decisioncomponent
 
 	public static volatile SingularAttribute<TicketRequest, String> ticketTitle;
 	public static volatile SingularAttribute<TicketRequest, String> ticketNumber;
+	public static volatile SingularAttribute<TicketRequest, String> forwardToMail;
 	public static volatile SingularAttribute<TicketRequest, Long> caseId;
 	public static volatile SingularAttribute<TicketRequest, String> ticketDescription;
 	public static volatile SingularAttribute<TicketRequest, String> ticketType;
@@ -17,6 +18,7 @@ public abstract class TicketRequest_ extends com.axonivy.utils.decisioncomponent
 
 	public static final String TICKET_TITLE = "ticketTitle";
 	public static final String TICKET_NUMBER = "ticketNumber";
+	public static final String FORWARD_TO_MAIL = "forwardToMail";
 	public static final String CASE_ID = "caseId";
 	public static final String TICKET_DESCRIPTION = "ticketDescription";
 	public static final String TICKET_TYPE = "ticketType";

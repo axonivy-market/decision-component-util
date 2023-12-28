@@ -29,33 +29,39 @@ Example:
   
  You have a table TicketRequest, then you should create a middle table to store id of your record in TicketRequest table and id of corresponding approval histories in ApprovalHistory table.  
  
- create table TicketRequestApprovalHistory (
-	ticketRequestId varchar(32) not null,
-	approvalHistoryId varchar(32) not null,
-	primary key (ticketRequestId, approvalHistoryId)
-)
 
-alter table TicketRequestApprovalHistory 
-   add constraint fk_ticketRequestApprovalHistory_ticketRequest
-   foreign key (ticketRequestId) 
-   references TicketRequest(id)
-   
-alter table TicketRequestApprovalHistory 
-   add constraint fk_ticketRequestApprovalHistory_approvalHistory 
-   foreign key (approvalHistoryId) 
-   references ApprovalHistory(id);
+     create table TicketRequestApprovalHistory (
+    	ticketRequestId varchar(32) not null,
+    	approvalHistoryId varchar(32) not null,
+    	primary key (ticketRequestId, approvalHistoryId)
+    )
+    
+    alter table TicketRequestApprovalHistory 
+       add constraint fk_ticketRequestApprovalHistory_ticketRequest
+       foreign key (ticketRequestId) 
+       references TicketRequest(id)
+       
+    alter table TicketRequestApprovalHistory 
+       add constraint fk_ticketRequestApprovalHistory_approvalHistory 
+       foreign key (approvalHistoryId) 
+       references ApprovalHistory(id);
+
  
 2. Do data mapping in Java entity class of TicketRequest table.  
   
 Example:  
   
- @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY) @JoinTable(name = "REQUEST_APPROVAL_HISTORY", joinColumns = { @JoinColumn(name = "REQUEST_ID", referencedColumnName = ID, foreignKey = @ForeignKey(name = "FK_REQUEST_APPROVAL_HISTORY_REQUEST")) }, inverseJoinColumns = @JoinColumn(name = "APPROVAL_HISTORY_ID", referencedColumnName = ID, foreignKey = @ForeignKey(name = "FK_REQUEST_APPROVAL_HISTORY_APPROVAL_HISTORY"))) private List<ApprovalHistory> approvalHistories = new ArrayList<>();  
+
+     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY) @JoinTable(name = "REQUEST_APPROVAL_HISTORY", joinColumns = { @JoinColumn(name = "REQUEST_ID", referencedColumnName = ID, foreignKey = @ForeignKey(name = "FK_REQUEST_APPROVAL_HISTORY_REQUEST")) }, inverseJoinColumns = @JoinColumn(name = "APPROVAL_HISTORY_ID", referencedColumnName = ID, foreignKey = @ForeignKey(name = "FK_REQUEST_APPROVAL_HISTORY_APPROVAL_HISTORY"))) private List<ApprovalHistory> approvalHistories = new ArrayList<>();  
+
  
 3. Integrate this component into your task dialog:  
   
 Example:  
   
- <ic:com.ricoh.hr.core.component.ApprovalDecision id="decision" managedBean="#{workerPersonalDataDecisionBean}" fieldsetStyleClass="p-mt-3" headline="#{cc.attrs.managedBean.getApprovalDecisionHeadline()}" headlineStyleClass="p-md-10 p-md-offset-2" decisionRendered="#{cc.attrs.managedBean.contentState.decisionVisible}" />  
+
+     <ic:com.ricoh.hr.core.component.ApprovalDecision id="decision" managedBean="#{workerPersonalDataDecisionBean}" fieldsetStyleClass="p-mt-3" headline="#{cc.attrs.managedBean.getApprovalDecisionHeadline()}" headlineStyleClass="p-md-10 p-md-offset-2" decisionRendered="#{cc.attrs.managedBean.contentState.decisionVisible}" />  
+
  
 4. Create managed bean for this component by extending com.ricoh.hr.core.managedbean.AbstractApprovalDecisionBean class.  
   
@@ -74,8 +80,11 @@ Then map approval histories to the entity and save it.
   
 Example: com.ricoh.hr.onboarding.prehire.managedbean.ValidateEmployeeInformationBean  
   
- @Override public void save() throws TransactionRolledbackException { checkDayOneApprovalDecisionBean.handleApprovalHistoryBeforeSave(approvalHistories); getPreHireOnboarding().setApprovalHistories(approvalHistories); super.save(); }  
- @Override public void submit() throws TransactionRolledbackException { checkDayOneApprovalDecisionBean.handleApprovalHistoryBeforeSubmit(approvalHistories); getPreHireOnboarding().setApprovalHistories(approvalHistories); super.save(); }  
+ 
+
+    @Override public void save() throws TransactionRolledbackException { checkDayOneApprovalDecisionBean.handleApprovalHistoryBeforeSave(approvalHistories); getPreHireOnboarding().setApprovalHistories(approvalHistories); super.save(); }  
+     @Override public void submit() throws TransactionRolledbackException { checkDayOneApprovalDecisionBean.handleApprovalHistoryBeforeSubmit(approvalHistories); getPreHireOnboarding().setApprovalHistories(approvalHistories); super.save(); }  
+
  
 6. (Optional) Customize the default sort option of the Approval history table  
   

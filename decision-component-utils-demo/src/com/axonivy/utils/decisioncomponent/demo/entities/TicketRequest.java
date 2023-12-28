@@ -11,28 +11,28 @@ import com.axonivy.utils.decisioncomponent.entities.BaseRequest;
 public class TicketRequest extends BaseRequest<ApprovalHistory>  {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Column
 	private String forwardToMail;
-	
+
 	@Column
 	private Long caseId;
-	
+
 	@Column
 	private String ticketTitle;
-	
+
 	@Column
 	private String ticketNumber;
-	
+
 	@Column
 	private String ticketType;
-	
+
 	@Column
 	private String ticketRaiser;
-	
+
 	@Column
 	private String ticketDescription;
-	
+
 	public Long getCaseId() {
 		return caseId;
 	}
@@ -69,7 +69,7 @@ public class TicketRequest extends BaseRequest<ApprovalHistory>  {
 	public void setTicketDescription(String ticketDescription) {
 		this.ticketDescription = ticketDescription;
 	}
-	
+
 	public String getForwardToMail() {
 		return forwardToMail;
 	}

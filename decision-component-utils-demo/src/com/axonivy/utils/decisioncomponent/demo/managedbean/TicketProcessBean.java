@@ -18,23 +18,23 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 
 public class TicketProcessBean {
-	
+
 	private TicketRequest request;
 	private TicketApprovalDecisionBean approvalDecisionBean;
 	private TicketProcessContentState contentState;
 	private Map<String, String> departmentMails;
-	
+
 	private ProcessStep processStep;
 
 	public TicketProcessBean(ProcessStep processStep) {
 		this.processStep = processStep;
 		init();
 	}
-	
+
 	private void init() {
 		Long caseId = Ivy.wfCase().getId();
 		request = TicketRequestDAO.getInstance().findByCaseId(caseId);
-		
+
 		if(request == null) {
 			request = new TicketRequest();
 			request.setCaseId(caseId);
@@ -42,7 +42,7 @@ public class TicketProcessBean {
 		}
 
 		contentState = new TicketProcessContentState();
-		
+
 		if(processStep == ProcessStep.REQUEST_TICKET) {
 			approvalDecisionBean = new TicketApprovalDecisionBean(request, TicketProcessApprovalDecision.getRequestApprovalDecision(), null);
 			contentState.initRequestTicketContentState();
@@ -59,7 +59,7 @@ public class TicketProcessBean {
 			contentState.initResultTicketContentState();
 		}
 	}
-	
+
 	private void initTesttRequestData() {
 		request.setTicketTitle("Cinema Ticket");
 		request.setTicketNumber("0329767343");
@@ -67,47 +67,47 @@ public class TicketProcessBean {
 		request.setTicketRaiser("Hero");
 		request.setTicketDescription("hello world");
 	}
-	
+
 	private void initForwardEmail() {
 		this.departmentMails = new HashMap<>();
 		for(Department department : Department.values()) {
 			departmentMails.put(department.getName(), department.getEmail());
 		}
 	}
-	
+
 	private void handleSaving() {
 		TicketRequest saved = TicketRequestDAO.getInstance().save(this.request);
 		setRequest(saved);
 		this.approvalDecisionBean.setApprovalHistory(this.request.getApprovalHistories().stream().filter(p -> p.getIsEditing()).findFirst().orElse(new ApprovalHistory()));
 	}
-	
+
 	public void save() {
 		approvalDecisionBean.handleApprovalHistoryBeforeSave(this.request.getApprovalHistories());
 		handleSaving();
 		TicketProcessUtils.showInfo();
 	}
-	
+
 	public void submit() {
 		if(processStep == ProcessStep.CONFIRM_TICKET) {
 			approvalDecisionBean.getApprovalHistory().setDecision(TicketProcessApprovalDecision.COMPLETE.toString());
 		}
-		
+
 		approvalDecisionBean.handleApprovalHistoryBeforeSubmit(this.request.getApprovalHistories());
 		handleSaving();
 	}
-	
+
 	public void cancel() throws MalformedURLException {
 		Ivy.wfTask().reset();
 		TicketProcessUtils.navigateToHomePage();
 	}
-	
+
 	public void onChangeDecision(){
 		this.contentState.setShowDropdownOfMails(false);
 		if(TicketProcessApprovalDecision.FORWARD_TO.name().equals(this.approvalDecisionBean.getApprovalHistory().getDecision())) {
 			this.contentState.setShowDropdownOfMails(true);
 		}
 	}
-	
+
 	public void onChangeConfirmation(){
 		//implement listener for confirmation action
 	}

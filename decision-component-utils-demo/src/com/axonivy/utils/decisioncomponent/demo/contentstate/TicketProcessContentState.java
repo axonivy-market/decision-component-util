@@ -19,7 +19,6 @@ public class TicketProcessContentState extends AbstractContentState {
 	
 	private boolean showDropdownOfMails;
 	
-	
 	public void initRequestTicketContentState(){
 		this.decisionRendered = true;
 		this.decisionRequired = true;
@@ -79,7 +78,6 @@ public class TicketProcessContentState extends AbstractContentState {
 		this.ticketRaiserReadOnly = true;
 		this.ticketDescriptionReadOnly = true;
 	}
-	
 	
 	public void initResultTicketContentState() {
 		this.decisionRendered = false;

@@ -4,12 +4,11 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.axonivy.utils.decisioncomponent.demo.entities.ApprovalHistory;
 import com.axonivy.utils.decisioncomponent.demo.entities.TicketRequest;
 import com.axonivy.utils.decisioncomponent.demo.enums.TicketProcessApprovalConfirmation;
 import com.axonivy.utils.decisioncomponent.demo.enums.TicketProcessApprovalDecision;
-
 import com.axonivy.utils.decisioncomponent.managedbean.AbstractApprovalDecisionBean;
-import com.axonivy.utils.decisioncomponent.demo.entities.ApprovalHistory;
 
 public class TicketApprovalDecisionBean extends AbstractApprovalDecisionBean<ApprovalHistory> {
 
@@ -17,7 +16,7 @@ public class TicketApprovalDecisionBean extends AbstractApprovalDecisionBean<App
 
 	private static final String VALIDATOR_ID = "ticketProcessValidator";
 	private String validatorId;
-	
+
 	public TicketApprovalDecisionBean(TicketRequest request, List<Enum<?>> decisions, List<Enum<?>> confirmations) {
 		this.validatorId = VALIDATOR_ID;
 		init(request, decisions, confirmations);
@@ -34,7 +33,7 @@ public class TicketApprovalDecisionBean extends AbstractApprovalDecisionBean<App
 		}
 		return TicketProcessApprovalDecision.valueOf(decisionName).getCmsName();
 	}
-	
+
 	@Override
 	public String getConfirmationLabel(String confirmationName) {
 		if (StringUtils.isBlank(confirmationName)) {
@@ -42,7 +41,7 @@ public class TicketApprovalDecisionBean extends AbstractApprovalDecisionBean<App
 		}
 		return TicketProcessApprovalConfirmation.valueOf(confirmationName).getCmsName();
 	}
-	
+
 	@Override
 	protected ApprovalHistory initApprovalHistory() {
 		return new ApprovalHistory();

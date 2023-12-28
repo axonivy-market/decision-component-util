@@ -224,5 +224,4 @@ public abstract class AbstractApprovalDecisionBean<T extends BaseApprovalHistory
 	public void setDefaultSortField(SortMeta defaultSortField) {
 		this.defaultSortField = defaultSortField;
 	}
-	
 }

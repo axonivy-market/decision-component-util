@@ -40,4 +40,3 @@ public enum TicketProcessApprovalDecision implements HasCmsName {
 		return approvalDecisions;
 	}
 }
-

@@ -8,7 +8,7 @@ import com.axonivy.utils.decisioncomponent.enums.HasCmsName;
 public enum TicketProcessApprovalConfirmation implements HasCmsName {
 	PAYROLL,
 	MANAGER;
-	
+
 	public static List<Enum<?>> getConfirmApprovalConfirmations() {
 		List<Enum<?>> approvalConfirmations = new ArrayList<>();
 		approvalConfirmations.add(PAYROLL);

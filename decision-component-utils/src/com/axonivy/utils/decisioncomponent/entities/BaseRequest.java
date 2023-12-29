@@ -31,5 +31,6 @@ public abstract class BaseRequest<T extends BaseApprovalHistory> extends Auditab
 	public void setApprovalHistories(List<T> approvalHistories) {
 		this.approvalHistories = approvalHistories;
 	}
+	
 
 }

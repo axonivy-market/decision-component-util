@@ -16,7 +16,6 @@ import com.axonivy.utils.decisioncomponent.demo.utils.TicketProcessUtils;
 
 import ch.ivyteam.ivy.environment.Ivy;
 
-
 public class TicketProcessBean {
 
 	private TicketRequest request;
@@ -35,7 +34,7 @@ public class TicketProcessBean {
 		Long caseId = Ivy.wfCase().getId();
 		request = TicketRequestDAO.getInstance().findByCaseId(caseId);
 
-		if(request == null) {
+		if (request == null) {
 			request = new TicketRequest();
 			request.setCaseId(caseId);
 			initTesttRequestData();
@@ -43,16 +42,20 @@ public class TicketProcessBean {
 
 		contentState = new TicketProcessContentState();
 
-		if(processStep == ProcessStep.REQUEST_TICKET) {
-			approvalDecisionBean = new TicketApprovalDecisionBean(request, TicketProcessApprovalDecision.getRequestApprovalDecision(), null);
+		if (processStep == ProcessStep.REQUEST_TICKET) {
+			approvalDecisionBean = new TicketApprovalDecisionBean(request,
+					TicketProcessApprovalDecision.getRequestApprovalDecision(), null);
 			contentState.initRequestTicketContentState();
 			initForwardEmail();
 			onChangeDecision();
-		}else if (processStep == ProcessStep.REVIEW_TICKET) {
-			approvalDecisionBean = new TicketApprovalDecisionBean(request, TicketProcessApprovalDecision.getReviewApprovalDecision(), null);
+		} else if (processStep == ProcessStep.REVIEW_TICKET) {
+			approvalDecisionBean = new TicketApprovalDecisionBean(request,
+					TicketProcessApprovalDecision.getReviewApprovalDecision(), null);
 			contentState.initReviewTicketContentState();
 		} else if (processStep == ProcessStep.CONFIRM_TICKET) {
-			approvalDecisionBean = new TicketApprovalDecisionBean(request, TicketProcessApprovalDecision.getConfirmApprovalDecision(), TicketProcessApprovalConfirmation.getConfirmApprovalConfirmations());
+			approvalDecisionBean = new TicketApprovalDecisionBean(request,
+					TicketProcessApprovalDecision.getConfirmApprovalDecision(),
+					TicketProcessApprovalConfirmation.getConfirmApprovalConfirmations());
 			contentState.initConfirmTicketContentState();
 		} else {
 			approvalDecisionBean = new TicketApprovalDecisionBean(request, null, null);
@@ -70,7 +73,7 @@ public class TicketProcessBean {
 
 	private void initForwardEmail() {
 		this.departmentMails = new HashMap<>();
-		for(Department department : Department.values()) {
+		for (Department department : Department.values()) {
 			departmentMails.put(department.getName(), department.getEmail());
 		}
 	}
@@ -78,7 +81,8 @@ public class TicketProcessBean {
 	private void handleSaving() {
 		TicketRequest saved = TicketRequestDAO.getInstance().save(this.request);
 		setRequest(saved);
-		this.approvalDecisionBean.setApprovalHistory(this.request.getApprovalHistories().stream().filter(p -> p.getIsEditing()).findFirst().orElse(new ApprovalHistory()));
+		this.approvalDecisionBean.setApprovalHistory(this.request.getApprovalHistories().stream()
+				.filter(p -> p.getIsEditing()).findFirst().orElse(new ApprovalHistory()));
 	}
 
 	public void save() {
@@ -88,7 +92,7 @@ public class TicketProcessBean {
 	}
 
 	public void submit() {
-		if(processStep == ProcessStep.CONFIRM_TICKET) {
+		if (processStep == ProcessStep.CONFIRM_TICKET) {
 			approvalDecisionBean.getApprovalHistory().setDecision(TicketProcessApprovalDecision.COMPLETE.toString());
 		}
 
@@ -101,15 +105,16 @@ public class TicketProcessBean {
 		TicketProcessUtils.navigateToHomePage();
 	}
 
-	public void onChangeDecision(){
+	public void onChangeDecision() {
 		this.contentState.setShowDropdownOfMails(false);
-		if(TicketProcessApprovalDecision.FORWARD_TO.name().equals(this.approvalDecisionBean.getApprovalHistory().getDecision())) {
+		if (TicketProcessApprovalDecision.FORWARD_TO.name()
+				.equals(this.approvalDecisionBean.getApprovalHistory().getDecision())) {
 			this.contentState.setShowDropdownOfMails(true);
 		}
 	}
 
-	public void onChangeConfirmation(){
-		//implement listener for confirmation action
+	public void onChangeConfirmation() {
+		// implement listener for confirmation action
 	}
 
 	public TicketRequest getRequest() {

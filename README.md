@@ -32,31 +32,31 @@ How to use
 
 Example:
 
-create table TicketRequest (
-  	id varchar(32) not null
-    ...
-);
-create table ApprovalHistory (
-    id varchar(32) not null,
-    ...
-);
+	create table TicketRequest (
+		id varchar(32) not null
+		...
+	);
+	create table ApprovalHistory (
+		id varchar(32) not null,
+		...
+	);
 
-alter table RequestApprovalHistory 
-   add constraint fk_requestApprovalHistory_request
-   foreign key (requestId) 
-   references TicketRequest(id)
-   
-alter table RequestApprovalHistory 
-   add constraint fk_requestApprovalHistory_approvalHistory 
-   foreign key (approvalHistoryId) 
-   references ApprovalHistory(id);
+	alter table RequestApprovalHistory 
+	   add constraint fk_requestApprovalHistory_request
+	   foreign key (requestId) 
+	   references TicketRequest(id)
+	   
+	alter table RequestApprovalHistory 
+	   add constraint fk_requestApprovalHistory_approvalHistory 
+	   foreign key (approvalHistoryId) 
+	   references ApprovalHistory(id);
 
 2. implement 2 Java entity class by extend BaseRequest class and BaseApprovalHistory class
 
 Example:
 
-public class TicketRequest extends BaseRequest<ApprovalHistory>{}
-public class ApprovalHistory extends BaseApprovalHistory{}
+	public class TicketRequest extends BaseRequest<ApprovalHistory>{}
+	public class ApprovalHistory extends BaseApprovalHistory{}
 
 3. Integrate this component into your task dialog:  
   

@@ -100,7 +100,7 @@ Example: com.axonivy.utils.decisioncomponent.demo.managedbean.TicketProcessBean
 		handleSaving();
 		TicketProcessUtils.showInfo();
 	}
-  private void handleSaving() {
+	private void handleSaving() {
 		TicketRequest saved = TicketRequestDAO.getInstance().save(this.request);
 		setRequest(saved);
 		this.approvalDecisionBean.setApprovalHistory(this.request.getApprovalHistories().stream()

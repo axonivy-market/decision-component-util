@@ -17,11 +17,10 @@ import com.axonivy.utils.persistence.beans.AuditableEntity;
 public abstract class BaseRequest<T extends BaseApprovalHistory> extends AuditableEntity {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinTable(name = "TicketRequestApprovalHistory",
-	  joinColumns = { @JoinColumn(name = "ticketRequestId", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_ticketRequestApprovalHistory_ticketRequest")) },
-	  inverseJoinColumns = @JoinColumn(name = "approvalHistoryId", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_ticketRequestApprovalHistory_approvalHistory")))
+	@JoinTable(name = "RequestApprovalHistory", joinColumns = {
+			@JoinColumn(name = "requestId", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_requestApprovalHistory_request")) }, inverseJoinColumns = @JoinColumn(name = "approvalHistoryId", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_requestApprovalHistory_approvalHistory")))
 	private List<T> approvalHistories = new ArrayList<>();
 
 	public List<T> getApprovalHistories() {
@@ -31,6 +30,5 @@ public abstract class BaseRequest<T extends BaseApprovalHistory> extends Auditab
 	public void setApprovalHistories(List<T> approvalHistories) {
 		this.approvalHistories = approvalHistories;
 	}
-	
 
 }

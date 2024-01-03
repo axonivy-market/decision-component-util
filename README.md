@@ -9,7 +9,7 @@ Introduction
 ------------  
   
 This component offers a common approach to implementing the approval flow.
-User can make a decision, confirmation, leave a comment, and see the approval history in a data table.  
+User can make a decision, confirmation, leave a comment, and see the approval history in a data table.
   
 Approach  
 --------  
@@ -22,53 +22,68 @@ Data from this table will be used to show in the Approval History section.
   
 How to use  
 ----------  
-  
-1. Create relationship between your data table and ApprovalHistorytable.  
-  
-Example:  
-  
- You have a table TicketRequest, then you should create a middle table to store id of your record in TicketRequest table and id of corresponding approval histories in ApprovalHistory table.  
- 
 
-     create table TicketRequestApprovalHistory (
-    	ticketRequestId varchar(32) not null,
-    	approvalHistoryId varchar(32) not null,
-    	primary key (ticketRequestId, approvalHistoryId)
-    )
-    
-    alter table TicketRequestApprovalHistory 
-       add constraint fk_ticketRequestApprovalHistory_ticketRequest
-       foreign key (ticketRequestId) 
-       references TicketRequest(id)
-       
-    alter table TicketRequestApprovalHistory 
-       add constraint fk_ticketRequestApprovalHistory_approvalHistory 
-       foreign key (approvalHistoryId) 
-       references ApprovalHistory(id);
+1. create 2 tables in databse and adding relationship between them 
 
- 
-2. Do data mapping in Java entity class of TicketRequest table.  
-  
-Example:  
-  
+Example:
 
-     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY) @JoinTable(name = "REQUEST_APPROVAL_HISTORY", joinColumns = { @JoinColumn(name = "REQUEST_ID", referencedColumnName = ID, foreignKey = @ForeignKey(name = "FK_REQUEST_APPROVAL_HISTORY_REQUEST")) }, inverseJoinColumns = @JoinColumn(name = "APPROVAL_HISTORY_ID", referencedColumnName = ID, foreignKey = @ForeignKey(name = "FK_REQUEST_APPROVAL_HISTORY_APPROVAL_HISTORY"))) private List<ApprovalHistory> approvalHistories = new ArrayList<>();  
+create table TicketRequest (
+  	id varchar(32) not null
+    ...
+);
+create table ApprovalHistory (
+    id varchar(32) not null,
+    ...
+);
 
- 
+alter table RequestApprovalHistory 
+   add constraint fk_requestApprovalHistory_request
+   foreign key (requestId) 
+   references TicketRequest(id)
+   
+alter table RequestApprovalHistory 
+   add constraint fk_requestApprovalHistory_approvalHistory 
+   foreign key (approvalHistoryId) 
+   references ApprovalHistory(id);
+
+2. implement 2 Java entity class by extend BaseRequest class and BaseApprovalHistory class
+
+Example:
+
+public class TicketRequest extends BaseRequest<ApprovalHistory>{}
+public class ApprovalHistory extends BaseApprovalHistory{}
+
 3. Integrate this component into your task dialog:  
   
 Example:  
   
-
-     <ic:com.ricoh.hr.core.component.ApprovalDecision id="decision" managedBean="#{workerPersonalDataDecisionBean}" fieldsetStyleClass="p-mt-3" headline="#{cc.attrs.managedBean.getApprovalDecisionHeadline()}" headlineStyleClass="p-md-10 p-md-offset-2" decisionRendered="#{cc.attrs.managedBean.contentState.decisionVisible}" />  
+     <ic:com.axonivy.utils.decisioncomponent.ApprovalDecision
+					id="approvalDecision"
+					managedBean="#{managedBean.approvalDecisionBean}"
+					validatorId="#{managedBean.approvalDecisionBean.validatorId}"
+					fieldsetLegend="#{ivy.cms.co('/Dialogs/com/axonivy/utils/decisioncomponent/RequestTicketForm/DecisionLegend')}"
+					fieldsetToggleable="#{true}" 
+					fieldsetStyleClass="p-mt-3"
+					headline="#{ivy.cms.co('/Dialogs/com/axonivy/utils/decisioncomponent/RequestTicketForm/ApprovalDecisionHeadline')}"
+					headlinePanelStyleClass="" 
+					headlineStyleClass="p-text-bold"
+					helpText="#{ivy.cms.co('/Dialogs/com/axonivy/utils/decisioncomponent/RequestTicketForm/ApprovalDecisionHelpText')}"
+					helpTextPanelStyleClass="" 
+					helpTextStyleClass=""
+					decisionRendered="#{managedBean.contentState.decisionRendered}"
+					decisionDisable="#{managedBean.contentState.decisionDisable}"
+					decisionRequired="#{managedBean.contentState.decisionRequired}"
+					listenerOnDecisionAction="#{managedBean.onChangeDecision()}"
+					componentToUpdateOnDecision="approvalDecision:dropDownListOfMails"
+					commentRendered="#{managedBean.contentState.commentRendered}"
+					commentRequired="#{managedBean.contentState.commentRequired}"
+					approvalHistoryRendered="#{managedBean.contentState.approvalHistoryRendered}">
 
  
-4. Create managed bean for this component by extending com.ricoh.hr.core.managedbean.AbstractApprovalDecisionBean class.  
+4. Create managed bean for this component by extending com.axonivy.utils.decisioncomponent.managedbean.AbstractApprovalDecisionBean class.  
   
-By default, the component using enum com.ricoh.hr.core.enums.ApprovalDecisionOption for decision options.  
+By default, the component using enum com.axonivy.utils.decisioncomponent.enums.ApprovalDecisionOption for decision options.  
 If you want to use your own enum as options for decision, please override methods getDecisionLabel(), getDecisions().  
-  
-Example: com.ricoh.hr.onboarding.prehire.managedbean.component.CheckDayOneApprovalDecisionBean  
   
 5. Handle save/submit approval histories in your managed bean.  
   
@@ -78,43 +93,56 @@ Call method handleApprovalHistoryBeforeSubmit() when you want to submit (Example
   
 Then map approval histories to the entity and save it.  
   
-Example: com.ricoh.hr.onboarding.prehire.managedbean.ValidateEmployeeInformationBean  
+Example: com.axonivy.utils.decisioncomponent.demo.managedbean.TicketProcessBean
   
- 
+	public void save() {
+		approvalDecisionBean.handleApprovalHistoryBeforeSave(this.request.getApprovalHistories());
+		handleSaving();
+		TicketProcessUtils.showInfo();
+	}
+  private void handleSaving() {
+		TicketRequest saved = TicketRequestDAO.getInstance().save(this.request);
+		setRequest(saved);
+		this.approvalDecisionBean.setApprovalHistory(this.request.getApprovalHistories().stream()
+				.filter(p -> p.getIsEditing()).findFirst().orElse(new ApprovalHistory()));
+	}
 
-    @Override public void save() throws TransactionRolledbackException { checkDayOneApprovalDecisionBean.handleApprovalHistoryBeforeSave(approvalHistories); getPreHireOnboarding().setApprovalHistories(approvalHistories); super.save(); }  
-     @Override public void submit() throws TransactionRolledbackException { checkDayOneApprovalDecisionBean.handleApprovalHistoryBeforeSubmit(approvalHistories); getPreHireOnboarding().setApprovalHistories(approvalHistories); super.save(); }  
-
- 
 6. (Optional) Customize the default sort option of the Approval history table  
   
 By default, the Approval history table is sorted by approval date in descending order.  
+
 To override the default sort order, you should override the method isApprovalHistoryTableSortDescending().  
   
 Example:  
   
  @Override public boolean isApprovalHistoryTableSortDescending() { return false; }  
+
 To override the default sort field, you should override the method getApprovalHistoryTableSortField().  
   
 Example:  
   
  @Override public String getApprovalHistoryTableSortField() { return "displayUserName"; }  
+
 Available sort fields:  
   
- "displayApprovalDate": approval date "displayUserName": name of the creator "comment": comment  
+ "displayApprovalDate": approval date 
+ "displayUserName": name of the creator 
+ "comment": comment  
+
+
 Attributes  
 ----------  
-- managedBean: It is required. Must extend com.ricoh.hr.core.managedbean.AbstractApprovalDecisionBean class.  
+- managedBean: It is required. Must extend com.axonivy.utils.decisioncomponent.managedbean.AbstractApprovalDecisionBean class.  
 - isReadOnly: Configures component to be read only. Default is false.  
 - fieldsetToggleable: Makes fieldset toggleable. Default is false.  
-- fieldsetLegend: Legend text of the fieldset.  
+- fieldsetLegend: Legend text of the fieldset.  Default is "Approval decision"
 - fieldsetStyleClass: Style class of the fieldset.  
 - headline: Headline text inside the component.  
 - headlinePanelStyleClass: style class for the panel of the headline.  
 - helpText: Help text inside the component.  
 - helpTextPanelStyleClass: style class for the panel of the help text.  
 - helpTextStyleClass: style class for the help text.  
-- validatorId: ID of the validator, default value is "ricohValidator" (com.ricoh.hr.core.validation.RicohValidator).  
+- validatorId: ID of the validator, default value is "decisionComponentValidator" (com.axonivy.utils.decisioncomponent.validation.DecisionComponentValidator).  
 - decisionLabel: label for the decision options.  
 - decisionRequired: Flag to perform mandatory check for decision. Default is true.  
 - decisionRendered: Flag to render decision options. Default is true.  
@@ -140,36 +168,57 @@ Facets
 - 
   Example:  
   
-  <ic:com.ricoh.hr.core.component.ApprovalDecision id="decision"  
-  managedBean="#{decisionBean}">  
-  <f:facet name="customHeadline">  
-  <p>Please check this <a href="www.google.com">Email</a> before proceed</p>  
-  </f:facet>  
-  </ic:com.ricoh.hr.core.component.ApprovalDecision>  
+  <ic:com.axonivy.utils.decisioncomponent.ApprovalDecision id="approvalDecision"  
+  managedBean="#{managedBean.approvalDecisionBean}">
+    <f:facet name="customHeadline">  
+      <p>Please check this <a href="www.google.com">Email</a> before proceed</p>  
+    </f:facet>  
+  </ic:com.axonivy.utils.decisioncomponent.ApprovalDecision>  
   
 - customHelpText: Custom help text. Should be using when you want a more complicated help text.  
 - 
   Example:  
   
-  <ic:com.ricoh.hr.core.component.ApprovalDecision id="decision"  
-  managedBean="#{decisionBean}">  
-  <f:facet name="customHelpText">  
-  <p>Please check this <a href="www.google.com">Email</a> before proceed</p>  
-  </f:facet>  
-  </ic:com.ricoh.hr.core.component.ApprovalDecision>  
+  <ic:com.axonivy.utils.decisioncomponent.ApprovalDecision id="approvalDecision"  
+  managedBean="#{managedBean.approvalDecisionBean}"> 
+    <f:facet name="customHelpText">  
+      <p>Please check this <a href="www.google.com">Email</a> before proceed</p>  
+    </f:facet>  
+  </ic:com.axonivy.utils.decisioncomponent.ApprovalDecision>
   
 - customContent: Custom content for special requirement.  
 - 
   Example:  
   
-  <ic:com.ricoh.hr.core.component.ApprovalDecision id="decision"  
-  managedBean="#{decisionBean}">  
-  <f:facet name="customContent">  
-  <p:selectManyCheckbox id="daily-summary" value="#{data.emailSetting.emailSendDailyTaskSummary}" layout="responsive" columns="3"  
-  styleClass="daily-summary">  
-  <f:selectItems value="#{data.dailySummaryList}" var="day" itemLabel="#{day.getLocalizedName(ivy.session.getContentLocale())}"  
-  itemValue="#{day}" />  
-  </p:selectManyCheckbox>  
-  </f:facet>  
-  </ic:com.ricoh.hr.core.component.ApprovalDecision>
+  <ic:com.axonivy.utils.decisioncomponent.ApprovalDecision id="approvalDecision"  
+    managedBean="#{managedBean.approvalDecisionBean}">
+    <f:facet name="customContent">  
+      <h:panelGroup id="dropDownListOfMails">
+          <h:panelGroup id="mail-panel" 
+            layout="block"
+            styleClass="p-formgrid p-grid p-align-baseline ui-fluid"
+            rendered="#{managedBean.contentState.showDropdownOfMails}">
+            <div class="p-field p-text-left p-text-md-right p-col-12 p-md-2">
+              <p:outputLabel for="dropdownlist-mail"
+                value="#{ivy.cms.co('/Labels/EmailAddressOfRelevantDepartment')}">
+                <span class="ui-outputlabel-rfi">*</span>
+              </p:outputLabel>
+            </div>
+            <div class="p-field p-col-12 p-md-4">
+              <p:selectOneMenu id="dropdownlist-mail"
+                value="#{managedBean.request.forwardToMail}"
+                requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage')}">
+                <f:selectItem itemLabel="SelectOne" itemValue="" />
+                <f:selectItems
+                  value="#{managedBean.departmentMails.entrySet()}"
+                  var="department" itemLabel="#{department.key}"
+                  itemValue="#{department.value}" />
+                <f:validator validatorId="decisionComponentValidator" />
+              </p:selectOneMenu>
+              <p:message for="dropdownlist-mail" />
+            </div>
+          </h:panelGroup>
+        </h:panelGroup>
+    </f:facet>
+  </ic:com.axonivy.utils.decisioncomponent.ApprovalDecision>
 

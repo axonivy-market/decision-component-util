@@ -1,45 +1,34 @@
 
-# Project Title
+# Decision component  
+  
+## Introduction
+  
+This component provides a standardized approach for implementing the approval flow. Users can make decisions, confirmations, leave comments, and view the approval history in a data table.
+  
+##  Approach  
+  
+Decision data is stored in database table named `ApprovalHistory`. This table stores the selected decision, comment, approval date and confirmations.
+  
+The data from this table will be utilized to populate the Approval History section.
+  
+##  How to use
 
-A brief description of what this project does and who it's for
+### Set up database
+- Create the `ApprovalHistory` table with default columns for storing decision data. Additional columns can be added based on business. You can also modify the table name.
+- The `RequestApprovalHistory` table establishes the relationship between your business data and the approval history.
 
+For example, suppose your business data is stored in a table named `TicketRequest`. The following script creates tables and establishes the relationship.
 
-# decision-component-utils  
-decision-component-utils  
-  
-  
-# Approval Decision component #  
-  
-Introduction  
-------------  
-  
-This component offers a common approach to implementing the approval flow.
-User can make a decision, confirmation, leave a comment, and see the approval history in a data table.
-  
-Approach  
---------  
-  
-Comments data is stored in database table named ApprovalHistory  
-  
-This table will store the selected decision (column decision), comment (column comment), the approval date (column approvalDate), and selected confirmations (column selectedConfirmations).  
-  
-Data from this table will be used to show in the Approval History section.  
-  
-How to use  
-----------  
-
-1. create 2 tables in databse and adding relationship between them 
-
-Example:
-
-	create table TicketRequest (
-		id varchar(32) not null
-		...
-	);
 	create table ApprovalHistory (
 		id varchar(32) not null,
 		...
 	);
+
+	create table RequestApprovalHistory (
+		requestId varchar(32) not null,
+		approvalHistoryId varchar(32) not null,
+		primary key (requestId, approvalHistoryId)
+	)
 
 	alter table RequestApprovalHistory 
 	   add constraint fk_requestApprovalHistory_request
@@ -51,54 +40,59 @@ Example:
 	   foreign key (approvalHistoryId) 
 	   references ApprovalHistory(id);
 
-2. implement 2 Java entity class by extend BaseRequest class and BaseApprovalHistory class
+### Implement the Java backend
+
+The component uses [Axon Ivy Persistence Utils](https://github.com/axonivy-market/persistence-utils) library to interact with the database.
+- Your business entity needs to extend the `BaseRequest` class.
+- The `ApprovalHistory` entity needs to extend the `BaseApprovalHistory` class.
 
 Example:
 
 	public class TicketRequest extends BaseRequest<ApprovalHistory>{}
 	public class ApprovalHistory extends BaseApprovalHistory{}
 
-3. Integrate this component into your task dialog:  
+### Integrate Dicision component to HTML dialog
   
 Example:  
   
      <ic:com.axonivy.utils.decisioncomponent.ApprovalDecision
-					id="approvalDecision"
-					managedBean="#{managedBean.approvalDecisionBean}"
-					validatorId="#{managedBean.approvalDecisionBean.validatorId}"
-					fieldsetLegend="#{ivy.cms.co('/Dialogs/com/axonivy/utils/decisioncomponent/RequestTicketForm/DecisionLegend')}"
-					fieldsetToggleable="#{true}" 
-					fieldsetStyleClass="p-mt-3"
-					headline="#{ivy.cms.co('/Dialogs/com/axonivy/utils/decisioncomponent/RequestTicketForm/ApprovalDecisionHeadline')}"
-					headlinePanelStyleClass="" 
-					headlineStyleClass="p-text-bold"
-					helpText="#{ivy.cms.co('/Dialogs/com/axonivy/utils/decisioncomponent/RequestTicketForm/ApprovalDecisionHelpText')}"
-					helpTextPanelStyleClass="" 
-					helpTextStyleClass=""
-					decisionRendered="#{managedBean.contentState.decisionRendered}"
-					decisionDisable="#{managedBean.contentState.decisionDisable}"
-					decisionRequired="#{managedBean.contentState.decisionRequired}"
-					listenerOnDecisionAction="#{managedBean.onChangeDecision()}"
-					componentToUpdateOnDecision="approvalDecision:dropDownListOfMails"
-					commentRendered="#{managedBean.contentState.commentRendered}"
-					commentRequired="#{managedBean.contentState.commentRequired}"
-					approvalHistoryRendered="#{managedBean.contentState.approvalHistoryRendered}">
+		id="approvalDecision"
+		managedBean="#{managedBean.approvalDecisionBean}"
+		validatorId="#{managedBean.approvalDecisionBean.validatorId}"
+		fieldsetLegend="Request Decision"
+		fieldsetToggleable="#{true}" 
+		fieldsetStyleClass="p-mt-3"
+		headline="Step 1: Pelease select a decision option"
+		headlinePanelStyleClass="" 
+		headlineStyleClass="p-text-bold"
+		helpText="My help text"
+		helpTextPanelStyleClass="" 
+		helpTextStyleClass=""
+		decisionRendered="#{managedBean.contentState.decisionRendered}"
+		decisionDisable="#{managedBean.contentState.decisionDisable}"
+		decisionRequired="#{managedBean.contentState.decisionRequired}"
+		listenerOnDecisionAction="#{managedBean.onChangeDecision()}"
+		componentToUpdateOnDecision="approvalDecision:dropDownListOfMails"
+		commentRendered="#{managedBean.contentState.commentRendered}"
+		commentRequired="#{managedBean.contentState.commentRequired}"
+		approvalHistoryRendered="#{managedBean.contentState.approvalHistoryRendered}">
 
+![](./screenshot/1-request.PNG)
  
-4. Create managed bean for this component by extending com.axonivy.utils.decisioncomponent.managedbean.AbstractApprovalDecisionBean class.  
+### Create managed bean
+Create the managed bean of this component by extending `com.axonivy.utils.decisioncomponent.managedbean.AbstractApprovalDecisionBean` class.  
   
-By default, the component using enum com.axonivy.utils.decisioncomponent.enums.ApprovalDecisionOption for decision options.  
-If you want to use your own enum as options for decision, please override methods getDecisionLabel(), getDecisions().  
+By default, the component uses the enum `com.axonivy.utils.decisioncomponent.enums.ApprovalDecisionOption` to obtain decision options. If you prefer to use your own enum as options for decision, override the methods `getDecisionLabel()`, `getDecisions()`.  
   
-5. Handle save/submit approval histories in your managed bean.  
+### Handle save/submit approval histories in your managed bean.  
   
-Handle save/submit by calling methods from the managed bean created from step 4.  
-Call method handleApprovalHistoryBeforeSave() when you want to save (Example: Click Save button on your dialog).  
-Call method handleApprovalHistoryBeforeSubmit() when you want to submit (Example: Click Submit button on your dialog).  
+Handle save/submit by calling methods from the managed bean created from previous step:  
+- `handleApprovalHistoryBeforeSave()`: triggered when the `Save` action is called.
+- `handleApprovalHistoryBeforeSubmit()`: triggered when the `Submit` action is called.
+
+Proceed to map approval histories to the entity and save.
   
-Then map approval histories to the entity and save it.  
-  
-Example: com.axonivy.utils.decisioncomponent.demo.managedbean.TicketProcessBean
+Example: in the managed bean `TicketProcessBean`:
   
 	public void save() {
 		approvalDecisionBean.handleApprovalHistoryBeforeSave(this.request.getApprovalHistories());
@@ -112,64 +106,57 @@ Example: com.axonivy.utils.decisioncomponent.demo.managedbean.TicketProcessBean
 				.filter(p -> p.getIsEditing()).findFirst().orElse(new ApprovalHistory()));
 	}
 
-6. (Optional) Customize the default sort option of the Approval history table  
+### Customize Approval history table (Optional) 
   
-By default, the Approval history table is sorted by approval date in descending order.  
-
-To override the default sort order, you should override the method isApprovalHistoryTableSortDescending().  
+The Approval history table is initially sorted by approval date in descending order. To customize the sort order, start by disabling the default sort through overriding the method `isApprovalHistoryTableSortDescending()`
   
-Example:  
 
 	@Override public boolean isApprovalHistoryTableSortDescending() { return false; }  
 
-To override the default sort field, you should override the method getApprovalHistoryTableSortField().  
-  
+Next, implement the custom sort by overriding the method `getApprovalHistoryTableSortField()`. The following fields are supported to sort:
+- displayApprovalDate: Approval date
+- displayUserName: Name of the creator 
+- comment: Comment 
+
 Example:  
   
 	@Override public String getApprovalHistoryTableSortField() { return "displayUserName"; }  
 
-Available sort fields:  
-  
- "displayApprovalDate": approval date 
- "displayUserName": name of the creator 
- "comment": comment  
 
-
-Attributes  
-----------  
-- managedBean: It is required. Must extend com.axonivy.utils.decisioncomponent.managedbean.AbstractApprovalDecisionBean class.  
-- isReadOnly: Configures component to be read only. Default is false.  
-- fieldsetToggleable: Makes fieldset toggleable. Default is false.  
-- fieldsetLegend: Legend text of the fieldset.  Default is "Approval decision"
-- fieldsetStyleClass: Style class of the fieldset.  
-- headline: Headline text inside the component.  
-- headlinePanelStyleClass: style class for the panel of the headline.  
-- helpText: Help text inside the component.  
-- helpTextPanelStyleClass: style class for the panel of the help text.  
-- helpTextStyleClass: style class for the help text.  
-- validatorId: ID of the validator, default value is "decisionComponentValidator" (com.axonivy.utils.decisioncomponent.validation.DecisionComponentValidator).  
-- decisionLabel: label for the decision options.  
-- decisionRequired: Flag to perform mandatory check for decision. Default is true.  
-- decisionRendered: Flag to render decision options. Default is true.  
-- decisionRequiredMessage: Error message to be displayed when perform mandatory check for the decision options. Default value is the CMS /Labels/RequiredFieldMessage.  
-- decisionPanelStyleClass: style class for the panel of decision options.  
-- listenerOnDecisionAction: listener event to be called when select a decision.  
-- componentToUpdateOnDecision: components to be updated when select a decision. Default value is "@this".  
-- decisionCommentLabel: label for the comment. Default value is the CMS /Labels/Comment.  
-- commentRequired: Flag to perform mandatory check for comment. Default is true.  
-- commentRendered: Flag to render comment. Default is true.  
-- commentRequiredMessage: Error message to be displayed when perform mandatory check for comment. Default value is the CMS /Labels/RequiredFieldMessage.  
-- commentPanelStyleClass: style class for the panel of comment.  
-- confirmationRequired: Flag to perform mandatory check for confirmation options. Default is false.  
-- confirmationRequiredMessage: Error message to be displayed when perform mandatory check for the confirmation options. Default value is the CMS /Labels/RequiredFieldMessage.  
-- confirmationPanelStyleClass: style class for the panel of the confirmation options.  
-- confirmationLabel: label for the confirmation options.  
-- approvalHistoryRendered: Flag to render the approval history table. Default is true.  
-- approvalHistoryPanelStyleClass: style class for the panel of the approval history table.  
+## Attributes  
+- `managedBean`: It is required and must extend `com.axonivy.utils.decisioncomponent.managedbean.AbstractApprovalDecisionBean` class.  
+- `isReadOnly`: Configures the component to be read-only. The default is `false`.
+- `fieldsetToggleable`: Makes the fieldset toggleable. Default is `false`.  
+- `fieldsetLegend`: Legend text of the fieldset.  Default is `Approval decision`.
+- `fieldsetStyleClass`: Style class of the fieldset.  
+- `headline`: Headline text inside the component.  
+- `headlinePanelStyleClass`: Style class for the panel of the headline.  
+- `helpText`: Help text inside the component.  
+- `helpTextPanelStyleClass`: Style class for the panel of the help text.  
+- `helpTextStyleClass`: Style class for the help text.  
+- `validatorId`: ID of the validator, default value is `decisionComponentValidator` (`com.axonivy.utils.decisioncomponent.validation.DecisionComponentValidator`).  
+- `decisionLabel`: Label for the decision options.  
+- `decisionRequired`: Flag to perform a mandatory check for decision. Default is `true`.  
+- `decisionRendered`: Flag to render decision options. Default is `true`.  
+- `decisionRequiredMessage`: Error message displayed when performing a mandatory check for the decision options. The default value is the CMS `/Labels/RequiredFieldMessage`.  
+- `decisionPanelStyleClass`: Style class for the panel of decision options.  
+- `listenerOnDecisionAction`: Listener event to be triggered when a decision is selected.  
+- `componentToUpdateOnDecision`: Components to be updated when a decision is selected. The default value is `@this`. 
+- `decisionCommentLabel`: Label for the comment. Default value is the CMS `/Labels/Comment`.  
+- `commentRequired`: Flag to perform mandatory check for comment. Default is `true`.  
+- `commentRendered`: Flag to render comment. Default is `true`.  
+- `commentRequiredMessage`: Error message displayed when performing mandatory check for comment. Default value is the CMS `/Labels/RequiredFieldMessage`.  
+- `commentPanelStyleClass`: Style class for the comment panel.  
+- `confirmationRequired`: Flag to perform mandatory check for the confirmation options. Default is `false`.  
+- `confirmationRequiredMessage`: Error message displayed when performing mandatory check for the confirmation options. Default value is the CMS `/Labels/RequiredFieldMessage`.  
+- `confirmationPanelStyleClass`: Style class for the panel of the confirmation options.  
+- `confirmationLabel`: Label for the confirmation options.  
+- `approvalHistoryRendered`: Flag to render the approval history table. Default is `true`.  
+- `approvalHistoryPanelStyleClass`: Style class for the panel of the approval history table.  
   
 Facets  
 ------  
-- customHeadline: Custom headline. Should be using when you want a more complicated headline than a text.  
+- `customHeadline`: Custom headline. Use this when you need a more elaborate headline than simple text.
 
 Example:  
   
@@ -180,7 +167,7 @@ Example:
 		</f:facet>  
 	</ic:com.axonivy.utils.decisioncomponent.ApprovalDecision>  
   
-- customHelpText: Custom help text. Should be using when you want a more complicated help text.  
+- `customHelpText`: Custom help text.  Use this when you need a more elaborate help text than simple text. 
 
 Example:  
   
@@ -191,12 +178,12 @@ Example:
 		</f:facet>  
 	</ic:com.axonivy.utils.decisioncomponent.ApprovalDecision>
   
-- customContent: Custom content for special requirement.  
+- `customContent`: Custom content for special requirements.  
 
-Example:  
+Example: The following code adds the label `Email address of relevant department` and the dropdown list to the content.
   
 	<ic:com.axonivy.utils.decisioncomponent.ApprovalDecision id="approvalDecision"  
-	managedBean="#{managedBean.approvalDecisionBean}">
+		managedBean="#{managedBean.approvalDecisionBean}">
 		<f:facet name="customContent">  
 		  <h:panelGroup id="dropDownListOfMails">
 			  <h:panelGroup id="mail-panel" 
@@ -205,7 +192,7 @@ Example:
 				rendered="#{managedBean.contentState.showDropdownOfMails}">
 				<div class="p-field p-text-left p-text-md-right p-col-12 p-md-2">
 				  <p:outputLabel for="dropdownlist-mail"
-					value="#{ivy.cms.co('/Labels/EmailAddressOfRelevantDepartment')}">
+					value="Email address of relevant department">
 					<span class="ui-outputlabel-rfi">*</span>
 				  </p:outputLabel>
 				</div>
@@ -226,4 +213,6 @@ Example:
 			</h:panelGroup>
 		</f:facet>
 	</ic:com.axonivy.utils.decisioncomponent.ApprovalDecision>
- 
+
+
+![](./screenshot/2-request-custom-content.PNG)

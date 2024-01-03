@@ -1,4 +1,9 @@
 
+# Project Title
+
+A brief description of what this project does and who it's for
+
+
 # decision-component-utils  
 decision-component-utils  
   
@@ -166,18 +171,18 @@ Facets
 ------  
 - customHeadline: Custom headline. Should be using when you want a more complicated headline than a text.  
 
-  Example:  
-
+Example:  
+  
 	<ic:com.axonivy.utils.decisioncomponent.ApprovalDecision id="approvalDecision"  
 	managedBean="#{managedBean.approvalDecisionBean}">
 		<f:facet name="customHeadline">  
 		  <p>Please check this <a href="www.google.com">Email</a> before proceed</p>  
 		</f:facet>  
-	</ic:com.axonivy.utils.decisioncomponent.ApprovalDecision>
-
+	</ic:com.axonivy.utils.decisioncomponent.ApprovalDecision>  
+  
 - customHelpText: Custom help text. Should be using when you want a more complicated help text.  
-- 
-  Example:  
+
+Example:  
   
 	<ic:com.axonivy.utils.decisioncomponent.ApprovalDecision id="approvalDecision"  
 	managedBean="#{managedBean.approvalDecisionBean}"> 
@@ -187,8 +192,8 @@ Facets
 	</ic:com.axonivy.utils.decisioncomponent.ApprovalDecision>
   
 - customContent: Custom content for special requirement.  
-- 
-  Example:  
+
+Example:  
   
 	<ic:com.axonivy.utils.decisioncomponent.ApprovalDecision id="approvalDecision"  
 	managedBean="#{managedBean.approvalDecisionBean}">
@@ -221,4 +226,4 @@ Facets
 			</h:panelGroup>
 		</f:facet>
 	</ic:com.axonivy.utils.decisioncomponent.ApprovalDecision>
-
+ 

@@ -1,0 +1,6 @@
+RequestTicketFormData #class
+com.axonivy.utils.decisioncomponent.RequestTicketForm #namespace
+bean com.axonivy.utils.decisioncomponent.demo.managedbean.TicketProcessBean #field
+bean PERSISTENT #fieldModifier
+decisionResult String #field
+decisionResult PERSISTENT #fieldModifier

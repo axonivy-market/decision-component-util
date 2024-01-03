@@ -167,7 +167,7 @@ Facets
 - customHeadline: Custom headline. Should be using when you want a more complicated headline than a text.  
 
   Example:  
-  
+
 	<ic:com.axonivy.utils.decisioncomponent.ApprovalDecision id="approvalDecision"  
 	managedBean="#{managedBean.approvalDecisionBean}">
 		<f:facet name="customHeadline">  

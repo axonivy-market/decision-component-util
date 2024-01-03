@@ -115,13 +115,13 @@ To override the default sort order, you should override the method isApprovalHis
   
 Example:  
   
- @Override public boolean isApprovalHistoryTableSortDescending() { return false; }  
+	@Override public boolean isApprovalHistoryTableSortDescending() { return false; }  
 
 To override the default sort field, you should override the method getApprovalHistoryTableSortField().  
   
 Example:  
   
- @Override public String getApprovalHistoryTableSortField() { return "displayUserName"; }  
+	@Override public String getApprovalHistoryTableSortField() { return "displayUserName"; }  
 
 Available sort fields:  
   
@@ -168,57 +168,57 @@ Facets
 - 
   Example:  
   
-  <ic:com.axonivy.utils.decisioncomponent.ApprovalDecision id="approvalDecision"  
-  managedBean="#{managedBean.approvalDecisionBean}">
-    <f:facet name="customHeadline">  
-      <p>Please check this <a href="www.google.com">Email</a> before proceed</p>  
-    </f:facet>  
-  </ic:com.axonivy.utils.decisioncomponent.ApprovalDecision>  
+	<ic:com.axonivy.utils.decisioncomponent.ApprovalDecision id="approvalDecision"  
+	managedBean="#{managedBean.approvalDecisionBean}">
+		<f:facet name="customHeadline">  
+		  <p>Please check this <a href="www.google.com">Email</a> before proceed</p>  
+		</f:facet>  
+	</ic:com.axonivy.utils.decisioncomponent.ApprovalDecision>  
   
 - customHelpText: Custom help text. Should be using when you want a more complicated help text.  
 - 
   Example:  
   
-  <ic:com.axonivy.utils.decisioncomponent.ApprovalDecision id="approvalDecision"  
-  managedBean="#{managedBean.approvalDecisionBean}"> 
-    <f:facet name="customHelpText">  
-      <p>Please check this <a href="www.google.com">Email</a> before proceed</p>  
-    </f:facet>  
-  </ic:com.axonivy.utils.decisioncomponent.ApprovalDecision>
+	<ic:com.axonivy.utils.decisioncomponent.ApprovalDecision id="approvalDecision"  
+	managedBean="#{managedBean.approvalDecisionBean}"> 
+		<f:facet name="customHelpText">  
+		  <p>Please check this <a href="www.google.com">Email</a> before proceed</p>  
+		</f:facet>  
+	</ic:com.axonivy.utils.decisioncomponent.ApprovalDecision>
   
 - customContent: Custom content for special requirement.  
 - 
   Example:  
   
-  <ic:com.axonivy.utils.decisioncomponent.ApprovalDecision id="approvalDecision"  
-    managedBean="#{managedBean.approvalDecisionBean}">
-    <f:facet name="customContent">  
-      <h:panelGroup id="dropDownListOfMails">
-          <h:panelGroup id="mail-panel" 
-            layout="block"
-            styleClass="p-formgrid p-grid p-align-baseline ui-fluid"
-            rendered="#{managedBean.contentState.showDropdownOfMails}">
-            <div class="p-field p-text-left p-text-md-right p-col-12 p-md-2">
-              <p:outputLabel for="dropdownlist-mail"
-                value="#{ivy.cms.co('/Labels/EmailAddressOfRelevantDepartment')}">
-                <span class="ui-outputlabel-rfi">*</span>
-              </p:outputLabel>
-            </div>
-            <div class="p-field p-col-12 p-md-4">
-              <p:selectOneMenu id="dropdownlist-mail"
-                value="#{managedBean.request.forwardToMail}"
-                requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage')}">
-                <f:selectItem itemLabel="SelectOne" itemValue="" />
-                <f:selectItems
-                  value="#{managedBean.departmentMails.entrySet()}"
-                  var="department" itemLabel="#{department.key}"
-                  itemValue="#{department.value}" />
-                <f:validator validatorId="decisionComponentValidator" />
-              </p:selectOneMenu>
-              <p:message for="dropdownlist-mail" />
-            </div>
-          </h:panelGroup>
-        </h:panelGroup>
-    </f:facet>
-  </ic:com.axonivy.utils.decisioncomponent.ApprovalDecision>
+	<ic:com.axonivy.utils.decisioncomponent.ApprovalDecision id="approvalDecision"  
+	managedBean="#{managedBean.approvalDecisionBean}">
+		<f:facet name="customContent">  
+		  <h:panelGroup id="dropDownListOfMails">
+			  <h:panelGroup id="mail-panel" 
+				layout="block"
+				styleClass="p-formgrid p-grid p-align-baseline ui-fluid"
+				rendered="#{managedBean.contentState.showDropdownOfMails}">
+				<div class="p-field p-text-left p-text-md-right p-col-12 p-md-2">
+				  <p:outputLabel for="dropdownlist-mail"
+					value="#{ivy.cms.co('/Labels/EmailAddressOfRelevantDepartment')}">
+					<span class="ui-outputlabel-rfi">*</span>
+				  </p:outputLabel>
+				</div>
+				<div class="p-field p-col-12 p-md-4">
+				  <p:selectOneMenu id="dropdownlist-mail"
+					value="#{managedBean.request.forwardToMail}"
+					requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage')}">
+					<f:selectItem itemLabel="SelectOne" itemValue="" />
+					<f:selectItems
+					  value="#{managedBean.departmentMails.entrySet()}"
+					  var="department" itemLabel="#{department.key}"
+					  itemValue="#{department.value}" />
+					<f:validator validatorId="decisionComponentValidator" />
+				  </p:selectOneMenu>
+				  <p:message for="dropdownlist-mail" />
+				</div>
+			  </h:panelGroup>
+			</h:panelGroup>
+		</f:facet>
+	</ic:com.axonivy.utils.decisioncomponent.ApprovalDecision>
 

@@ -1,7 +1,7 @@
 package com.axonivy.utils.decisioncomponent.contentstate;
 
 public abstract class AbstractContentState {
-	
+
 	protected boolean decisionRendered;
 	protected boolean decisionRequired;
 	protected boolean decisionDisable;
@@ -74,5 +74,5 @@ public abstract class AbstractContentState {
 	public void setApprovalHistoryRendered(boolean approvalHistoryRendered) {
 		this.approvalHistoryRendered = approvalHistoryRendered;
 	}
-	
+
 }

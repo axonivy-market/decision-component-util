@@ -1,6 +1,5 @@
 package com.axonivy.utils.decisioncomponent.demo.dao;
 
-
 import java.util.List;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -23,20 +22,20 @@ public class TicketRequestDAO extends AuditableDAO<TicketRequest_, TicketRequest
 	protected Class<TicketRequest> getType() {
 		return TicketRequest.class;
 	}
-	
+
 	public TicketRequest findByCaseId(Long caseId) {
 		TicketRequest request = null;
 		try (CriteriaQueryContext<TicketRequest> query = initializeQuery();) {
 			query.whereEq(TicketRequest_.caseId, caseId);
 			List<TicketRequest> results = findByCriteria(query);
-			
+
 			if (CollectionUtils.isNotEmpty(results)) {
 				request = results.get(0);
 				Hibernate.initialize(request.getApprovalHistories());
 			}
-			
+
 			return request;
 		}
 	}
-	
+
 }

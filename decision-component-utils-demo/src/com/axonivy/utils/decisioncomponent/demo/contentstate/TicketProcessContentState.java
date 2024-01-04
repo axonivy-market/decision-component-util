@@ -3,23 +3,23 @@ package com.axonivy.utils.decisioncomponent.demo.contentstate;
 import com.axonivy.utils.decisioncomponent.contentstate.AbstractContentState;
 
 public class TicketProcessContentState extends AbstractContentState {
-	
+
 	// information
 	private boolean ticketTitleReadOnly;
-	private boolean	ticketNumberReadOnly;
-	private boolean	ticketTypeReadOnly;
-	private boolean	ticketRaiserReadOnly;
-	private boolean	ticketDescriptionReadOnly;
-	
+	private boolean ticketNumberReadOnly;
+	private boolean ticketTypeReadOnly;
+	private boolean ticketRaiserReadOnly;
+	private boolean ticketDescriptionReadOnly;
+
 	private boolean ticketTitleRequired;
-	private boolean	ticketNumberRequired;
-	private boolean	ticketTypeRequired;
-	private boolean	ticketRaiserRequired;
-	private boolean	ticketDescriptionRequired;
-	
+	private boolean ticketNumberRequired;
+	private boolean ticketTypeRequired;
+	private boolean ticketRaiserRequired;
+	private boolean ticketDescriptionRequired;
+
 	private boolean showDropdownOfMails;
-	
-	public void initRequestTicketContentState(){
+
+	public void initRequestTicketContentState() {
 		this.decisionRendered = true;
 		this.decisionRequired = true;
 		this.decisionDisable = false;
@@ -28,22 +28,22 @@ public class TicketProcessContentState extends AbstractContentState {
 		this.commentRendered = true;
 		this.commentRequired = true;
 		this.approvalHistoryRendered = true;
-		
+
 		// information state
 		this.ticketTitleRequired = true;
 		this.ticketNumberRequired = true;
 		this.ticketTypeRequired = true;
 		this.ticketRaiserRequired = true;
 		this.ticketDescriptionRequired = true;
-		
+
 		this.ticketTitleReadOnly = false;
 		this.ticketNumberReadOnly = false;
 		this.ticketTypeReadOnly = false;
 		this.ticketRaiserReadOnly = false;
 		this.ticketDescriptionReadOnly = false;
 	}
-	
-	public void initReviewTicketContentState(){
+
+	public void initReviewTicketContentState() {
 		this.decisionRendered = true;
 		this.decisionRequired = true;
 		this.decisionDisable = false;
@@ -52,7 +52,7 @@ public class TicketProcessContentState extends AbstractContentState {
 		this.commentRendered = true;
 		this.commentRequired = true;
 		this.approvalHistoryRendered = true;
-		
+
 		// information state
 		this.ticketTitleReadOnly = true;
 		this.ticketNumberReadOnly = true;
@@ -61,7 +61,7 @@ public class TicketProcessContentState extends AbstractContentState {
 		this.ticketDescriptionReadOnly = true;
 	}
 
-	public void initConfirmTicketContentState(){
+	public void initConfirmTicketContentState() {
 		this.decisionRendered = false;
 		this.decisionRequired = false;
 		this.decisionDisable = true;
@@ -70,7 +70,7 @@ public class TicketProcessContentState extends AbstractContentState {
 		this.commentRendered = true;
 		this.commentRequired = true;
 		this.approvalHistoryRendered = true;
-		
+
 		// information state
 		this.ticketTitleReadOnly = true;
 		this.ticketNumberReadOnly = true;
@@ -78,12 +78,12 @@ public class TicketProcessContentState extends AbstractContentState {
 		this.ticketRaiserReadOnly = true;
 		this.ticketDescriptionReadOnly = true;
 	}
-	
+
 	public void initResultTicketContentState() {
 		this.decisionRendered = false;
 		this.commentRendered = false;
 		this.approvalHistoryRendered = true;
-		
+
 		// information state
 		this.ticketTitleReadOnly = true;
 		this.ticketNumberReadOnly = true;
@@ -91,7 +91,7 @@ public class TicketProcessContentState extends AbstractContentState {
 		this.ticketRaiserReadOnly = true;
 		this.ticketDescriptionReadOnly = true;
 	}
-	
+
 	public boolean isShowDropdownOfMails() {
 		return showDropdownOfMails;
 	}

@@ -5,18 +5,9 @@ import java.util.List;
 
 import com.axonivy.utils.decisioncomponent.enums.HasCmsName;
 
-
 public enum TicketProcessApprovalDecision implements HasCmsName {
-	SEND_TO_REVIEWER,
-	FORWARD_TO,
-	CANCEL,
-	
-	RETURN_BACK_TO_REQUESTER,
-	APPROVE,
-	REJECT,
-	
-	COMPLETE;
-	
+	SEND_TO_REVIEWER, FORWARD_TO, CANCEL, RETURN_BACK_TO_REQUESTER, APPROVE, REJECT, COMPLETE;
+
 	public static List<Enum<?>> getRequestApprovalDecision() {
 		List<Enum<?>> approvalDecisions = new ArrayList<>();
 		approvalDecisions.add(SEND_TO_REVIEWER);
@@ -25,7 +16,7 @@ public enum TicketProcessApprovalDecision implements HasCmsName {
 
 		return approvalDecisions;
 	}
-	
+
 	public static List<Enum<?>> getReviewApprovalDecision() {
 		List<Enum<?>> approvalDecisions = new ArrayList<>();
 		approvalDecisions.add(RETURN_BACK_TO_REQUESTER);
@@ -33,7 +24,7 @@ public enum TicketProcessApprovalDecision implements HasCmsName {
 		approvalDecisions.add(REJECT);
 		return approvalDecisions;
 	}
-	
+
 	public static List<Enum<?>> getConfirmApprovalDecision() {
 		List<Enum<?>> approvalDecisions = new ArrayList<>();
 		approvalDecisions.add(COMPLETE);

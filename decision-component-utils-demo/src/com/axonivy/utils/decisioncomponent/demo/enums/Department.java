@@ -2,9 +2,7 @@ package com.axonivy.utils.decisioncomponent.demo.enums;
 
 public enum Department {
 
-	IT("It", "It@axonivy.com"),
-	HR("Hr", "Hr@axonivy.com"),
-	MARKETING("Marketing", "Marketing@axonivy.com"),
+	IT("It", "It@axonivy.com"), HR("Hr", "Hr@axonivy.com"), MARKETING("Marketing", "Marketing@axonivy.com"),
 	PRODUCTION("Production", "Production@axonivy.com");
 
 	private String name;

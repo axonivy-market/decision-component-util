@@ -20,8 +20,7 @@ public class TicketProcessUtils {
 	}
 
 	public static void addMessage(FacesMessage.Severity severity, String summary, String detail) {
-		FacesContext.getCurrentInstance().
-		addMessage("growl-message", new FacesMessage(severity, summary, detail));
+		FacesContext.getCurrentInstance().addMessage("growl-message", new FacesMessage(severity, summary, detail));
 	}
 
 	public static void reset() {
@@ -33,4 +32,3 @@ public class TicketProcessUtils {
 	}
 
 }
-

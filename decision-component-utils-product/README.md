@@ -108,15 +108,15 @@ Example: in the managed bean `TicketProcessBean`:
 
 ### Customize Approval history table (Optional) 
   
-The Approval history table is initially sorted by approval date in descending order. To customize the sort order, start by disabling the default sort through overriding the method `isApprovalHistoryTableSortDescending()`
+The Approval history table is initially sorted by approval date in descending order. To customize the sort order, start by disabling the default sort through overriding the method `isApprovalHistoryTableSortDescending()`.
   
 
 	@Override public boolean isApprovalHistoryTableSortDescending() { return false; }  
 
 Next, implement the custom sort by overriding the method `getApprovalHistoryTableSortField()`. The following fields are supported to sort:
-- displayApprovalDate: Approval date
-- displayUserName: Name of the creator 
-- comment: Comment 
+- displayApprovalDate: Approval date.
+- displayUserName: Name of the creator.
+- comment: Comment.
 
 Example:  
   

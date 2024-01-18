@@ -13,9 +13,12 @@
 	<cc:attribute name="managedBean" />
 	<cc:attribute name="validatorId" default="decisionComponentValidator" />
 
-	<cc:attribute name="isReadOnly" type="java.lang.Boolean" default="false" />
-	<cc:attribute name="fieldsetToggleable" type="java.lang.Boolean" default="false" />
-	<cc:attribute name="fieldsetLegend" type="java.lang.String" default="Approval decision" />
+	<cc:attribute name="isReadOnly" type="java.lang.Boolean"
+		default="false" />
+	<cc:attribute name="fieldsetToggleable" type="java.lang.Boolean"
+		default="false" />
+	<cc:attribute name="fieldsetLegend" type="java.lang.String"
+		default="Approval decision" />
 	<cc:attribute name="fieldsetStyleClass" />
 
 	<cc:attribute name="headline" />
@@ -27,36 +30,50 @@
 	<cc:attribute name="helpTextStyleClass" />
 
 	<!-- Decision attributes -->
-	<cc:attribute name="decisionRequired" type="java.lang.Boolean" default="true" />
-	<cc:attribute name="decisionRequiredMessage" default="#{ivy.cms.co('/Labels/RequiredFieldMessage')}" />
-	<cc:attribute name="decisionRendered" type="java.lang.Boolean" default="true" />
-	<cc:attribute name="decisionDisable" type="java.lang.Boolean" default="false" />
+	<cc:attribute name="decisionRequired" type="java.lang.Boolean"
+		default="true" />
+	<cc:attribute name="decisionRequiredMessage"
+		default="#{ivy.cms.co('/Labels/RequiredFieldMessage')}" />
+	<cc:attribute name="decisionRendered" type="java.lang.Boolean"
+		default="true" />
+	<cc:attribute name="decisionDisable" type="java.lang.Boolean"
+		default="false" />
 	<cc:attribute name="decisionLabel" default="Decision" />
 	<cc:attribute name="decisionPanelStyleClass" />
 	<cc:attribute name="listenerOnDecisionAction" />
 	<cc:attribute name="componentToUpdateOnDecision" default="@this" />
 
 	<!-- Confirmation attributes -->
-	<cc:attribute name="confirmationRequired" type="java.lang.Boolean" default="false" />
-	<cc:attribute name="confirmationRequiredMessage" default="#{ivy.cms.co('/Labels/RequiredFieldMessage')}" />
-	<cc:attribute name="confirmationVisible" type="java.lang.Boolean" default="false" />
-	<cc:attribute name="confirmationDisabled" type="java.lang.Boolean" default="false" />
+	<cc:attribute name="confirmationRequired" type="java.lang.Boolean"
+		default="false" />
+	<cc:attribute name="confirmationRequiredMessage"
+		default="#{ivy.cms.co('/Labels/RequiredFieldMessage')}" />
+	<cc:attribute name="confirmationVisible" type="java.lang.Boolean"
+		default="false" />
+	<cc:attribute name="confirmationDisabled" type="java.lang.Boolean"
+		default="false" />
 	<cc:attribute name="confirmationLabel" default="Confirmation" />
 	<cc:attribute name="confirmationPanelStyleClass" />
 	<cc:attribute name="listenerOnConfirmationAction" />
 	<cc:attribute name="componentToUpdateOnConfirmation" default="@this" />
 
 	<!-- Comment attributes -->
-	<cc:attribute name="commentRequired" type="java.lang.Boolean" default="false" />
-	<cc:attribute name="commentRequiredMessage" default="#{ivy.cms.co('/Labels/RequiredFieldMessage')}" />
-	<cc:attribute name="commentRendered" type="java.lang.Boolean" default="true" />
-	<cc:attribute name="decisionCommentLabel" default="#{ivy.cms.co('/Labels/Comment')}" />
+	<cc:attribute name="commentRequired" type="java.lang.Boolean"
+		default="false" />
+	<cc:attribute name="commentRequiredMessage"
+		default="#{ivy.cms.co('/Labels/RequiredFieldMessage')}" />
+	<cc:attribute name="commentRendered" type="java.lang.Boolean"
+		default="true" />
+	<cc:attribute name="decisionCommentLabel"
+		default="#{ivy.cms.co('/Labels/Comment')}" />
 	<cc:attribute name="commentPanelStyleClass" />
 
 	<!-- Approval history attribute -->
-	<cc:attribute name="approvalHistoryRendered" type="java.lang.Boolean" default="true" />
+	<cc:attribute name="approvalHistoryRendered" type="java.lang.Boolean"
+		default="true" />
 	<cc:attribute name="approvalHistoryPanelStyleClass" />
-	<cc:attribute name="approvalHistoryLabel" default="#{ivy.cms.co('/Labels/ApprovalHistory')}" />
+	<cc:attribute name="approvalHistoryLabel"
+		default="#{ivy.cms.co('/Labels/ApprovalHistory')}" />
 	<cc:attribute name="approvalHistoryAuthorStyleClass" />
 	<cc:attribute name="approvalHistoryDateStyleClass" />
 	<cc:attribute name="approvalHistoryDecisionStyleClass" />

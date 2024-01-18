@@ -12,7 +12,8 @@
 		<ui:define name="content">
 			<c:set var="managedBean" value="#{data.bean}" />
 			<h:form id="content-form">
-				<p:growl id="growl-message" showDetail="true" sticky="true" for="growl-message" />
+				<p:growl id="growl-message" showDetail="true" sticky="true"
+					for="growl-message" />
 
 				<ic:com.axonivy.utils.decisioncomponent.TicketInformation
 					id="ticket-information-section" managedBean="#{managedBean}"
@@ -28,18 +29,15 @@
 					ticketDescriptionRequired="#{managedBean.contentState.ticketDescriptionRequired}" />
 
 				<ic:com.axonivy.utils.decisioncomponent.ApprovalDecision
-					id="approvalDecision"
+					id="approval-decision"
 					managedBean="#{managedBean.approvalDecisionBean}"
 					validatorId="#{managedBean.approvalDecisionBean.validatorId}"
 					fieldsetLegend="#{ivy.cms.co('/Dialogs/com/axonivy/utils/decisioncomponent/ResultTicketRequest/DecisionLegend')}"
-					fieldsetToggleable="#{true}" 
-					fieldsetStyleClass="p-mt-3"
+					fieldsetToggleable="#{true}" fieldsetStyleClass="p-mt-3"
 					headline="#{ivy.cms.co('/Dialogs/com/axonivy/utils/decisioncomponent/ResultTicketRequest/ApprovalDecisionHeadline')}"
-					headlinePanelStyleClass="" 
-					headlineStyleClass="p-text-bold"
+					headlinePanelStyleClass="" headlineStyleClass="p-text-bold"
 					helpText="#{ivy.cms.co('/Dialogs/com/axonivy/utils/decisioncomponent/ResultTicketRequest/ApprovalDecisionHelpText')}"
-					helpTextPanelStyleClass="" 
-					helpTextStyleClass=""
+					helpTextPanelStyleClass="" helpTextStyleClass=""
 					decisionRendered="#{managedBean.contentState.decisionRendered}"
 					decisionRequired="#{managedBean.contentState.decisionRequired}"
 					decisionDisable="#{managedBean.contentState.decisionDisable}"

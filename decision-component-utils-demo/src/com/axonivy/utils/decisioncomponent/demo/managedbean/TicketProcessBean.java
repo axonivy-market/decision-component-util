@@ -37,7 +37,7 @@ public class TicketProcessBean {
 		if (request == null) {
 			request = new TicketRequest();
 			request.setCaseId(caseId);
-			initTesttRequestData();
+			initTestRequestData();
 		}
 
 		contentState = new TicketProcessContentState();
@@ -55,7 +55,7 @@ public class TicketProcessBean {
 		} else if (processStep == ProcessStep.CONFIRM_TICKET) {
 			approvalDecisionBean = new TicketApprovalDecisionBean(request,
 					TicketProcessApprovalDecision.getConfirmApprovalDecision(),
-					TicketProcessApprovalConfirmation.getConfirmApprovalConfirmations());
+					TicketProcessApprovalConfirmation.getConfirmApprovalConfirmation());
 			contentState.initConfirmTicketContentState();
 		} else {
 			approvalDecisionBean = new TicketApprovalDecisionBean(request, null, null);
@@ -63,7 +63,7 @@ public class TicketProcessBean {
 		}
 	}
 
-	private void initTesttRequestData() {
+	private void initTestRequestData() {
 		request.setTicketTitle("Cinema Ticket");
 		request.setTicketNumber("0329767343");
 		request.setTicketType("Diamond");

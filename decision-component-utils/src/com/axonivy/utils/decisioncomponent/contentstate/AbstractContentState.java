@@ -2,77 +2,77 @@ package com.axonivy.utils.decisioncomponent.contentstate;
 
 public abstract class AbstractContentState {
 
-	protected boolean decisionRendered;
-	protected boolean decisionRequired;
-	protected boolean decisionDisable;
-	protected boolean confirmationRequired;
-	protected boolean confirmationVisible;
-	protected boolean commentRendered;
-	protected boolean commentRequired;
-	protected boolean approvalHistoryRendered;
+	protected boolean isDecisionRendered;
+	protected boolean isDecisionRequired;
+	protected boolean isDecisionDisable;
+	protected boolean isConfirmationRequired;
+	protected boolean isConfirmationVisible;
+	protected boolean isCommentRendered;
+	protected boolean isCommentRequired;
+	protected boolean isApprovalHistoryRendered;
 
 	public boolean isDecisionRendered() {
-		return decisionRendered;
+		return isDecisionRendered;
 	}
 
-	public void setDecisionRendered(boolean decisionRendered) {
-		this.decisionRendered = decisionRendered;
+	public void setDecisionRendered(boolean isDecisionRendered) {
+		this.isDecisionRendered = isDecisionRendered;
 	}
 
 	public boolean isDecisionRequired() {
-		return decisionRequired;
+		return isDecisionRequired;
 	}
 
-	public void setDecisionRequired(boolean decisionRequired) {
-		this.decisionRequired = decisionRequired;
+	public void setDecisionRequired(boolean isDecisionRequired) {
+		this.isDecisionRequired = isDecisionRequired;
 	}
 
 	public boolean isDecisionDisable() {
-		return decisionDisable;
+		return isDecisionDisable;
 	}
 
-	public void setDecisionDisable(boolean decisionDisable) {
-		this.decisionDisable = decisionDisable;
+	public void setDecisionDisable(boolean isDecisionDisable) {
+		this.isDecisionDisable = isDecisionDisable;
 	}
 
 	public boolean isConfirmationRequired() {
-		return confirmationRequired;
+		return isConfirmationRequired;
 	}
 
-	public void setConfirmationRequired(boolean confirmationRequired) {
-		this.confirmationRequired = confirmationRequired;
+	public void setConfirmationRequired(boolean isConfirmationRequired) {
+		this.isConfirmationRequired = isConfirmationRequired;
 	}
 
 	public boolean isConfirmationVisible() {
-		return confirmationVisible;
+		return isConfirmationVisible;
 	}
 
-	public void setConfirmationVisible(boolean confirmationVisible) {
-		this.confirmationVisible = confirmationVisible;
+	public void setConfirmationVisible(boolean isConfirmationVisible) {
+		this.isConfirmationVisible = isConfirmationVisible;
 	}
 
 	public boolean isCommentRendered() {
-		return commentRendered;
+		return isCommentRendered;
 	}
 
-	public void setCommentRendered(boolean commentRendered) {
-		this.commentRendered = commentRendered;
+	public void setCommentRendered(boolean isCommentRendered) {
+		this.isCommentRendered = isCommentRendered;
 	}
 
 	public boolean isCommentRequired() {
-		return commentRequired;
+		return isCommentRequired;
 	}
 
-	public void setCommentRequired(boolean commentRequired) {
-		this.commentRequired = commentRequired;
+	public void setCommentRequired(boolean isCommentRequired) {
+		this.isCommentRequired = isCommentRequired;
 	}
 
 	public boolean isApprovalHistoryRendered() {
-		return approvalHistoryRendered;
+		return isApprovalHistoryRendered;
 	}
 
-	public void setApprovalHistoryRendered(boolean approvalHistoryRendered) {
-		this.approvalHistoryRendered = approvalHistoryRendered;
+	public void setApprovalHistoryRendered(boolean isApprovalHistoryRendered) {
+		this.isApprovalHistoryRendered = isApprovalHistoryRendered;
 	}
 
 }

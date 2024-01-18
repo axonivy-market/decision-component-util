@@ -41,48 +41,48 @@ public class DecisionComponentWebTest {
 
 	@Test
 	public void checkFieldsExists() {
-		$(By.id("content-form:approvalDecision:headline-panel")).shouldBe(visible);
-		$(By.id("content-form:approvalDecision:helptext-panel")).shouldBe(visible);
-		$(By.id("content-form:approvalDecision:decision-panel")).shouldBe(visible);
-		$(By.id("content-form:approvalDecision:comment-panel")).shouldBe(visible);
-		$(By.id("content-form:approvalDecision:approval-history-table-panel")).shouldBe(visible);
+		$(By.id("content-form:approval-decision:headline-panel")).shouldBe(visible);
+		$(By.id("content-form:approval-decision:helptext-panel")).shouldBe(visible);
+		$(By.id("content-form:approval-decision:decision-panel")).shouldBe(visible);
+		$(By.id("content-form:approval-decision:comment-panel")).shouldBe(visible);
+		$(By.id("content-form:approval-decision:approval-history-table-panel")).shouldBe(visible);
 	}
 
 	@Test
 	public void testShowCustomContentWhenDecisionOptionClick() {
 		// select radio "Forward to"
-		SelectOneRadio decision = PrimeUi.selectOneRadio(By.id("content-form:approvalDecision:decision-options"));
+		SelectOneRadio decision = PrimeUi.selectOneRadio(By.id("content-form:approval-decision:decision-options"));
 		decision.selectItemByLabel(DECISION_OPTION_FORWARD_TO);
 
 		// expect when radio "Forward to" selected component list email will be visible
-		$(By.id("content-form:approvalDecision:dropDownListOfMails")).shouldBe(visible);
+		$(By.id("content-form:approval-decision:drop-down-list-of-mails")).shouldBe(visible);
 	}
 
 	@Test
 	public void testButtonSubmitWorking() {
 		// set select decision
-		SelectOneRadio decision = PrimeUi.selectOneRadio(By.id("content-form:approvalDecision:decision-options"));
+		SelectOneRadio decision = PrimeUi.selectOneRadio(By.id("content-form:approval-decision:decision-options"));
 		decision.selectItemByLabel(DECISION_OPTION_SEND_TO_REVIEWER);
 
-		$(By.id("content-form:approvalDecision:decision-comment")).setValue(REQUEST_COMMENT);
+		$(By.id("content-form:approval-decision:decision-comment")).setValue(REQUEST_COMMENT);
 		$(By.id("content-form:complete-button")).click();
 		Selenide.sleep(1000);
 
 		// assert
-		$(By.id("content-form:approvalDecision:decision-comment")).shouldBe(exactText(""));
+		$(By.id("content-form:approval-decision:decision-comment")).shouldBe(exactText(""));
 	}
 
 	@Test
 	public void testShowApprovalHistoryContent() {
 		// set select decision
-		SelectOneRadio decision = PrimeUi.selectOneRadio(By.id("content-form:approvalDecision:decision-options"));
+		SelectOneRadio decision = PrimeUi.selectOneRadio(By.id("content-form:approval-decision:decision-options"));
 		decision.selectItemByLabel(DECISION_OPTION_SEND_TO_REVIEWER);
 
-		$(By.id("content-form:approvalDecision:decision-comment")).setValue(REQUEST_COMMENT);
+		$(By.id("content-form:approval-decision:decision-comment")).setValue(REQUEST_COMMENT);
 		$(By.id("content-form:complete-button")).click();
 		Selenide.sleep(1000);
 
-		Table table = PrimeUi.table(By.id("content-form:approvalDecision:approval-history-table"));
+		Table table = PrimeUi.table(By.id("content-form:approval-decision:approval-history-table"));
 		table.contains(DECISION_OPTION_SEND_TO_REVIEWER);
 		table.contains(REQUEST_COMMENT);
 	}
@@ -91,31 +91,32 @@ public class DecisionComponentWebTest {
 	public void testShowConfirmationOption() {
 		// set select decision
 		SelectOneRadio decisionRequest = PrimeUi
-				.selectOneRadio(By.id("content-form:approvalDecision:decision-options"));
+				.selectOneRadio(By.id("content-form:approval-decision:decision-options"));
 		decisionRequest.selectItemByLabel(DECISION_OPTION_SEND_TO_REVIEWER);
 
-		$(By.id("content-form:approvalDecision:decision-comment")).setValue(REQUEST_COMMENT);
+		$(By.id("content-form:approval-decision:decision-comment")).setValue(REQUEST_COMMENT);
 
 		$(By.id("content-form:complete-button")).click();
 		Selenide.sleep(1000);
 
-		SelectOneRadio decisionReview = PrimeUi.selectOneRadio(By.id("content-form:approvalDecision:decision-options"));
+		SelectOneRadio decisionReview = PrimeUi
+				.selectOneRadio(By.id("content-form:approval-decision:decision-options"));
 		decisionReview.selectItemByLabel(DECISION_OPTION_APPROVE);
 
-		$(By.id("content-form:approvalDecision:decision-comment")).setValue(OK_COMMENT);
+		$(By.id("content-form:approval-decision:decision-comment")).setValue(OK_COMMENT);
 
 		$(By.id("content-form:complete-button")).click();
 		Selenide.sleep(1000);
 
 		// assert content history
-		Table table = PrimeUi.table(By.id("content-form:approvalDecision:approval-history-table"));
+		Table table = PrimeUi.table(By.id("content-form:approval-decision:approval-history-table"));
 		table.contains(DECISION_OPTION_SEND_TO_REVIEWER);
 		table.contains(DECISION_OPTION_APPROVE);
 		table.contains(REQUEST_COMMENT);
 		table.contains(OK_COMMENT);
 
 		// assert show confirmation option
-		$(By.id("content-form:approvalDecision:confirmation-options")).shouldBe(visible);
+		$(By.id("content-form:approval-decision:confirmation-options")).shouldBe(visible);
 	}
 
 }

@@ -5,179 +5,179 @@ import com.axonivy.utils.decisioncomponent.contentstate.AbstractContentState;
 public class TicketProcessContentState extends AbstractContentState {
 
 	// information
-	private boolean ticketTitleReadOnly;
-	private boolean ticketNumberReadOnly;
-	private boolean ticketTypeReadOnly;
-	private boolean ticketRaiserReadOnly;
-	private boolean ticketDescriptionReadOnly;
+	private boolean isTicketTitleReadOnly;
+	private boolean isTicketNumberReadOnly;
+	private boolean isTicketTypeReadOnly;
+	private boolean isTicketRaiserReadOnly;
+	private boolean isTicketDescriptionReadOnly;
 
-	private boolean ticketTitleRequired;
-	private boolean ticketNumberRequired;
-	private boolean ticketTypeRequired;
-	private boolean ticketRaiserRequired;
-	private boolean ticketDescriptionRequired;
+	private boolean isTicketTitleRequired;
+	private boolean isTicketNumberRequired;
+	private boolean isTicketTypeRequired;
+	private boolean isTicketRaiserRequired;
+	private boolean isTicketDescriptionRequired;
 
-	private boolean showDropdownOfMails;
+	private boolean isShowDropdownOfMails;
 
 	public void initRequestTicketContentState() {
-		this.decisionRendered = true;
-		this.decisionRequired = true;
-		this.decisionDisable = false;
-		this.confirmationVisible = false;
-		this.confirmationRequired = false;
-		this.commentRendered = true;
-		this.commentRequired = true;
-		this.approvalHistoryRendered = true;
+		this.isDecisionRendered = true;
+		this.isDecisionRequired = true;
+		this.isDecisionDisable = false;
+		this.isConfirmationVisible = false;
+		this.isConfirmationRequired = false;
+		this.isCommentRendered = true;
+		this.isCommentRequired = true;
+		this.isApprovalHistoryRendered = true;
 
 		// information state
-		this.ticketTitleRequired = true;
-		this.ticketNumberRequired = true;
-		this.ticketTypeRequired = true;
-		this.ticketRaiserRequired = true;
-		this.ticketDescriptionRequired = true;
+		this.isTicketTitleRequired = true;
+		this.isTicketNumberRequired = true;
+		this.isTicketTypeRequired = true;
+		this.isTicketRaiserRequired = true;
+		this.isTicketDescriptionRequired = true;
 
-		this.ticketTitleReadOnly = false;
-		this.ticketNumberReadOnly = false;
-		this.ticketTypeReadOnly = false;
-		this.ticketRaiserReadOnly = false;
-		this.ticketDescriptionReadOnly = false;
+		this.isTicketTitleReadOnly = false;
+		this.isTicketNumberReadOnly = false;
+		this.isTicketTypeReadOnly = false;
+		this.isTicketRaiserReadOnly = false;
+		this.isTicketDescriptionReadOnly = false;
 	}
 
 	public void initReviewTicketContentState() {
-		this.decisionRendered = true;
-		this.decisionRequired = true;
-		this.decisionDisable = false;
-		this.confirmationVisible = false;
-		this.confirmationRequired = false;
-		this.commentRendered = true;
-		this.commentRequired = true;
-		this.approvalHistoryRendered = true;
+		this.isDecisionRendered = true;
+		this.isDecisionRequired = true;
+		this.isDecisionDisable = false;
+		this.isConfirmationVisible = false;
+		this.isConfirmationRequired = false;
+		this.isCommentRendered = true;
+		this.isCommentRequired = true;
+		this.isApprovalHistoryRendered = true;
 
 		// information state
-		this.ticketTitleReadOnly = true;
-		this.ticketNumberReadOnly = true;
-		this.ticketTypeReadOnly = true;
-		this.ticketRaiserReadOnly = true;
-		this.ticketDescriptionReadOnly = true;
+		this.isTicketTitleReadOnly = true;
+		this.isTicketNumberReadOnly = true;
+		this.isTicketTypeReadOnly = true;
+		this.isTicketRaiserReadOnly = true;
+		this.isTicketDescriptionReadOnly = true;
 	}
 
 	public void initConfirmTicketContentState() {
-		this.decisionRendered = false;
-		this.decisionRequired = false;
-		this.decisionDisable = true;
-		this.confirmationVisible = true;
-		this.confirmationRequired = true;
-		this.commentRendered = true;
-		this.commentRequired = true;
-		this.approvalHistoryRendered = true;
+		this.isDecisionRendered = false;
+		this.isDecisionRequired = false;
+		this.isDecisionDisable = true;
+		this.isConfirmationVisible = true;
+		this.isConfirmationRequired = true;
+		this.isCommentRendered = true;
+		this.isCommentRequired = true;
+		this.isApprovalHistoryRendered = true;
 
 		// information state
-		this.ticketTitleReadOnly = true;
-		this.ticketNumberReadOnly = true;
-		this.ticketTypeReadOnly = true;
-		this.ticketRaiserReadOnly = true;
-		this.ticketDescriptionReadOnly = true;
+		this.isTicketTitleReadOnly = true;
+		this.isTicketNumberReadOnly = true;
+		this.isTicketTypeReadOnly = true;
+		this.isTicketRaiserReadOnly = true;
+		this.isTicketDescriptionReadOnly = true;
 	}
 
 	public void initResultTicketContentState() {
-		this.decisionRendered = false;
-		this.commentRendered = false;
-		this.approvalHistoryRendered = true;
+		this.isDecisionRendered = false;
+		this.isCommentRendered = false;
+		this.isApprovalHistoryRendered = true;
 
 		// information state
-		this.ticketTitleReadOnly = true;
-		this.ticketNumberReadOnly = true;
-		this.ticketTypeReadOnly = true;
-		this.ticketRaiserReadOnly = true;
-		this.ticketDescriptionReadOnly = true;
-	}
-
-	public boolean isShowDropdownOfMails() {
-		return showDropdownOfMails;
-	}
-
-	public void setShowDropdownOfMails(boolean showDropdownOfMails) {
-		this.showDropdownOfMails = showDropdownOfMails;
+		this.isTicketTitleReadOnly = true;
+		this.isTicketNumberReadOnly = true;
+		this.isTicketTypeReadOnly = true;
+		this.isTicketRaiserReadOnly = true;
+		this.isTicketDescriptionReadOnly = true;
 	}
 
 	public boolean isTicketTitleReadOnly() {
-		return ticketTitleReadOnly;
+		return isTicketTitleReadOnly;
 	}
 
-	public void setTicketTitleReadOnly(boolean ticketTitleReadOnly) {
-		this.ticketTitleReadOnly = ticketTitleReadOnly;
+	public void setTicketTitleReadOnly(boolean isTicketTitleReadOnly) {
+		this.isTicketTitleReadOnly = isTicketTitleReadOnly;
 	}
 
 	public boolean isTicketNumberReadOnly() {
-		return ticketNumberReadOnly;
+		return isTicketNumberReadOnly;
 	}
 
-	public void setTicketNumberReadOnly(boolean ticketNumberReadOnly) {
-		this.ticketNumberReadOnly = ticketNumberReadOnly;
+	public void setTicketNumberReadOnly(boolean isTicketNumberReadOnly) {
+		this.isTicketNumberReadOnly = isTicketNumberReadOnly;
 	}
 
 	public boolean isTicketTypeReadOnly() {
-		return ticketTypeReadOnly;
+		return isTicketTypeReadOnly;
 	}
 
-	public void setTicketTypeReadOnly(boolean ticketTypeReadOnly) {
-		this.ticketTypeReadOnly = ticketTypeReadOnly;
+	public void setTicketTypeReadOnly(boolean isTicketTypeReadOnly) {
+		this.isTicketTypeReadOnly = isTicketTypeReadOnly;
 	}
 
 	public boolean isTicketRaiserReadOnly() {
-		return ticketRaiserReadOnly;
+		return isTicketRaiserReadOnly;
 	}
 
-	public void setTicketRaiserReadOnly(boolean ticketRaiserReadOnly) {
-		this.ticketRaiserReadOnly = ticketRaiserReadOnly;
+	public void setTicketRaiserReadOnly(boolean isTicketRaiserReadOnly) {
+		this.isTicketRaiserReadOnly = isTicketRaiserReadOnly;
 	}
 
 	public boolean isTicketDescriptionReadOnly() {
-		return ticketDescriptionReadOnly;
+		return isTicketDescriptionReadOnly;
 	}
 
-	public void setTicketDescriptionReadOnly(boolean ticketDescriptionReadOnly) {
-		this.ticketDescriptionReadOnly = ticketDescriptionReadOnly;
+	public void setTicketDescriptionReadOnly(boolean isTicketDescriptionReadOnly) {
+		this.isTicketDescriptionReadOnly = isTicketDescriptionReadOnly;
 	}
 
 	public boolean isTicketTitleRequired() {
-		return ticketTitleRequired;
+		return isTicketTitleRequired;
 	}
 
-	public void setTicketTitleRequired(boolean ticketTitleRequired) {
-		this.ticketTitleRequired = ticketTitleRequired;
+	public void setTicketTitleRequired(boolean isTicketTitleRequired) {
+		this.isTicketTitleRequired = isTicketTitleRequired;
 	}
 
 	public boolean isTicketNumberRequired() {
-		return ticketNumberRequired;
+		return isTicketNumberRequired;
 	}
 
-	public void setTicketNumberRequired(boolean ticketNumberRequired) {
-		this.ticketNumberRequired = ticketNumberRequired;
+	public void setTicketNumberRequired(boolean isTicketNumberRequired) {
+		this.isTicketNumberRequired = isTicketNumberRequired;
 	}
 
 	public boolean isTicketTypeRequired() {
-		return ticketTypeRequired;
+		return isTicketTypeRequired;
 	}
 
-	public void setTicketTypeRequired(boolean ticketTypeRequired) {
-		this.ticketTypeRequired = ticketTypeRequired;
+	public void setTicketTypeRequired(boolean isTicketTypeRequired) {
+		this.isTicketTypeRequired = isTicketTypeRequired;
 	}
 
 	public boolean isTicketRaiserRequired() {
-		return ticketRaiserRequired;
+		return isTicketRaiserRequired;
 	}
 
-	public void setTicketRaiserRequired(boolean ticketRaiserRequired) {
-		this.ticketRaiserRequired = ticketRaiserRequired;
+	public void setTicketRaiserRequired(boolean isTicketRaiserRequired) {
+		this.isTicketRaiserRequired = isTicketRaiserRequired;
 	}
 
 	public boolean isTicketDescriptionRequired() {
-		return ticketDescriptionRequired;
+		return isTicketDescriptionRequired;
 	}
 
-	public void setTicketDescriptionRequired(boolean ticketDescriptionRequired) {
-		this.ticketDescriptionRequired = ticketDescriptionRequired;
+	public void setTicketDescriptionRequired(boolean isTicketDescriptionRequired) {
+		this.isTicketDescriptionRequired = isTicketDescriptionRequired;
+	}
+
+	public boolean isShowDropdownOfMails() {
+		return isShowDropdownOfMails;
+	}
+
+	public void setShowDropdownOfMails(boolean isShowDropdownOfMails) {
+		this.isShowDropdownOfMails = isShowDropdownOfMails;
 	}
 
 }

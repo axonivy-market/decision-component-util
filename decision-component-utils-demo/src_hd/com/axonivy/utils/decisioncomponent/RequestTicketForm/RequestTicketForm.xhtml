@@ -12,7 +12,8 @@
 		<ui:define name="content">
 			<c:set var="managedBean" value="#{data.bean}" />
 			<h:form id="content-form">
-				<p:growl id="growl-message" showDetail="true" sticky="true" for="growl-message" />
+				<p:growl id="growl-message" showDetail="true" sticky="true"
+					for="growl-message" />
 
 				<ic:com.axonivy.utils.decisioncomponent.TicketInformation
 					id="ticket-information-section" managedBean="#{managedBean}"
@@ -29,30 +30,26 @@
 					ticketDescriptionRequired="#{managedBean.contentState.ticketDescriptionRequired}" />
 
 				<ic:com.axonivy.utils.decisioncomponent.ApprovalDecision
-					id="approvalDecision"
+					id="approval-decision"
 					managedBean="#{managedBean.approvalDecisionBean}"
 					validatorId="#{managedBean.approvalDecisionBean.validatorId}"
 					fieldsetLegend="#{ivy.cms.co('/Dialogs/com/axonivy/utils/decisioncomponent/RequestTicketForm/DecisionLegend')}"
-					fieldsetToggleable="#{true}" 
-					fieldsetStyleClass="p-mt-3"
+					fieldsetToggleable="#{true}" fieldsetStyleClass="p-mt-3"
 					headline="#{ivy.cms.co('/Dialogs/com/axonivy/utils/decisioncomponent/RequestTicketForm/ApprovalDecisionHeadline')}"
-					headlinePanelStyleClass="" 
-					headlineStyleClass="p-text-bold"
+					headlinePanelStyleClass="" headlineStyleClass="p-text-bold"
 					helpText="#{ivy.cms.co('/Dialogs/com/axonivy/utils/decisioncomponent/RequestTicketForm/ApprovalDecisionHelpText')}"
-					helpTextPanelStyleClass="" 
-					helpTextStyleClass=""
+					helpTextPanelStyleClass="" helpTextStyleClass=""
 					decisionRendered="#{managedBean.contentState.decisionRendered}"
 					decisionDisable="#{managedBean.contentState.decisionDisable}"
 					decisionRequired="#{managedBean.contentState.decisionRequired}"
 					listenerOnDecisionAction="#{managedBean.onChangeDecision()}"
-					componentToUpdateOnDecision="approvalDecision:dropDownListOfMails"
+					componentToUpdateOnDecision="approval-decision:drop-down-list-of-mails"
 					commentRendered="#{managedBean.contentState.commentRendered}"
 					commentRequired="#{managedBean.contentState.commentRequired}"
 					approvalHistoryRendered="#{managedBean.contentState.approvalHistoryRendered}">
 					<f:facet name="customContent">
-						<h:panelGroup id="dropDownListOfMails">
-							<h:panelGroup id="mail-panel" 
-								layout="block"
+						<h:panelGroup id="drop-down-list-of-mails">
+							<h:panelGroup id="mail-panel" layout="block"
 								styleClass="p-formgrid p-grid p-align-baseline ui-fluid"
 								rendered="#{managedBean.contentState.showDropdownOfMails}">
 								<div class="p-field p-text-left p-text-md-right p-col-12 p-md-2">

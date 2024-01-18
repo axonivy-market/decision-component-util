@@ -50,10 +50,16 @@ public class ValidationUtils {
 	}
 
 	public static void validate(UIComponent component, Object value) {
+		// Get the required message from the UIInput component
 		String requiredMessage = ((UIInput) component).getRequiredMessage();
+
+		// Check if the value is null or an empty string or a blank string
+		// Also, check if the value is a select one menu, select many checkbox,
+		// select boolean checkbox, or an empty collection
 		if (value == null || StringUtils.isBlank(value.toString()) || validateSelectOneMenu(component, value)
 				|| validateSelectManyCheckbox(component, value) || validateSelectBooleanCheckbox(component, value)
-				|| value instanceof Collection<?> && CollectionUtils.isEmpty((Collection<?>) value)) {
+				|| (value instanceof Collection<?> && CollectionUtils.isEmpty((Collection<?>) value))) {
+			// If any of the conditions are true, add a growl error message
 			addGrowlErrorMessage(requiredMessage);
 		}
 	}

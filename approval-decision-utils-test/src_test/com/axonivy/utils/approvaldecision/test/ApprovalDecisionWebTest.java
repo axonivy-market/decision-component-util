@@ -29,7 +29,7 @@ public class ApprovalDecisionWebTest {
 
 	@BeforeEach
 	void startProcess() {
-		open(EngineUrl.createProcessUrl("/decision-component-utils-demo/18BA886784A13BAE/start.ivp"));
+		open(EngineUrl.createProcessUrl("/approval-decision-utils-demo/18BA886784A13BAE/start.ivp"));
 	}
 
 	@Test

@@ -55,7 +55,7 @@ Example:
   
 Example:  
   
-     <ic:com.axonivy.utils.decisioncomponent.ApprovalDecision
+     <ic:com.axonivy.utils.approvaldecision.ApprovalDecision
 		id="approvalDecision"
 		managedBean="#{managedBean.approvalDecisionBean}"
 		validatorId="#{managedBean.approvalDecisionBean.validatorId}"
@@ -80,9 +80,9 @@ Example:
 ![](./doc/img/1-request.PNG)
  
 ### Create managed bean
-Create the managed bean of this component by extending `com.axonivy.utils.decisioncomponent.managedbean.AbstractApprovalDecisionBean` class.  
+Create the managed bean of this component by extending `com.axonivy.utils.approvaldecision.managedbean.AbstractApprovalDecisionBean` class.  
   
-By default, the component uses the enum `com.axonivy.utils.decisioncomponent.enums.ApprovalDecisionOption` to obtain decision options. If you prefer to use your own enum as options for decision, override the methods `getDecisionLabel()`, `getDecisions()`.  
+By default, the component uses the enum `com.axonivy.utils.approvaldecision.enums.ApprovalDecisionOption` to obtain decision options. If you prefer to use your own enum as options for decision, override the methods `getDecisionLabel()`, `getDecisions()`.  
   
 ### Handle save/submit approval histories in your managed bean.  
   
@@ -124,7 +124,7 @@ Example:
 
 
 ## Attributes  
-- `managedBean`: It is required and must extend `com.axonivy.utils.decisioncomponent.managedbean.AbstractApprovalDecisionBean` class.  
+- `managedBean`: It is required and must extend `com.axonivy.utils.approvaldecision.managedbean.AbstractApprovalDecisionBean` class.  
 - `isReadOnly`: Configures the component to be read-only. The default is `false`.
 - `fieldsetToggleable`: Makes the fieldset toggleable. Default is `false`.  
 - `fieldsetLegend`: Legend text of the fieldset.  Default is `Approval decision`.
@@ -134,7 +134,7 @@ Example:
 - `helpText`: Help text inside the component.  
 - `helpTextPanelStyleClass`: Style class for the panel of the help text.  
 - `helpTextStyleClass`: Style class for the help text.  
-- `validatorId`: ID of the validator, default value is `decisionComponentValidator` (`com.axonivy.utils.decisioncomponent.validation.DecisionComponentValidator`).  
+- `validatorId`: ID of the validator, default value is `approvalDecisionValidator` (`com.axonivy.utils.approvaldecision.validation.ApprovalDecisionValidator`).  
 - `decisionLabel`: Label for the decision options.  
 - `decisionRequired`: Flag to perform a mandatory check for decision. Default is `true`.  
 - `decisionRendered`: Flag to render decision options. Default is `true`.  
@@ -160,29 +160,29 @@ Facets
 
 Example:  
   
-	<ic:com.axonivy.utils.decisioncomponent.ApprovalDecision id="approvalDecision"  
+	<ic:com.axonivy.utils.approvaldecision.ApprovalDecision id="approvalDecision"  
 	managedBean="#{managedBean.approvalDecisionBean}">
 		<f:facet name="customHeadline">  
 		  <p>Please check this <a href="www.google.com">Email</a> before proceed</p>  
 		</f:facet>  
-	</ic:com.axonivy.utils.decisioncomponent.ApprovalDecision>  
+	</ic:com.axonivy.utils.approvaldecision.ApprovalDecision>  
   
 - `customHelpText`: Custom help text.  Use this when you need a more elaborate help text than simple text. 
 
 Example:  
   
-	<ic:com.axonivy.utils.decisioncomponent.ApprovalDecision id="approvalDecision"  
+	<ic:com.axonivy.utils.approvaldecision.ApprovalDecision id="approvalDecision"  
 	managedBean="#{managedBean.approvalDecisionBean}"> 
 		<f:facet name="customHelpText">  
 		  <p>Please check this <a href="www.google.com">Email</a> before proceed</p>  
 		</f:facet>  
-	</ic:com.axonivy.utils.decisioncomponent.ApprovalDecision>
+	</ic:com.axonivy.utils.approvaldecision.ApprovalDecision>
   
 - `customContent`: Custom content for special requirements.  
 
 Example: The following code adds the label `Email address of relevant department` and the dropdown list to the content.
   
-	<ic:com.axonivy.utils.decisioncomponent.ApprovalDecision id="approvalDecision"  
+	<ic:com.axonivy.utils.approvaldecision.ApprovalDecision id="approvalDecision"  
 		managedBean="#{managedBean.approvalDecisionBean}">
 		<f:facet name="customContent">  
 		  <h:panelGroup id="dropDownListOfMails">
@@ -205,14 +205,14 @@ Example: The following code adds the label `Email address of relevant department
 					  value="#{managedBean.departmentMails.entrySet()}"
 					  var="department" itemLabel="#{department.key}"
 					  itemValue="#{department.value}" />
-					<f:validator validatorId="decisionComponentValidator" />
+					<f:validator validatorId="aprovalDecisionValidator" />
 				  </p:selectOneMenu>
 				  <p:message for="dropdownlist-mail" />
 				</div>
 			  </h:panelGroup>
 			</h:panelGroup>
 		</f:facet>
-	</ic:com.axonivy.utils.decisioncomponent.ApprovalDecision>
+	</ic:com.axonivy.utils.approvaldecision.ApprovalDecision>
 
 
 ![](./doc/img/2-request-custom-content.PNG)

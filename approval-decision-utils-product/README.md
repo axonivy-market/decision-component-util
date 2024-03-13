@@ -1,5 +1,5 @@
 
-# Decision component  
+# Approval decision 
   
 ## Introduction
   
@@ -51,7 +51,7 @@ Example:
 	public class TicketRequest extends BaseRequest<ApprovalHistory>{}
 	public class ApprovalHistory extends BaseApprovalHistory{}
 
-### Integrate Dicision component to HTML dialog
+### Integrate Approval decision to HTML dialog
   
 Example:  
   

@@ -28,7 +28,7 @@ public class TicketProcessUtils {
 	}
 
 	public static void showInfo() {
-		addMessage(FacesMessage.SEVERITY_INFO, "Info message", "Save successfully");
+		addMessage(FacesMessage.SEVERITY_INFO, "Save successfully", "");
 	}
 
 }

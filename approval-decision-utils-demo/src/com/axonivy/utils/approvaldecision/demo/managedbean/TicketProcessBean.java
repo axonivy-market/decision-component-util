@@ -113,10 +113,6 @@ public class TicketProcessBean {
 		}
 	}
 
-	public void onChangeConfirmation() {
-		// implement listener for confirmation action
-	}
-
 	public TicketRequest getRequest() {
 		return request;
 	}

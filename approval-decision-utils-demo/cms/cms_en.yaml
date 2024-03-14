@@ -40,6 +40,8 @@ Enums:
                   name: Approve
                 CANCEL:
                   name: Cancel
+                COMPLETE:
+                  name: Complete
                 FORWARD_TO:
                   name: Forward to
                 REJECT:

@@ -93,7 +93,7 @@ public class TicketProcessBean {
 
 	public void submit() {
 		if (processStep == ProcessStep.CONFIRM_TICKET) {
-			approvalDecisionBean.getApprovalHistory().setDecision(TicketProcessApprovalDecision.COMPLETE.toString());
+			approvalDecisionBean.getApprovalHistory().setDecision(TicketProcessApprovalDecision.COMPLETE.name());
 		}
 
 		approvalDecisionBean.handleApprovalHistoryBeforeSubmit(this.request.getApprovalHistories());

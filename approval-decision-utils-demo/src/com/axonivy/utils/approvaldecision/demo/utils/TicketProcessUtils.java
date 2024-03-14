@@ -1,5 +1,6 @@
 package com.axonivy.utils.approvaldecision.demo.utils;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
@@ -10,13 +11,17 @@ import javax.faces.context.FacesContext;
 import org.primefaces.PrimeFaces;
 
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.request.IHttpResponse;
 
 public class TicketProcessUtils {
 
 	public static void navigateToHomePage() throws MalformedURLException {
-		String statement = "parent.redirectToUrlCommand([{name: 'url', value: '"
-				+ URLDecoder.decode(Ivy.html().applicationHomeRef(), StandardCharsets.UTF_8) + "'}])";
-		PrimeFaces.current().executeScript(statement);
+		IHttpResponse httpResponse = (IHttpResponse) Ivy.response();
+		try {
+			httpResponse.sendRedirect(URLDecoder.decode(Ivy.html().applicationHomeRef(), StandardCharsets.UTF_8));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static void addMessage(FacesMessage.Severity severity, String summary, String detail) {

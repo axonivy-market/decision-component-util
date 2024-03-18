@@ -77,7 +77,7 @@ Example:
 		commentRequired="#{managedBean.contentState.commentRequired}"
 		approvalHistoryRendered="#{managedBean.contentState.approvalHistoryRendered}">
 
-![](./doc/img/1-request.PNG)
+![](./images/1-request.PNG)
  
 ### Create managed bean
 Create the managed bean of this component by extending `com.axonivy.utils.approvaldecision.managedbean.AbstractApprovalDecisionBean` class.  
@@ -215,4 +215,4 @@ Example: The following code adds the label `Email address of relevant department
 	</ic:com.axonivy.utils.approvaldecision.ApprovalDecision>
 
 
-![](./doc/img/2-request-custom-content.PNG)
+![](./images/2-request-custom-content.PNG)

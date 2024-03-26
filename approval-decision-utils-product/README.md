@@ -5,10 +5,17 @@ This component provides a standardized approach for implementing the approval fl
   
 ## Demo
   
+###  show decision option
+![](./images/1-request.PNG)
 
-custom here
+###  validation
+![](./images/3-request-validate)
 
+###  show history
+![](./images/4-request-history)
 
+###  select box confirmation
+![](./images/5-request-confirmation)
 
 ## Setup
   

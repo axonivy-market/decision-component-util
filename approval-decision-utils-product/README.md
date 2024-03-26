@@ -9,13 +9,13 @@ This component provides a standardized approach for implementing the approval fl
 ![](./images/1-request.PNG)
 
 ###  validation
-![](./images/3-request-validate)
+![](./images/3-request-validate.PNG)
 
 ###  show history
-![](./images/4-request-history)
+![](./images/4-request-history.PNG)
 
 ###  select box confirmation
-![](./images/5-request-confirmation)
+![](./images/5-request-confirmation.PNG)
 
 ## Setup
   

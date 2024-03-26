@@ -1,19 +1,32 @@
 
-# Approval decision 
-  
-## Introduction
+# Approval Decision Utils
   
 This component provides a standardized approach for implementing the approval flow. Users can make decisions, confirmations, leave comments, and view the approval history in a data table.
   
-##  Approach  
+## Demo
+  
+###  1. Display decision option
+![](./images/1-request.PNG)
+
+###  2. Validate decision option
+![](./images/3-request-validate.PNG)
+
+###  3. Track approval history
+![](./images/4-request-history.PNG)
+
+###  4. Select checkbox confirmation
+![](./images/5-request-confirmation.PNG)
+
+## Setup
+  
+###  Approach  
   
 Decision data is stored in database table named `ApprovalHistory`. This table stores the selected decision, comment, approval date and confirmations.
   
 The data from this table will be utilized to populate the Approval History section.
   
-##  How to use
-
 ### Set up database
+
 - Create the `ApprovalHistory` table with default columns for storing decision data. Additional columns can be added based on business. You can also modify the table name.
 - The `RequestApprovalHistory` table establishes the relationship between your business data and the approval history.
 
@@ -80,6 +93,7 @@ Example:
 ![](./images/1-request.PNG)
  
 ### Create managed bean
+
 Create the managed bean of this component by extending `com.axonivy.utils.approvaldecision.managedbean.AbstractApprovalDecisionBean` class.  
   
 By default, the component uses the enum `com.axonivy.utils.approvaldecision.enums.ApprovalDecisionOption` to obtain decision options. If you prefer to use your own enum as options for decision, override the methods `getDecisionLabel()`, `getDecisions()`.  
@@ -123,7 +137,7 @@ Example:
 	@Override public String getApprovalHistoryTableSortField() { return "displayUserName"; }  
 
 
-## Attributes  
+### Attributes  
 - `managedBean`: It is required and must extend `com.axonivy.utils.approvaldecision.managedbean.AbstractApprovalDecisionBean` class.  
 - `isReadOnly`: Configures the component to be read-only. The default is `false`.
 - `fieldsetToggleable`: Makes the fieldset toggleable. Default is `false`.  
@@ -216,3 +230,8 @@ Example: The following code adds the label `Email address of relevant department
 
 
 ![](./images/2-request-custom-content.PNG)
+
+
+
+
+

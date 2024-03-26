@@ -1,20 +1,20 @@
 
-# Approval decision 
+# Approval Decision Utils
   
 This component provides a standardized approach for implementing the approval flow. Users can make decisions, confirmations, leave comments, and view the approval history in a data table.
   
 ## Demo
   
-###  1: show decision option
+###  1. Display decision option
 ![](./images/1-request.PNG)
 
-###  2: validation
+###  2. Validate decision option
 ![](./images/3-request-validate.PNG)
 
-###  3: show history
+###  3. Track approval history
 ![](./images/4-request-history.PNG)
 
-###  4: select box confirmation
+###  4. Select checkbox confirmation
 ![](./images/5-request-confirmation.PNG)
 
 ## Setup

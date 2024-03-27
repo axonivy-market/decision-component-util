@@ -18,7 +18,7 @@ Axon Ivy's Approval Decision Utils provides a standardized approach for implemen
 ###  3. Track approval history
 ![](./images/4-request-history.PNG)
 
-###  4. Select checkbox confirmation
+###  4. Select confirmation checkbox
 ![](./images/5-request-confirmation.PNG)
 
 ## Setup

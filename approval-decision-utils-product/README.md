@@ -1,7 +1,11 @@
 
 # Approval Decision Utils
   
-This component provides a standardized approach for implementing the approval flow. Users can make decisions, confirmations, leave comments, and view the approval history in a data table.
+This component provides a standardized approach for implementing the approval flow.
+> * Gives you a standard pattern to make decisions and confirmations
+> * Implements a comment function for better documentation
+> * Provides a clear view of the ongoing approval history to meet regulatory, compliance, and transparency requirements
+> * Supports you with an easy-to-copy demo implementation to reduce your integration effort.
   
 ## Demo
   
@@ -21,7 +25,7 @@ This component provides a standardized approach for implementing the approval fl
   
 ###  Approach  
   
-Decision data is stored in database table named `ApprovalHistory`. This table stores the selected decision, comment, approval date and confirmations.
+Decision data is stored in a database table named ApprovalHistory. This table stores the selected decisions, comments, approval dates, and confirmations.
   
 The data from this table will be utilized to populate the Approval History section.
   

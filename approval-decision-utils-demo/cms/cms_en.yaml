@@ -1,0 +1,60 @@
+Dialogs:
+  com:
+    axonivy:
+      utils:
+        approvaldecision:
+          ConfirmTicketRequest:
+            ApprovalDecisionHeadline: 'Step 3: Please select a decision option'
+            ApprovalDecisionHelpText: 'Step 3: Please select a decision option and write a comment'
+            DecisionLegend: 'Step 3: Confirmation Decision'
+            Title: Confirm ticket request
+          RequestTicketForm:
+            ApprovalDecisionHeadline: 'Step 1: Please select a decision option'
+            ApprovalDecisionHelpText: 'Step 1: Please select a decision option and write a comment'
+            DecisionLegend: 'Step 1: Request Decision'
+            Title: Request ticket
+          ResultTicketRequest:
+            ApprovalDecisionHeadline: 'Final Step: ApprovalHistory result'
+            ApprovalDecisionHelpText: 'Final Step: ApprovalHistory result'
+            DecisionLegend: Result Decision
+            Title: Result ticket request
+          ReviewTicketRequest:
+            ApprovalDecisionHeadline: 'Step 2: Please select a decision option'
+            ApprovalDecisionHelpText: 'Step 2: Please select a decision option and write a comment'
+            DecisionLegend: 'Step 2: Review Decision'
+            Title: Review ticket request
+Enums:
+  com:
+    axonivy:
+      utils:
+        approvaldecision:
+          demo:
+            enums:
+              TicketProcessApprovalConfirmation:
+                MANAGER:
+                  name: Manager
+                PAYROLL:
+                  name: Payroll
+              TicketProcessApprovalDecision:
+                APPROVE:
+                  name: Approve
+                CANCEL:
+                  name: Cancel
+                COMPLETE:
+                  name: Complete
+                FORWARD_TO:
+                  name: Forward to
+                REJECT:
+                  name: Reject
+                RETURN_BACK_TO_REQUESTER:
+                  name: Return back to requester
+                SEND_TO_REVIEWER:
+                  name: Send to reviewer
+Labels:
+  EmailAddressOfRelevantDepartment: Email address of relevant department
+  InformationLegend: Ticket information
+  TicketDescription: Ticket description
+  TicketNumber: Ticket number
+  TicketRaiser: Ticket raiser
+  TicketTitle: Ticket title
+  TicketType: Ticket type

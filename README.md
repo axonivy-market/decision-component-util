@@ -1,7 +1,4 @@
-# MY-PRODUCT-NAME
+# Decision component
+This component provides a standardized approach for implementing the approval flow. Users can make decisions, confirmations, leave comments, and view the approval history in a data table.
 
-[![CI Build](https://github.com/axonivy-market/REPO-NAME/actions/workflows/ci.yml/badge.svg)](https://github.com/axonivy-market/REPO-NAME/actions/workflows/ci.yml)
-
-"YOUR SHORT DESCRIPTION GOES HERE"
-
-Read our [documentation](MY-PRODUCT-NAME-product/README.md).
+Read our [documentation](approval-decision-utils-product/README.md).

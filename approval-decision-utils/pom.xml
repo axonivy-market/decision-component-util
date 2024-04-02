@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.axonivy.utils.approvaldecision</groupId>
 	<artifactId>approval-decision-utils</artifactId>
-	<version>10.0.17-SNAPSHOT</version>
+	<version>10.0.18-SNAPSHOT</version>
 	<packaging>iar</packaging>
 
 	<dependencies>
@@ -31,7 +31,7 @@
 	</repositories>
 
 	<properties>
-		<ivy.engine.version>10.0.17</ivy.engine.version>
+		<ivy.engine.version>10.0.18</ivy.engine.version>
 		<build.plugin.version>10.0.16</build.plugin.version>
 	</properties>
 

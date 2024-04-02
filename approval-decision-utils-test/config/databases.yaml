@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=https://json-schema.axonivy.com/app/0.0.1/databases.json
 Databases:
-  cmt_test:
+  approval_decision_utils_test:
     Url: jdbc:hsqldb:mem:approval-decision-utils
     Driver: org.hsqldb.jdbc.JDBCDriver
     UserName: approval-decision-utils

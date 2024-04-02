@@ -16,7 +16,7 @@ import com.axonivy.ivy.webtest.primeui.widget.SelectOneRadio;
 import com.axonivy.ivy.webtest.primeui.widget.Table;
 import com.codeborne.selenide.Selenide;
 
-@IvyWebTest(headless = false)
+@IvyWebTest()
 public class ApprovalDecisionWebTest {
 
 	private static final String DECISION_OPTION_FORWARD_TO = "Forward to";

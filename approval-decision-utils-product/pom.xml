@@ -2,6 +2,6 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.axonivy.utils.approvaldecision</groupId>
   <artifactId>approval-decision-utils-product</artifactId>
-  <version>10.0.14-SNAPSHOT</version>
+  <version>10.0.18-SNAPSHOT</version>
   <packaging>pom</packaging>
 </project>

@@ -16,7 +16,7 @@ import com.axonivy.ivy.webtest.primeui.widget.SelectOneRadio;
 import com.axonivy.ivy.webtest.primeui.widget.Table;
 import com.codeborne.selenide.Selenide;
 
-@IvyWebTest
+@IvyWebTest()
 public class ApprovalDecisionWebTest {
 
 	private static final String DECISION_OPTION_FORWARD_TO = "Forward to";
@@ -33,9 +33,9 @@ public class ApprovalDecisionWebTest {
 
 	@Test
 	public void checkButtonsExists() {
-		$(By.id("content-form:cancel")).shouldBe(visible).click();
-		$(By.id("content-form:save-button")).shouldBe(visible).click();
-		$(By.id("content-form:complete-button")).shouldBe(visible).click();
+		$(By.id("content-form:cancel")).shouldBe(visible);
+		$(By.id("content-form:save-button")).shouldBe(visible);
+		$(By.id("content-form:complete-button")).shouldBe(visible);
 	}
 
 	@Test

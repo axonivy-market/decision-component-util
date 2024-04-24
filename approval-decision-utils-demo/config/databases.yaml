@@ -1,9 +1,8 @@
-# yaml-language-server: $schema=https://json-schema.axonivy.com/app/0.0.1/databases.json
 Databases:
   approval-decision-utils:
-    Url: jdbc:sqlserver://localhost;databaseName=approval-decision-utils
+    Url: jdbc:sqlserver://10.193.8.219;databaseName=decision-component-utils
     Driver: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    UserName: ricoh
-    Password: ${decrypt:\u00BD\u0049\u0080\u003A\u0083\u00CD\u0084\u000A\u0055\u001E\u008C\u0014\u0035\u006B\u0012\u0018\u00CE\u00AE\u0009\u007C\u00C2\u0089\u00B8\u00A3\u0096\u0000\u0074\u001D\u0048\u00E3\u0090\u006B}
+    UserName: sa
+    Password: ${decrypt:\u0084\u0070\u007A\u008D\u0017\u0080\u0082\u0019\u00F5\u0036\u005A\u008D\u006C\u0014\u008F\u00ED\u00BF\u0058\u00BE\u003B\u00FC\u00D6\u00C3\u00EC\u007A\u00F1\u0069\u00AA\u0056\u0000\u002E\u0002\u00CC\u005B\u00F3\u0062\u00BE\u0005\u00BA\u00ED\u000C\u002D\u00B2\u002E\u0026\u00A2\u0021\u008D\u00DB\u00C4\u0056\u002D\u00A0\u0065\u005E\u0076\u00D8\u00EE\u000F\u000F\u0091\u0031\u0008\u0012\u00B6\u0052\u0092\u000F\u00CA\u0018\u0095\u00E6\u00E8\u00D0\u00DF\u00B3\u0078\u0034\u0034\u0036}
     Properties:
       trustServerCertificate: 'true'

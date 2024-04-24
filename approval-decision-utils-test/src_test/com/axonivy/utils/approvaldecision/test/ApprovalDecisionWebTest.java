@@ -3,20 +3,23 @@ package com.axonivy.utils.approvaldecision.test;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
 
+import java.net.URLEncoder;
+
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
-import com.axonivy.ivy.webtest.engine.EngineUrl;
 import com.axonivy.ivy.webtest.primeui.PrimeUi;
 import com.axonivy.ivy.webtest.primeui.widget.SelectOneRadio;
 import com.axonivy.ivy.webtest.primeui.widget.Table;
 import com.codeborne.selenide.Selenide;
+import static com.codeborne.selenide.Selenide.open;
 
-@IvyWebTest()
+
+@IvyWebTest
 public class ApprovalDecisionWebTest {
 
 	private static final String DECISION_OPTION_FORWARD_TO = "Forward to";
@@ -25,10 +28,29 @@ public class ApprovalDecisionWebTest {
 
 	private static final String REQUEST_COMMENT = "Please review my ticket request";
 	private static final String OK_COMMENT = "Ok";
+	
+	private final static String BASE_URL = "http://atomic.server.ivy-cloud.com:8082/";
+	private final static String PROJECT_NAME = "approval-decision-utils";
+	private final static String LOGIN_URL_PATTERN = "/pro/approval-decision-utils-demo/18EF413FC8C934DE/start.ivp?username=%s&password=%s";
+	
+	@BeforeAll
+	public static void setupCredential() {
+		try {
+			String username = URLEncoder.encode("user1", "UTF-8");
+			String password = URLEncoder.encode("123456", "UTF-8");
+
+			open(String.format(BASE_URL + PROJECT_NAME + LOGIN_URL_PATTERN, username, password));
+
+		} catch (Exception ex) {
+			System.out.println("error while trying to login: "+ex);
+		}
+
+		Selenide.sleep(1000);
+	}
 
 	@BeforeEach
 	void startProcess() {
-		open(EngineUrl.createProcessUrl("/approval-decision-utils-demo/18BA886784A13BAE/start.ivp"));
+		open(BASE_URL + PROJECT_NAME +"/pro/approval-decision-utils-demo/18BA886784A13BAE/start.ivp");
 	}
 
 	@Test

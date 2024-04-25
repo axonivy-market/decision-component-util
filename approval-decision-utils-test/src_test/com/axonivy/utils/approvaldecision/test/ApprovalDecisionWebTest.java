@@ -19,6 +19,11 @@ import com.codeborne.selenide.Selenide;
 import static com.codeborne.selenide.Selenide.open;
 
 
+
+import static com.codeborne.selenide.Condition.*;
+
+
+
 @IvyWebTest
 public class ApprovalDecisionWebTest {
 
@@ -36,10 +41,14 @@ public class ApprovalDecisionWebTest {
 	@BeforeAll
 	public static void setupCredential() {
 		try {
-			String username = URLEncoder.encode("user1", "UTF-8");
-			String password = URLEncoder.encode("123456", "UTF-8");
+			//String username = URLEncoder.encode("user1", "UTF-8");
+			//String password = URLEncoder.encode("123456", "UTF-8");
 
-			open(String.format(BASE_URL + PROJECT_NAME + LOGIN_URL_PATTERN, username, password));
+			//open(String.format(BASE_URL + PROJECT_NAME + LOGIN_URL_PATTERN, username, password));
+			
+			openApprovalDecisionUtils();
+			login();
+			
 
 		} catch (Exception ex) {
 			System.out.println("error while trying to login: "+ex);
@@ -47,6 +56,21 @@ public class ApprovalDecisionWebTest {
 
 		Selenide.sleep(1000);
 	}
+	
+	
+	private static void login() {
+		$(By.id("login:login-form:username")).should(editable).sendKeys("user1");
+		$(By.id("login:login-form:password")).should(editable).sendKeys("123456");
+		$(By.id("login:login-form:login-command")).shouldBe(enabled).click();
+		$(By.id("welcome-welcome_1:welcome-text")).shouldBe(visible, text("welcome to the Axon Ivy Portal!"));
+	}
+
+	private static void openApprovalDecisionUtils() {
+		open(BASE_URL +  PROJECT_NAME +"/");
+	}
+
+
+	
 
 	@BeforeEach
 	void startProcess() {

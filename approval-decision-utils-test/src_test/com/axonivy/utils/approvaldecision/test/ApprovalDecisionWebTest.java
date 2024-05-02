@@ -18,11 +18,7 @@ import com.axonivy.ivy.webtest.primeui.widget.Table;
 import com.codeborne.selenide.Selenide;
 import static com.codeborne.selenide.Selenide.open;
 
-
-
-import static com.codeborne.selenide.Condition.*;
-
-
+import com.axonivy.ivy.webtest.engine.EngineUrl;
 
 @IvyWebTest
 public class ApprovalDecisionWebTest {
@@ -30,51 +26,35 @@ public class ApprovalDecisionWebTest {
 	private static final String DECISION_OPTION_FORWARD_TO = "Forward to";
 	private static final String DECISION_OPTION_SEND_TO_REVIEWER = "Send to reviewer";
 	private static final String DECISION_OPTION_APPROVE = "Approve";
-
 	private static final String REQUEST_COMMENT = "Please review my ticket request";
 	private static final String OK_COMMENT = "Ok";
-	
-	private final static String BASE_URL = "http://atomic.server.ivy-cloud.com:8082/";
-	private final static String PROJECT_NAME = "approval-decision-utils";
-	private final static String LOGIN_URL_PATTERN = "/pro/approval-decision-utils-demo/18EF413FC8C934DE/start.ivp?username=%s&password=%s";
+
 	
 	@BeforeAll
 	public static void setupCredential() {
 		try {
-			//String username = URLEncoder.encode("user1", "UTF-8");
-			//String password = URLEncoder.encode("123456", "UTF-8");
-
-			//open(String.format(BASE_URL + PROJECT_NAME + LOGIN_URL_PATTERN, username, password));
+			String username = URLEncoder.encode("user1", "UTF-8");
+			String password = URLEncoder.encode("123456", "UTF-8");
+			String LOGIN_URL_PATTERN = "/approval-decision-utils-demo/18EF413FC8C934DE/start.ivp?username=%s&password=%s";
 			
-			openApprovalDecisionUtils();
-			login();
-			
+			String url = EngineUrl.createProcessUrl(String.format(LOGIN_URL_PATTERN, username, password));
+			System.out.println("Url: " + url);
 
+			open(url);
 		} catch (Exception ex) {
-			System.out.println("error while trying to login: "+ex);
+			System.out.println("error while trying to login: " + ex);
 		}
 
 		Selenide.sleep(1000);
 	}
-	
-	
-	private static void login() {
-		$(By.id("login:login-form:username")).should(editable).sendKeys("user1");
-		$(By.id("login:login-form:password")).should(editable).sendKeys("123456");
-		$(By.id("login:login-form:login-command")).shouldBe(enabled).click();
-		$(By.id("welcome-welcome_1:welcome-text")).shouldBe(visible, text("welcome to the Axon Ivy Portal!"));
-	}
-
-	private static void openApprovalDecisionUtils() {
-		open(BASE_URL +  PROJECT_NAME +"/");
-	}
-
-
-	
 
 	@BeforeEach
 	void startProcess() {
-		open(BASE_URL + PROJECT_NAME +"/pro/approval-decision-utils-demo/18BA886784A13BAE/start.ivp");
+		
+		String loginUrl = EngineUrl.createProcessUrl("/approval-decision-utils-demo/18BA886784A13BAE/start.ivp");
+		System.out.println("loginUrl: " + loginUrl);
+		
+		open(loginUrl);
 	}
 
 	@Test

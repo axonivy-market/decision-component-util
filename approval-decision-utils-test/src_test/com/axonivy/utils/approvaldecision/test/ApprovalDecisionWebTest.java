@@ -20,7 +20,7 @@ import static com.codeborne.selenide.Selenide.open;
 
 import com.axonivy.ivy.webtest.engine.EngineUrl;
 
-@IvyWebTest
+@IvyWebTest()
 public class ApprovalDecisionWebTest {
 
 	private static final String DECISION_OPTION_FORWARD_TO = "Forward to";

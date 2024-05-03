@@ -26,7 +26,7 @@
     	<scope>test</scope>
     </dependency>
   </dependencies>
-  
+
   <properties>
     <ivy.engine.version>10.0.18</ivy.engine.version>
     <build.plugin.version>10.0.14</build.plugin.version>

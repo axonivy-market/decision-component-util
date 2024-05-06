@@ -36,11 +36,7 @@ public class ApprovalDecisionWebTest {
 			String username = URLEncoder.encode("user1", "UTF-8");
 			String password = URLEncoder.encode("123456", "UTF-8");
 			String LOGIN_URL_PATTERN = "/approval-decision-utils-demo/18EF413FC8C934DE/start.ivp?username=%s&password=%s";
-			
-			String url = EngineUrl.createProcessUrl(String.format(LOGIN_URL_PATTERN, username, password));
-			System.out.println("Url: " + url);
-
-			open(url);
+			open(EngineUrl.createProcessUrl(String.format(LOGIN_URL_PATTERN, username, password)));
 		} catch (Exception ex) {
 			System.out.println("error while trying to login: " + ex);
 		}
@@ -50,11 +46,7 @@ public class ApprovalDecisionWebTest {
 
 	@BeforeEach
 	void startProcess() {
-		
-		String loginUrl = EngineUrl.createProcessUrl("/approval-decision-utils-demo/18BA886784A13BAE/start.ivp");
-		System.out.println("loginUrl: " + loginUrl);
-		
-		open(loginUrl);
+		open(EngineUrl.createProcessUrl("/approval-decision-utils-demo/18BA886784A13BAE/start.ivp"));
 	}
 
 	@Test

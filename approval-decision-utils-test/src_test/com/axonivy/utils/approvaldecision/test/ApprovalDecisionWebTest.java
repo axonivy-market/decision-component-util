@@ -20,7 +20,7 @@ import static com.codeborne.selenide.Selenide.open;
 
 import com.axonivy.ivy.webtest.engine.EngineUrl;
 
-@IvyWebTest()
+@IvyWebTest
 public class ApprovalDecisionWebTest {
 
 	private static final String DECISION_OPTION_FORWARD_TO = "Forward to";
@@ -29,7 +29,6 @@ public class ApprovalDecisionWebTest {
 	private static final String REQUEST_COMMENT = "Please review my ticket request";
 	private static final String OK_COMMENT = "Ok";
 
-	
 	@BeforeAll
 	public static void setupCredential() {
 		try {
@@ -38,7 +37,7 @@ public class ApprovalDecisionWebTest {
 			String LOGIN_URL_PATTERN = "/approval-decision-utils-demo/18EF413FC8C934DE/start.ivp?username=%s&password=%s";
 			open(EngineUrl.createProcessUrl(String.format(LOGIN_URL_PATTERN, username, password)));
 		} catch (Exception ex) {
-			System.out.println("error while trying to login: " + ex);
+			ex.printStackTrace();
 		}
 
 		Selenide.sleep(1000);

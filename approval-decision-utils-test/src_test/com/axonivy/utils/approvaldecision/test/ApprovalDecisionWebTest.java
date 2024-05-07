@@ -3,28 +3,45 @@ package com.axonivy.utils.approvaldecision.test;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
 
+import java.net.URLEncoder;
+
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
 import com.axonivy.ivy.webtest.IvyWebTest;
-import com.axonivy.ivy.webtest.engine.EngineUrl;
 import com.axonivy.ivy.webtest.primeui.PrimeUi;
 import com.axonivy.ivy.webtest.primeui.widget.SelectOneRadio;
 import com.axonivy.ivy.webtest.primeui.widget.Table;
 import com.codeborne.selenide.Selenide;
+import static com.codeborne.selenide.Selenide.open;
 
-@IvyWebTest()
+import com.axonivy.ivy.webtest.engine.EngineUrl;
+
+@IvyWebTest
 public class ApprovalDecisionWebTest {
 
 	private static final String DECISION_OPTION_FORWARD_TO = "Forward to";
 	private static final String DECISION_OPTION_SEND_TO_REVIEWER = "Send to reviewer";
 	private static final String DECISION_OPTION_APPROVE = "Approve";
-
 	private static final String REQUEST_COMMENT = "Please review my ticket request";
 	private static final String OK_COMMENT = "Ok";
+
+	@BeforeAll
+	public static void setupCredential() {
+		try {
+			String username = URLEncoder.encode("user1", "UTF-8");
+			String password = URLEncoder.encode("123456", "UTF-8");
+			String LOGIN_URL_PATTERN = "/approval-decision-utils-demo/18EF413FC8C934DE/start.ivp?username=%s&password=%s";
+			open(EngineUrl.createProcessUrl(String.format(LOGIN_URL_PATTERN, username, password)));
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+
+		Selenide.sleep(1000);
+	}
 
 	@BeforeEach
 	void startProcess() {

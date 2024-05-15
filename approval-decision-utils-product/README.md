@@ -1,6 +1,8 @@
 
 # Approval Decision Utils
   
+## Description
+  
 Axon Ivy's Approval Decision Utils provides a standardized approach for implementing your approvals in any business process. This component:
 - Gives you a standard pattern to make decisions and confirmations.
 - Implements a comment function for better documentation.
@@ -21,7 +23,7 @@ Axon Ivy's Approval Decision Utils provides a standardized approach for implemen
 ###  4. Select confirmation checkbox
 ![](./images/5-request-confirmation.PNG)
 
-## Setup
+### Setup
   
 ###  Approach  
   

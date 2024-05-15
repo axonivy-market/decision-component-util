@@ -23,7 +23,7 @@ Axon Ivy's Approval Decision Utils provides a standardized approach for implemen
 ###  4. Select confirmation checkbox
 ![](./images/5-request-confirmation.PNG)
 
-### Setup
+## Setup
   
 ###  Approach  
   

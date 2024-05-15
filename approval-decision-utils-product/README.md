@@ -1,4 +1,3 @@
-
 # Approval Decision Utils
   
 Axon Ivy's Approval Decision Utils provides a standardized approach for implementing your approvals in any business process. This component:

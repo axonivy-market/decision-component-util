@@ -11,19 +11,19 @@ Axon Ivy's Approval Decision Utils provides a standardized approach for implemen
 
 ### 1. Display decision option
 
-![](./images/1-request.PNG)
+![](./images/1-request.png)
 
 ### 2. Validate decision option
 
-![](./images/3-request-validate.PNG)
+![](./images/3-request-validate.png)
 
 ### 3. Track approval history
 
-![](./images/4-request-history.PNG)
+![](./images/4-request-history.png)
 
 ### 4. Select confirmation checkbox
 
-![](./images/5-request-confirmation.PNG)
+![](./images/5-request-confirmation.png)
 
 ## Setup
 
@@ -99,7 +99,7 @@ Example:
     	commentRequired="#{managedBean.contentState.commentRequired}"
     	approvalHistoryRendered="#{managedBean.contentState.approvalHistoryRendered}">
 
-![](./images/1-request.PNG)
+![](./images/1-request.png)
 
 ### Create managed bean
 
@@ -240,4 +240,4 @@ Example: The following code adds the label `Email address of relevant department
     	</f:facet>
     </ic:com.axonivy.utils.approvaldecision.ApprovalDecision>
 
-![](./images/2-request-custom-content.PNG)
+![](./images/2-request-custom-content.png)

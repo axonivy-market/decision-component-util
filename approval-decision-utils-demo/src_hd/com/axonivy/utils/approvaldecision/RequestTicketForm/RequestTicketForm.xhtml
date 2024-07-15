@@ -50,15 +50,15 @@
 					<f:facet name="customContent">
 						<h:panelGroup id="dropdown-list-of-mails">
 							<h:panelGroup id="mail-panel" layout="block"
-								styleClass="p-formgrid p-grid p-align-baseline ui-fluid"
+								styleClass="formgrid grid align-items-baseline ui-fluid"
 								rendered="#{managedBean.contentState.showDropdownOfMails}">
-								<div class="p-field p-text-left p-text-md-right p-col-12 p-md-2">
+								<div class="field p-text-left p-text-md-right col-12 md:col-2">
 									<p:outputLabel for="dropdownlist-mail"
 										value="#{ivy.cms.co('/Labels/EmailAddressOfRelevantDepartment')}">
 										<span class="ui-outputlabel-rfi">*</span>
 									</p:outputLabel>
 								</div>
-								<div class="p-field p-col-12 p-md-4">
+								<div class="field col-12 md:col-4">
 									<p:selectOneMenu id="dropdownlist-mail"
 										value="#{managedBean.request.forwardToMail}"
 										requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage')}">

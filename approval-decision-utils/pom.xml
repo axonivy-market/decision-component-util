@@ -5,6 +5,7 @@
 	<artifactId>approval-decision-utils</artifactId>
 	<version>10.0.21-SNAPSHOT</version>
 	<packaging>iar</packaging>
+	
 	<repositories>
 		<repository>
 			<snapshots>
@@ -30,8 +31,17 @@
 
 	<properties>
 		<ivy.engine.version>10.0.18</ivy.engine.version>
-		<build.plugin.version>10.0.16</build.plugin.version>
+		<project.build.plugin.version>10.0.16</project.build.plugin.version>
 	</properties>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>sonatype</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+      <snapshots>
+        <updatePolicy>always</updatePolicy>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
 
 	<build>
 		<sourceDirectory>src</sourceDirectory>
@@ -40,7 +50,7 @@
 			<plugin>
 				<groupId>com.axonivy.ivy.ci</groupId>
 				<artifactId>project-build-plugin</artifactId>
-				<version>${build.plugin.version}</version>
+				<version>${project.build.plugin.version}</version>
 				<extensions>true</extensions>
 				<executions>
 					<execution>

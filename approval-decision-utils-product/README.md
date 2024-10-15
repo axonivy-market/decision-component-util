@@ -5,7 +5,6 @@ Axon Ivy's Approval Decision Utils provides a standardized approach for implemen
 - Gives you a standard pattern to make decisions and confirmations.
 - Implements a comment function for better documentation.
 - Provides a clear view of the ongoing approval history to meet regulatory, compliance, and transparency requirements.
-- Supports you with an easy-to-copy demo implementation to reduce your integration effort.
 
 ## Demo
 

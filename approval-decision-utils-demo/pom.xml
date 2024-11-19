@@ -3,8 +3,13 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.axonivy.utils.approvaldecision</groupId>
 	<artifactId>approval-decision-utils-demo</artifactId>
-	<version>10.0.21-SNAPSHOT</version>
+	<version>10.0.21</version>
 	<packaging>iar</packaging>
+
+	<properties>
+		<ivy.engine.version>10.0.18</ivy.engine.version>
+		<project.build.plugin.version>10.0.16</project.build.plugin.version>
+	</properties>
 
 	<dependencies>
 		<dependency>
@@ -31,23 +36,18 @@
 		</repository>
 	</repositories>
 
-	<properties>
-		<ivy.engine.version>10.0.18</ivy.engine.version>
-		<project.build.plugin.version>10.0.16</project.build.plugin.version>
-	</properties>
-  <pluginRepositories>
-    <pluginRepository>
-      <id>sonatype</id>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-      <snapshots>
-        <updatePolicy>always</updatePolicy>
-      </snapshots>
-    </pluginRepository>
-  </pluginRepositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>sonatype</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<snapshots>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
 
 	<build>
 		<plugins>
-
 			<plugin>
 				<groupId>com.axonivy.ivy.ci</groupId>
 				<artifactId>project-build-plugin</artifactId>
@@ -78,7 +78,6 @@
 					</compilerOptions>
 				</configuration>
 			</plugin>
-
 			<plugin>
 				<artifactId>maven-clean-plugin</artifactId>
 				<version>3.1.0</version>
@@ -95,7 +94,6 @@
 					</filesets>
 				</configuration>
 			</plugin>
-
 		</plugins>
 	</build>
 </project>

@@ -20,7 +20,7 @@ import com.axonivy.utils.approvaldecision.utils.SortFieldUtils;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.IUser;
 
-public abstract class AbstractApprovalDecisionBean<T extends BaseApprovalHistory> implements Serializable {
+public abstract class AbstractApprovalDecisionBean<T extends BaseApprovalHistory<ID>, ID extends Serializable> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -90,7 +90,7 @@ public abstract class AbstractApprovalDecisionBean<T extends BaseApprovalHistory
 		}
 
 		setApprovalHistories(histories.stream().filter(p -> !p.getIsEditing())
-				.sorted(Comparator.comparing(BaseApprovalHistory::getApprovalDate).reversed())
+				.sorted(Comparator.comparing((BaseApprovalHistory<ID> p) -> p.getApprovalDate()).reversed())
 				.collect(Collectors.toList()));
 	    setApprovalHistory(histories.stream().filter(p -> p.getIsEditing()).findFirst().orElse(initApprovalHistory()));
 

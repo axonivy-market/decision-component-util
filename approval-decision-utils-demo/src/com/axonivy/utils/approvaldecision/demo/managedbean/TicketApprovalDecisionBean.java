@@ -10,7 +10,7 @@ import com.axonivy.utils.approvaldecision.demo.enums.TicketProcessApprovalConfir
 import com.axonivy.utils.approvaldecision.demo.enums.TicketProcessApprovalDecision;
 import com.axonivy.utils.approvaldecision.managedbean.AbstractApprovalDecisionBean;
 
-public class TicketApprovalDecisionBean extends AbstractApprovalDecisionBean<ApprovalHistory> {
+public class TicketApprovalDecisionBean extends AbstractApprovalDecisionBean<ApprovalHistory, String> {
 
 	private static final long serialVersionUID = 1L;
 

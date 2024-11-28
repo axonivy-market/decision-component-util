@@ -3,6 +3,7 @@ package com.axonivy.utils.approvaldecision.demo.managedbean;
 import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import com.axonivy.utils.approvaldecision.demo.contentstate.TicketProcessContentState;
 import com.axonivy.utils.approvaldecision.demo.dao.TicketRequestDAO;
@@ -65,7 +66,7 @@ public class TicketProcessBean {
 
 	private void initTestRequestData() {
 		request.setTicketTitle("Cinema Ticket");
-		request.setTicketNumber("0329767343");
+		request.setTicketNumber("0123456789");
 		request.setTicketType("Diamond");
 		request.setTicketRaiser("Hero");
 		request.setTicketDescription("hello world");

@@ -3,7 +3,6 @@ package com.axonivy.utils.approvaldecision.demo.managedbean;
 import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 import com.axonivy.utils.approvaldecision.demo.contentstate.TicketProcessContentState;
 import com.axonivy.utils.approvaldecision.demo.dao.TicketRequestDAO;

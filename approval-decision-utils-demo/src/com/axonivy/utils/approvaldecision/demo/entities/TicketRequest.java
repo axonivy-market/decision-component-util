@@ -13,15 +13,15 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 @Entity
 @Table(name = "TicketRequest")
-public class TicketRequest extends BaseRequest<ApprovalHistory, String> {
+public class TicketRequest extends BaseRequest<ApprovalHistory, Long> {
 
 	private static final long serialVersionUID = 1L;
-
-	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String id;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", unique = true, nullable = false)
+	private Long id;
+
 	@Column
 	private String forwardToMail;
 
@@ -100,18 +100,18 @@ public class TicketRequest extends BaseRequest<ApprovalHistory, String> {
 	}
 
 	@Override
-	public String getId() {
-		return id;
-	}
-
-	@Override
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	@Override
 	public String getSessionUsername() {
 		return Ivy.session().getSessionUserName();
+	}
+
+	@Override
+	public Long getId() {
+		return this.id;
+	}
+
+	@Override
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 }

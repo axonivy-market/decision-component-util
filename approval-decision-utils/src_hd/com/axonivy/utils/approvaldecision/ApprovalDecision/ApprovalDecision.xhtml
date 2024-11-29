@@ -89,9 +89,9 @@
 
 		<!-- Headline -->
 		<h:panelGroup id="headline-panel"
-			class="p-formgrid p-grid p-align-baseline ui-fluid #{cc.attrs.headlinePanelStyleClass}"
+			class="formgrid grid align-items-baseline ui-fluid #{cc.attrs.headlinePanelStyleClass}"
 			rendered="#{not empty cc.attrs.headline}">
-			<div class="p-field p-col-12 #{cc.attrs.headlineStyleClass}">
+			<div class="field col-12 #{cc.attrs.headlineStyleClass}">
 				<p>#{cc.attrs.headline}</p>
 			</div>
 		</h:panelGroup>
@@ -101,9 +101,9 @@
 
 		<!-- Help text -->
 		<h:panelGroup id="helptext-panel"
-			class="p-formgrid p-grid p-align-baseline ui-fluid #{cc.attrs.helpTextPanelStyleClass}"
+			class="formgrid grid align-items-baseline ui-fluid #{cc.attrs.helpTextPanelStyleClass}"
 			rendered="#{not empty cc.attrs.helpText}">
-			<div class="p-field p-col-12 #{cc.attrs.helpTextStyleClass}">
+			<div class="field col-12 #{cc.attrs.helpTextStyleClass}">
 				<p>#{cc.attrs.helpText}</p>
 			</div>
 		</h:panelGroup>
@@ -113,9 +113,9 @@
 
 		<!-- Decision -->
 		<h:panelGroup id="decision-panel" layout="block"
-			styleClass="p-formgrid p-grid p-align-baseline ui-fluid #{cc.attrs.decisionPanelStyleClass}"
+			styleClass="formgrid grid align-items-baseline ui-fluid #{cc.attrs.decisionPanelStyleClass}"
 			rendered="#{cc.attrs.decisionRendered}">
-			<div class="p-field p-col-12 p-md-2 p-text-left p-text-md-right">
+			<div class="field col-12 md:col-2 p-text-left p-text-md-right">
 				<p:outputLabel id="decision-label" for="decision-options"
 					value="#{cc.attrs.decisionLabel}">
 					<c:if test="#{cc.attrs.decisionRequired}">
@@ -123,7 +123,7 @@
 					</c:if>
 				</p:outputLabel>
 			</div>
-			<div class="p-field p-col-12 p-md-10">
+			<div class="field col-12 md:col-10">
 				<p:selectOneRadio id="decision-options"
 					value="#{managedBean.approvalHistory.decision}" layout="grid"
 					columns="1" requiredMessage="#{cc.attrs.decisionRequiredMessage}"
@@ -146,9 +146,9 @@
 
 		<!-- Confirmation List -->
 		<h:panelGroup id="confirm-panel" layout="block"
-			styleClass="p-formgrid p-grid p-align-baseline ui-fluid #{cc.attrs.confirmationPanelStyleClass}"
+			styleClass="formgrid grid align-items-baseline ui-fluid #{cc.attrs.confirmationPanelStyleClass}"
 			rendered="#{(not cc.attrs.isReadOnly or cc.attrs.confirmationVisible) and managedBean.confirmations ne null and managedBean.confirmations.size() > 0}">
-			<div class="p-field p-col-12 p-md-2 p-text-left p-text-md-right">
+			<div class="field col-12 md:col-2 p-text-left p-text-md-right">
 				<p:outputLabel id="confirmation-label" for="confirmation-options"
 					value="#{cc.attrs.confirmationLabel}">
 					<c:if test="#{cc.attrs.confirmationRequired}">
@@ -156,7 +156,7 @@
 					</c:if>
 				</p:outputLabel>
 			</div>
-			<div class="p-field p-col-12 p-md-10">
+			<div class="field col-12 md:col-10">
 				<p:selectManyCheckbox id="confirmation-options"
 					value="#{managedBean.selectedConfirmations}" layout="grid"
 					columns="1" disabled="#{cc.attrs.confirmationDisabled}"
@@ -177,9 +177,9 @@
 
 		<!-- Comment -->
 		<h:panelGroup id="comment-panel" layout="block"
-			styleClass="p-formgrid p-grid p-align-baseline ui-fluid #{cc.attrs.commentPanelStyleClass}"
+			styleClass="formgrid grid align-items-baseline ui-fluid #{cc.attrs.commentPanelStyleClass}"
 			rendered="#{cc.attrs.commentRendered}">
-			<div class="p-field p-col-12 p-md-2 p-text-left p-text-md-right">
+			<div class="field col-12 md:col-2 p-text-left p-text-md-right">
 				<p:outputLabel id="decision-comment-label" for="decision-comment"
 					value="#{cc.attrs.decisionCommentLabel}">
 					<c:if test="#{cc.attrs.commentRequired}">
@@ -187,7 +187,7 @@
 					</c:if>
 				</p:outputLabel>
 			</div>
-			<div class="p-field p-col-12 p-md-10">
+			<div class="field col-12 md:col-10">
 				<p:inputTextarea id="decision-comment"
 					value="#{managedBean.approvalHistory.comment}" maxlength="1000"
 					disabled="#{cc.attrs.isReadOnly}"
@@ -201,7 +201,7 @@
 					rendered="#{!cc.attrs.isReadOnly}" />
 			</div>
 			<h:panelGroup
-				class="p-field p-col-12 p-md-10 p-md-offset-2 p-nogutter"
+				class="field col-12 md:col-10 md:col-offset-2 grid-nogutter"
 				rendered="#{cc.attrs.commentRequired}">
 				<p:message for="decision-comment" />
 			</h:panelGroup>
@@ -209,14 +209,14 @@
 
 		<!-- Approval history -->
 		<h:panelGroup id="approval-history-table-panel" layout="block"
-			styleClass="p-formgrid p-grid p-align-baseline ui-fluid #{cc.attrs.approvalHistoryPanelStyleClass}"
+			styleClass="formgrid grid align-items-baseline ui-fluid #{cc.attrs.approvalHistoryPanelStyleClass}"
 			rendered="#{cc.attrs.approvalHistoryRendered}">
-			<div class="p-field p-col-12 p-md-2 p-text-left p-text-md-right">
+			<div class="field col-12 md:col-2 p-text-left p-text-md-right">
 				<p:outputLabel id="approval-history-label"
 					for="approval-history-table"
 					value="#{cc.attrs.approvalHistoryLabel}" />
 			</div>
-			<div class="p-field p-col-12 p-md-10">
+			<div class="field col-12 md:col-10">
 				<p:dataTable id="approval-history-table"
 					sortBy="#{managedBean.defaultSortField}"
 					value="#{managedBean.approvalHistories}" var="approvalHistory"

@@ -40,8 +40,8 @@
 	<c:set var="managedBean" value="#{cc.attrs.managedBean}" />
 	<p:fieldset legend="#{ivy.cms.co('/Labels/InformationLegend')}"
 		toggleable="true">
-		<div class="p-grid ui-g">
-			<div class="p-sm-12 p-md-4 p-lg-2 p-text-left p-text-md-right">
+		<div class="grid ui-g">
+			<div class="sm:col-12 md:col-4 lg:col-2 p-text-left p-text-md-right">
 				<p:outputLabel value="#{ivy.cms.co('/Labels/TicketTitle')}"
 					for="ticket-title">
 					<c:if test="#{cc.attrs.ticketTitleRequired}">
@@ -49,7 +49,7 @@
 					</c:if>
 				</p:outputLabel>
 			</div>
-			<div class="p-sm-12 p-md-8 p-lg-4">
+			<div class="sm:col-12 md:col-8 lg:col-4">
 				<p:inputText id="ticket-title"
 					value="#{managedBean.request.ticketTitle}"
 					requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage')}"
@@ -59,7 +59,7 @@
 				</p:inputText>
 				<p:message for="ticket-title" />
 			</div>
-			<div class="p-sm-12 p-md-4 p-lg-2 p-text-left p-text-md-right">
+			<div class="sm:col-12 md:col-4 lg:col-2 p-text-left p-text-md-right">
 				<p:outputLabel value="#{ivy.cms.co('/Labels/TicketNumber')}"
 					for="ticket-number">
 					<c:if test="#{cc.attrs.ticketNumberRequired}">
@@ -67,7 +67,7 @@
 					</c:if>
 				</p:outputLabel>
 			</div>
-			<div class="p-sm-12 p-md-8 p-lg-4">
+			<div class="sm:col-12 md:col-8 lg:col-4">
 				<p:inputText id="ticket-number"
 					value="#{managedBean.request.ticketNumber}"
 					requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage')}"
@@ -78,8 +78,8 @@
 				<p:message for="ticket-number" />
 			</div>
 		</div>
-		<div class="p-grid ui-g">
-			<div class="p-sm-12 p-md-4 p-lg-2 p-text-left p-text-md-right">
+		<div class="grid ui-g">
+			<div class="sm:col-12 md:col-4 lg:col-2 p-text-left p-text-md-right">
 				<p:outputLabel value="#{ivy.cms.co('/Labels/TicketType')}"
 					for="ticket-type">
 					<c:if test="#{cc.attrs.ticketTypeRequired}">
@@ -87,7 +87,7 @@
 					</c:if>
 				</p:outputLabel>
 			</div>
-			<div class="p-sm-12 p-md-8 p-lg-4">
+			<div class="sm:col-12 md:col-8 lg:col-4">
 				<p:inputText id="ticket-type"
 					value="#{managedBean.request.ticketType}"
 					requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage')}"
@@ -97,7 +97,7 @@
 				</p:inputText>
 				<p:message for="ticket-type" />
 			</div>
-			<div class="p-sm-12 p-md-4 p-lg-2 p-text-left p-text-md-right">
+			<div class="sm:col-12 md:col-4 lg:col-2 p-text-left p-text-md-right">
 				<p:outputLabel value="#{ivy.cms.co('/Labels/TicketRaiser')}"
 					for="ticket-raiser">
 					<c:if test="#{cc.attrs.ticketRaiserRequired}">
@@ -105,7 +105,7 @@
 					</c:if>
 				</p:outputLabel>
 			</div>
-			<div class="p-sm-12 p-md-8 p-lg-4">
+			<div class="sm:col-12 md:col-8 lg:col-4">
 				<p:inputText id="ticket-raiser"
 					value="#{managedBean.request.ticketRaiser}"
 					requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage')}"
@@ -116,8 +116,8 @@
 				<p:message for="ticket-raiser" />
 			</div>
 		</div>
-		<div class="p-grid ui-g">
-			<div class="p-sm-12 p-md-4 p-lg-2 p-text-left p-text-md-right">
+		<div class="grid ui-g">
+			<div class="sm:col-12 md:col-4 lg:col-2 p-text-left p-text-md-right">
 				<p:outputLabel value="#{ivy.cms.co('/Labels/TicketDescription')}"
 					for="ticket-description">
 					<c:if test="#{cc.attrs.ticketDescriptionRequired}">
@@ -125,7 +125,7 @@
 					</c:if>
 				</p:outputLabel>
 			</div>
-			<div class="p-sm-12 p-md-8 p-lg-10">
+			<div class="sm:col-12 md:col-8 lg:col-10">
 				<p:inputTextarea id="ticket-description"
 					value="#{managedBean.request.ticketDescription}"
 					requiredMessage="#{ivy.cms.co('/Labels/RequiredFieldMessage')}"

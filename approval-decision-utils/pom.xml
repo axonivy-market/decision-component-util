@@ -3,12 +3,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.axonivy.utils.approvaldecision</groupId>
 	<artifactId>approval-decision-utils</artifactId>
-	<version>10.0.21-SNAPSHOT</version>
+	<version>12.0.0-SNAPSHOT</version>
 	<packaging>iar</packaging>
 
 	<properties>
-		<ivy.engine.version>10.0.18</ivy.engine.version>
-		<project.build.plugin.version>10.0.16</project.build.plugin.version>
+		<ivy.engine.version>12.0.0</ivy.engine.version>
+		<project.build.plugin.version>12.0.0</project.build.plugin.version>
 		<axonivy.persistence.version>10.0.4</axonivy.persistence.version>
 	</properties>
 
@@ -35,15 +35,15 @@
 		</dependency>
 	</dependencies>
 
-	<pluginRepositories>
-		<pluginRepository>
-			<id>sonatype</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-			<snapshots>
-				<updatePolicy>always</updatePolicy>
-			</snapshots>
-		</pluginRepository>
-	</pluginRepositories>
+    <pluginRepositories>
+      <pluginRepository>
+        <id>sonatype</id>
+        <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        <snapshots>
+          <updatePolicy>always</updatePolicy>
+        </snapshots>
+      </pluginRepository>
+    </pluginRepositories>
 
 	<build>
 		<sourceDirectory>src</sourceDirectory>

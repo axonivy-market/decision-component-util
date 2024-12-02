@@ -18,7 +18,7 @@ public class TicketProcessUtils {
 	public static void navigateToHomePage() throws MalformedURLException {
 		IHttpResponse httpResponse = (IHttpResponse) Ivy.response();
 		try {
-			httpResponse.sendRedirect(URLDecoder.decode(Ivy.html().applicationHomeRef(), StandardCharsets.UTF_8));
+			httpResponse.sendRedirect(URLDecoder.decode(Ivy.html().applicationHomeLink().get(), StandardCharsets.UTF_8));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

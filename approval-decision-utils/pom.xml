@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.axonivy.utils.approvaldecision</groupId>
 	<artifactId>approval-decision-utils</artifactId>
 	<version>12.0.1-SNAPSHOT</version>
 	<packaging>iar</packaging>
-
 	<properties>
 		<ivy.engine.version>12.0.0</ivy.engine.version>
 		<project.build.plugin.version>12.0.0</project.build.plugin.version>
 		<axonivy.persistence.version>10.0.4</axonivy.persistence.version>
 	</properties>
-
 	<repositories>
 		<repository>
 			<snapshots>
@@ -34,17 +34,15 @@
 			<version>${axonivy.persistence.version}</version>
 		</dependency>
 	</dependencies>
-
-    <pluginRepositories>
-      <pluginRepository>
-        <id>sonatype</id>
-        <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        <snapshots>
-          <updatePolicy>always</updatePolicy>
-        </snapshots>
-      </pluginRepository>
-    </pluginRepositories>
-
+	<pluginRepositories>
+		<pluginRepository>
+			<id>sonatype</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<snapshots>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
@@ -62,7 +60,8 @@
 						</goals>
 						<configuration>
 							<compilerOptions>
-								<compilerOption>-ApersistenceXml=${basedir}/src/META-INF/persistence.xml</compilerOption>
+								<compilerOption>
+									-ApersistenceXml=${basedir}/src/META-INF/persistence.xml</compilerOption>
 								<compilerOption>-s</compilerOption>
 								<compilerOption>${basedir}/src_generated</compilerOption>
 								<compilerOption>-proc:only</compilerOption>

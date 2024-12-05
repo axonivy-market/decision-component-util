@@ -1,5 +1,6 @@
 package com.axonivy.utils.approvaldecision.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import javax.persistence.MappedSuperclass;
 import com.axonivy.utils.persistence.beans.AuditableEntity;
 
 @MappedSuperclass
-public abstract class BaseRequest<T extends BaseApprovalHistory> extends AuditableEntity {
+public abstract class BaseRequest<T extends BaseApprovalHistory<ID>, ID extends Serializable> extends AuditableEntity<ID> {
 
 	private static final long serialVersionUID = 1L;
 

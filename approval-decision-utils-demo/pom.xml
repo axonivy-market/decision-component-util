@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.axonivy.utils.approvaldecision</groupId>
 	<artifactId>approval-decision-utils-demo</artifactId>
 	<version>12.0.1-SNAPSHOT</version>
 	<packaging>iar</packaging>
-
+	<properties>
+		<ivy.engine.version>12.0.0</ivy.engine.version>
+		<project.build.plugin.version>12.0.0</project.build.plugin.version>
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -20,7 +25,6 @@
 			<type>iar</type>
 		</dependency>
 	</dependencies>
-
 	<repositories>
 		<repository>
 			<snapshots>
@@ -30,24 +34,17 @@
 			<url>https://maven.axonivy.com</url>
 		</repository>
 	</repositories>
-
-	<properties>
-		<ivy.engine.version>12.0.0</ivy.engine.version>
-		<project.build.plugin.version>12.0.0</project.build.plugin.version>
-	</properties>
-  <pluginRepositories>
-    <pluginRepository>
-      <id>sonatype</id>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-      <snapshots>
-        <updatePolicy>always</updatePolicy>
-      </snapshots>
-    </pluginRepository>
-  </pluginRepositories>
-
+	<pluginRepositories>
+		<pluginRepository>
+			<id>sonatype</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+			<snapshots>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
 	<build>
 		<plugins>
-
 			<plugin>
 				<groupId>com.axonivy.ivy.ci</groupId>
 				<artifactId>project-build-plugin</artifactId>
@@ -62,7 +59,8 @@
 						</goals>
 						<configuration>
 							<compilerOptions>
-								<compilerOption>-ApersistenceXml=${basedir}/src/META-INF/persistence.xml</compilerOption>
+								<compilerOption>
+									-ApersistenceXml=${basedir}/src/META-INF/persistence.xml</compilerOption>
 								<compilerOption>-s</compilerOption>
 								<compilerOption>${basedir}/src_generated</compilerOption>
 								<compilerOption>-proc:only</compilerOption>
@@ -78,7 +76,6 @@
 					</compilerOptions>
 				</configuration>
 			</plugin>
-
 			<plugin>
 				<artifactId>maven-clean-plugin</artifactId>
 				<version>3.1.0</version>
@@ -95,7 +92,6 @@
 					</filesets>
 				</configuration>
 			</plugin>
-
 		</plugins>
 	</build>
 </project>

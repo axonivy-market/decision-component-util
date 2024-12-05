@@ -1,5 +1,6 @@
 package com.axonivy.utils.approvaldecision.entities;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -9,7 +10,7 @@ import javax.persistence.Transient;
 import com.axonivy.utils.persistence.beans.AuditableEntity;
 
 @MappedSuperclass
-public abstract class BaseApprovalHistory extends AuditableEntity {
+public abstract class BaseApprovalHistory<ID extends Serializable> extends AuditableEntity<ID> {
 
 	private static final long serialVersionUID = 1L;
 

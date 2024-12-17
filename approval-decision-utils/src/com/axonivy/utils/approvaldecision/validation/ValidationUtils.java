@@ -27,6 +27,10 @@ public class ValidationUtils {
 	public static boolean isValidationRequired(FacesContext context) {
 		return isButtonClicked(context, COMPLETE);
 	}
+	
+	public static boolean isValidationRequired(FacesContext context, String button) {
+		return isButtonClicked(context, button);
+	}
 
 	public static boolean isButtonClicked(FacesContext context, String buttonId) {
 		String sourceId = context.getExternalContext().getRequestParameterValuesMap().get("javax.faces.source")[0];

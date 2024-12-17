@@ -65,7 +65,7 @@ public class TicketProcessBean {
 
 	private void initTestRequestData() {
 		request.setTicketTitle("Cinema Ticket");
-		request.setTicketNumber("0329767343");
+		request.setTicketNumber("0123456789");
 		request.setTicketType("Diamond");
 		request.setTicketRaiser("Hero");
 		request.setTicketDescription("hello world");
